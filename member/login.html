@@ -14,7 +14,7 @@ include_once('../include/top.html');
     <div class="mx-auto w-full lg:w-2/4 py-5 px-6">
 
      <div class="border bg-white shadow py-5 px-6">
-        <form>
+        <form action="login_proc.php" method="post">
             <div>
               <label for="user_id" class="block text-sm font-semibold text-[#C65D7B]">아이디</label>
               <div class="mt-1">
@@ -32,7 +32,7 @@ include_once('../include/top.html');
              </div>
             </div>
             <div class="mt-6 text-right">
-              <button class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-full hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
+              <button type="submit" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-full hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
                 로그인
               </button>
               
