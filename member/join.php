@@ -13,7 +13,7 @@ include_once('../include/top.html');
     
         </div>
      <div class="bg-white py-5 px-6">
-        <form>
+        <form method="post" action="login_proc.php">
             <div>
               <label for="user_id" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">아이디</label>
               <div class="mt-1">
@@ -63,17 +63,28 @@ include_once('../include/top.html');
             </div>
 
             <div class="mt-6">
-                <label for="user_id" class="block text-sm font-semibold text-[#C65D7B]">생년월일</label>
+                <label for="year" class="block text-sm font-semibold text-[#C65D7B]">생년월일</label>
                 <div class="mt-1">
-                <input type="input" name="user_hp1" id="user_hp1"
+                <input type="input" name="year" id="year"
                     class="px-3 py-3 text-[#C65D7B] ml-0 w-1/4 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
                     value="" placeholder="년도"> 
-                    <input type="input" name="user_hp2" id="user_hp2"
+                    <input type="input" name="month" id="month"
                     class="px-3 py-3 text-[#C65D7B] w-1/3 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
                     value="" placeholder="월"> 
-                    <input type="input" name="user_hp3" id="user_hp3"
+                    <input type="input" name="day" id="day"
                     class="px-3 py-3 text-[#C65D7B] w-1/3 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
                     value="" placeholder="일"> 
+                </div>
+                
+            </div>
+
+
+            <div class="mt-6">
+                <label for="user_id" class="block text-sm font-semibold text-[#C65D7B]">주소</label>
+                <div class="mt-1">
+                <input type="input" name="address1" id="address1"
+                    class="px-3 py-3 text-[#C65D7B] ml-0 w-1/4 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
+                    value="" placeholder="주소"> 
                 </div>
                 
             </div>
