@@ -13,7 +13,7 @@ include_once('../include/top.html');
     
         </div>
      <div class="bg-white py-5 px-6">
-        <form method="post" action="login_proc.php">
+        <form name="form" method="post" action="login_proc.php">
             <div>
               <label for="user_id" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">아이디</label>
               <div class="mt-1">
@@ -111,7 +111,7 @@ include_once('../include/top.html');
            </div>
 
             <div class="mt-6 text-right">
-              <button class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-full hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
+              <button type="button" onclick="check();" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-full hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
                 가입하기
               </button>
               
@@ -132,4 +132,22 @@ include_once('../include/top.html');
 <?php
 include_once('../include/bottom.html');
 ?>
+<script>
+
+    
+    function check() {
+       
+        if(form.user_id.value == "") {
+
+        alert("ID는 필수 입력사항입니다.");
+
+        form.user_id.focus();
+
+        return false;
+
+        }
+    }
+
+</script>
+
 
