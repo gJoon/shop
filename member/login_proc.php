@@ -12,16 +12,18 @@ $DB = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 $user_id = $_POST[user_id];
 $user_pw = $_POST[password];
 $email = $_POST[email];
-$hp = $_POST[user_hp1].$_POST[user_hp2].$_POST[user_hp3];  
+$hp = $_POST[user_hp];  
 $birth = $_POST[year].$_POST[month].$_POST[day];
-$address = $_POST[address1];
+$address = $_POST[address];
+$address2 = $_POST[address2];
+$address3 = $_POST[address3];
 
 
-$stmt = $DB->prepare("insert into member (user_id,user_pw,email,hp,birth,address) values (?,?,?,?,?,?)");
-$stmt->bind_param( "ssssss" , $user_id,$user_pw,$email,$hp,$birth,$address);
+
+$stmt = $DB->prepare("insert into member (user_id,user_pw,email,hp,birth,address,address2,address3) values (?,?,?,?,?,?,?,?)");
+$stmt->bind_param( "ssssssss" , $user_id,$user_pw,$email,$hp,$birth,$address,$address2,$address3);
 $stmt->execute();
 
-    
 	echo "<script>alert('회원가입이 완료 되었습니다.');
 			location.href='/member/login.php'
 			</script>";
