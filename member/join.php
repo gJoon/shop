@@ -110,7 +110,7 @@ include_once('../include/top.html');
 
             <div class="mt-6 text-right">
               <button type="button" id="submit_btn" onclick="check();" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-full hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
-                가입하기
+                가입하기1
               </button>
               
             </div>
