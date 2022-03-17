@@ -1,5 +1,9 @@
 <?php
 include_once('../include/top.html');
+// 비밀번호 특수문자 들어가게
+// 아이디 인증
+// 약관 데이터 넣기
+// 년도월일 스크립트 for문
 ?>
 <article class="mx-auto container flex flex-col lg:flex-row mt-24 mb-24 px-3 sm:px-0 w-full lg:w-2/4">
     <div class="mx-auto w-full lg:w-3/4 py-5 px-6">
@@ -110,7 +114,7 @@ include_once('../include/top.html');
 
             <div class="mt-6 text-right">
               <button type="button" id="submit_btn" onclick="check();" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-full hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
-                가입하기1
+                가입하기
               </button>
               
             </div>
