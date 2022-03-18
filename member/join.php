@@ -77,13 +77,13 @@ include_once('../include/top.html');
                 <label for="year" class="block text-sm font-semibold text-[#C65D7B]">생년월일</label>
                 <div class="mt-1 flex flex-col lg:flex-row justify-between">
                     <select name="year" id="year" class="form-select w-full lg:w-2/5 px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#C65D7B] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" aria-label="Default select example">
-                        <option selected>년도선택</option>
+                        <option value='' selected>년도선택</option>
                     </select>
                     <select name="month" id="month" class="form-select w-full lg:w-2/5 px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#C65D7B] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" aria-label="Default select example">
-                        <option selected>월</option>
+                        <option value=''  selected>월</option>
                     </select>
                     <select name="day" id="day" class="form-select w-full lg:w-2/5 px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#C65D7B] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" aria-label="Default select example">
-                        <option selected>일</option>
+                        <option value='' selected>일</option>
             
                     </select>
 
@@ -329,6 +329,19 @@ include_once('../include/bottom.html');
         return false;
 
         }
+        
+        const regExpId = /^[0-9a-z]+$/;
+  
+
+        if(!regExpId.test(form.user_id.value)){
+            alert("숫자, 영문만 입력 가능");
+
+            form.user_id.focus();
+
+            return false;
+        }
+
+
         if(form.email.value == "") {
 
         alert("이메일을 입력해주세요.");
@@ -348,6 +361,16 @@ include_once('../include/bottom.html');
         return false;
 
         }
+
+        const regExpPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{4,}$/;
+  
+
+        if(!regExpPw.test(form.password.value)){
+            alert("최소 4 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자")
+            form.password.focus();
+            return false;
+        }
+
 
         if(form.re_password.value == "") {
 
