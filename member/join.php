@@ -23,7 +23,8 @@ include_once('../include/top.html');
               <div class="mt-1">
                 <input type="text" name="user_id" id="user_id"
                     class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
-                    value="" placeholder="아이디 입력"> 
+                    value="" placeholder="아이디 입력"  onkeyup='id_check()'> 
+                     <div id='id_result' class="text-[#C65D7B] text-xs mt-2">이미 가입된 아이디입니다.</div>
                 </div>
             </div>
             <div class="mt-6">
@@ -223,13 +224,98 @@ include_once('../include/bottom.html');
         }
     
 
-        var user_hp = document.getElementById('user_hp');
+        let user_hp = document.getElementById('user_hp');
 
         user_hp.onkeyup = function(){
-        console.log(this.value);
+        
         this.value = autoHypenPhone( this.value ) ;  
         }
       //전화번호하이픈
+
+
+        //비동기 통신
+        async function id_check() {
+
+        const user = document.getElementById('user_id').value;
+
+        let user_id = user;
+        let base_url = `ajax.php`;
+        let request_parameter = {
+        user_id : user_id,
+        }
+
+        console.log(request_parameter);return false;
+        let response_data = await callAjax(base_url, request_parameter);
+        response_data = await response_data.text();
+            document.getElementById("result").innerText = response_data;
+        }
+        //비동기 통신
+
+
+
+        //셀렉트 값 반복 이너 html
+        const year_id = document.getElementById("year");
+        const month_id = document.getElementById("month");
+        const day_id = document.getElementById("day");
+
+
+        let yeararr = [];
+        let montharr = [];
+        let dayarr = [];
+        
+        let today = new Date();   
+        let year = today.getFullYear();
+        year = year-14;
+        console.log(year); 
+
+        for(let i = year;i>1920;i--){
+            yeararr.push(i);
+        }
+     
+        yeararr.forEach(e => {
+            let items = document.createElement("option");
+            items.innerHTML = e+"년";
+            items.value = e;
+            year_id.append(items);
+         
+        });
+
+
+        for(let i = 1;i<13;i++){
+            if(i<10){
+                montharr.push("0"+i);
+            }else{
+                montharr.push(i);
+            }
+        }
+
+        montharr.forEach(e => {
+            let items = document.createElement("option");
+            items.innerHTML = e +"월";
+            items.value = e;
+            month_id.append(items);
+         
+        });
+
+
+        
+        for(let i = 1;i<32;i++){
+            if(i<10){
+                dayarr.push("0"+i);
+            }else{
+                dayarr.push(i);
+            }
+        }
+
+        dayarr.forEach(e => {
+            let items = document.createElement("option");
+            items.innerHTML = e +"일";
+            items.value = e;
+            day_id.append(items);
+         
+        });
+
+
 
     //회원가입 조건 문
     function check() {
