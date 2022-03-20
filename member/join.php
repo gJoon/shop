@@ -1,5 +1,5 @@
 <?php
-include_once('../include/top.html');
+include_once('../include/top.php');
 
 ?>
 <article class="mx-auto container flex flex-col lg:flex-row mt-24 mb-24 px-3 sm:px-0 w-full lg:w-2/4">
@@ -133,7 +133,7 @@ include_once('../include/top.html');
 </article>
 
 <?php
-include_once('../include/bottom.html');
+include_once('../include/bottom.php');
 ?>
 
 

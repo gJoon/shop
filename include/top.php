@@ -1,3 +1,14 @@
+<?php
+  include '../session.php';
+  if($_SERVER[HTTP_HOST] == "127.0.0.1"){
+
+    include 'session.php';
+  }
+
+  print_r($_SESSION);
+
+?>
+
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <html>

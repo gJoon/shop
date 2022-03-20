@@ -1,11 +1,8 @@
 <?php
-$db_host = "localhost";
-$db_user = "joon";
-$db_password = "joon";
-$db_name = "mysql";
 
-//디비연결
-$DB = mysqli_connect($db_host, $db_user, $db_password, $db_name);
+include '../session.php';
+
+include '../db_config.php';
 
 if($_POST[mode] == 'join'){
 
@@ -51,7 +48,8 @@ if($_POST[mode] == 'login'){
 		location.href='/member/login.php'
 		</script>";
 	}else{ 
-		echo "<script>alert('로그인 성공');
+		$_SESSION['user_id'] = $user_id;
+		echo "<script>
 		location.href='/'
 		</script>";
 	}

@@ -1,5 +1,5 @@
 <?php
-include_once('../include/top.html');
+include_once('../include/top.php');
 
 
 $title = strtoupper($_GET[title]);
@@ -58,7 +58,7 @@ $title = strtoupper($_GET[title]);
     
     <div class="flex flex-wrap grid grid-cols-4 gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
          <!-- loop -->
-        <div class="my-5 cursor-pointer">
+        <div class="my-24 cursor-pointer">
             <div class="h-42 overflow-hidden rounded-lg relative group"><img src="/banner1.png"
                 alt="succulent img" class="w-full h-full object-cover hover:scale-125">
                 <div
@@ -84,7 +84,7 @@ $title = strtoupper($_GET[title]);
         </div>
         <!-- loop -->
         <!-- loop -->
-        <div class="my-5 cursor-pointer">
+        <div class="my-24 cursor-pointer">
         <div class="h-42 overflow-hidden rounded-lg relative group"><img src="/banner1.png"
             alt="succulent img" class="w-full h-full object-cover hover:scale-125">
             <div
@@ -110,7 +110,7 @@ $title = strtoupper($_GET[title]);
     </div>
     <!-- loop -->
     <!-- loop -->
-    <div class="my-5 cursor-pointer">
+    <div class="my-24 cursor-pointer">
         <div class="h-42 overflow-hidden rounded-lg relative group"><img src="/banner1.png"
             alt="succulent img" class="w-full h-full object-cover hover:scale-125">
             <div
@@ -136,7 +136,7 @@ $title = strtoupper($_GET[title]);
     </div>
     <!-- loop -->    
     <!-- loop -->
-    <div class="my-5 cursor-pointer">
+    <div class="my-24 cursor-pointer">
         <div class="h-42 overflow-hidden rounded-lg relative group"><img src="/banner1.png"
             alt="succulent img" class="w-full h-full object-cover hover:scale-125">
             <div
@@ -162,7 +162,7 @@ $title = strtoupper($_GET[title]);
     </div>
     <!-- loop -->
     <!-- loop -->
-    <div class="my-5 cursor-pointer">
+    <div class="my-24 cursor-pointer">
         <div class="h-42 overflow-hidden rounded-lg relative group"><img src="/banner1.png"
             alt="succulent img" class="w-full h-full object-cover hover:scale-125">
             <div
@@ -188,7 +188,7 @@ $title = strtoupper($_GET[title]);
     </div>
     <!-- loop -->
     <!-- loop -->
-    <div class="my-5 cursor-pointer">
+    <div class="my-24 cursor-pointer">
         <div class="h-42 overflow-hidden rounded-lg relative group"><img src="/banner1.png"
             alt="succulent img" class="w-full h-full object-cover hover:scale-125">
             <div
@@ -222,6 +222,6 @@ $title = strtoupper($_GET[title]);
         </main>
         </div>
 <?php
-include_once('../include/bottom.html');
+include_once('../include/bottom.php');
 ?>
 

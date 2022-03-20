@@ -1,5 +1,5 @@
 <?php
-include_once('include/top.html');
+include_once('include/top.php');
 ?>
 
 <!-- Swiper -->
@@ -334,6 +334,6 @@ include_once('include/top.html');
         </main>
         </div>
 <?php
-include_once('include/bottom.html');
+include_once('include/bottom.php');
 ?>
 

@@ -7,7 +7,6 @@
     //디비연결
     $DB = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
-    
 
     // 디비 테이블 값 가져오기 (인젝션 취약함)
     // $sql = "SELECT user FROM user where host = '%'";
@@ -30,14 +29,14 @@
     // $stmt->bind_param("ss", $user_id,$user_id);
     // $stmt->execute();
     
-    $user_id ='id';
+    //$user_id ='id';
 
     // 디비 테이블 값 가져오기 (인젝션 취약점 보완방법)
-    $stmt = $DB->prepare("select * from member where user_id=?");
-    $stmt->bind_param("s", $user_id);
-    $stmt->execute();
-    $res = $stmt->get_result()->fetch_assoc();
-    $user_id = $res["user_id"];
+    //$stmt = $DB->prepare("select * from member where user_id=?");
+    //$stmt->bind_param("s", $user_id);
+    //$stmt->execute();
+    //$res = $stmt->get_result()->fetch_assoc();
+    //$user_id = $res["user_id"];
    
 
 
