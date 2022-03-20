@@ -14,7 +14,8 @@ include_once('../include/top.html');
     <div class="mx-auto w-full lg:w-2/4 py-5 px-6">
 
      <div class="border bg-white shadow py-5 px-6">
-        <form action="login_proc.php" method="post">
+        <form name="form" action="login_proc.php" method="post" onkeypress="show_name(event)">
+            <input type="hidden" name="mode" id="mode" value="login"/>
             <div>
               <label for="user_id" class="block text-sm font-semibold text-[#C65D7B]">아이디</label>
               <div class="mt-1">
@@ -24,18 +25,17 @@ include_once('../include/top.html');
                 </div>
             </div>
             <div class="mt-6">
-              <label for="password" class="block text-sm font-semibold text-[#C65D7B]">비밀번호</label>
+              <label for="user_pw" class="block text-sm font-semibold text-[#C65D7B]">비밀번호</label>
               <div class="mt-1">
-                <input type="password" name="password" id="password"
+                <input type="password" name="user_pw" id="user_pw"
                 class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
                 value="" placeholder="비밀번호 입력"> 
              </div>
             </div>
             <div class="mt-6 text-right">
-              <button type="submit" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-full hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
+              <button type="button" id="submit_btn" onclick="check();" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-full hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
                 로그인
               </button>
-              
             </div>
           </form>
      </div>
@@ -93,6 +93,37 @@ include_once('../include/top.html');
     
 
 </article>
+
+<script>
+function show_name(e){
+    
+    if(e.keyCode == 13){
+        document.getElementById('submit_btn').click();
+    }
+}
+
+
+function check() {
+        if(form.user_id.value == "") {
+            alert("ID를 입력해주세요.");
+            form.user_id.focus();
+            return false;
+
+        }
+
+        if(form.user_pw.value == "") {
+            alert("비밀번호를 입력해주세요.");
+            form.user_pw.focus();
+            return false;
+
+        }
+        return true;
+
+    }
+    document.getElementById('submit_btn').onclick = function() {
+        if(check()==true)  form.submit();		
+    };
+</script>
 
 <?php
 include_once('../include/bottom.html');

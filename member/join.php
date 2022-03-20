@@ -1,9 +1,6 @@
 <?php
 include_once('../include/top.html');
-// 비밀번호 특수문자 들어가게
-// 아이디 인증
-// 약관 데이터 넣기
-// 년도월일 스크립트 for문
+
 ?>
 <article class="mx-auto container flex flex-col lg:flex-row mt-24 mb-24 px-3 sm:px-0 w-full lg:w-2/4">
     <div class="mx-auto w-full lg:w-3/4 py-5 px-6">
@@ -17,14 +14,16 @@ include_once('../include/top.html');
     
         </div>
      <div class="bg-white py-5 px-6">
-        <form name="form" method="post" action="login_proc.php">
+        <form name="form" method="post" action="login_proc.php" onkeypress="show_name(event)">
+            <input type="hidden" name="user_check" id="user_check" value="N">
+            <input type="hidden" name="mode" id="mode" value="join">
             <div>
               <label for="user_id" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">아이디</label>
               <div class="mt-1">
                 <input type="text" name="user_id" id="user_id"
                     class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
                     value="" placeholder="아이디 입력"  onkeyup='id_check()'> 
-                     <div id='id_result' class="text-[#C65D7B] text-xs mt-2">이미 가입된 아이디입니다.</div>
+                     <div id='id_result' class="text-[#C65D7B] text-xs mt-2"></div>
                 </div>
             </div>
             <div class="mt-6">
@@ -40,14 +39,15 @@ include_once('../include/top.html');
                 <div class="mt-1">
                     <input type="password" name="password" id="password"
                         class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
-                        value="" placeholder="비밀번호 입력">
+                        value="" placeholder="비밀번호 입력" onkeyup='pw_check()'>
+                        <div id='pw_result' class="text-[#C65D7B] text-xs mt-2"></div>
             
                 </div>
                 <div class="mt-2">
                     <input type="password" name="re_password" id="re_password"
                         class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
-                        value="" placeholder="비밀번호 재입력">
-            
+                        value="" placeholder="비밀번호 재입력" onkeyup='pw_check2()'>
+                        <div id='pw_result2' class="text-[#C65D7B] text-xs mt-2"></div>
                 </div>
             </div>
 
@@ -93,24 +93,24 @@ include_once('../include/top.html');
 
 
            <div class="border-t my-5 border-[#ddddd]"></div>
-           <div class="text-xl my-4 font-bold"> <input type="checkbox" class="form-checkbox"> 약관 모두 동의</div>
+           <div class="text-xl my-4 font-bold"> <input type="checkbox" class="form-checkbox" id="check_all" name="check_all"> 약관 모두 동의</div>
            <div class="border py-6 rounded-lg shadow px-6">
                <div class="w-full flex flex-col lg:flex-row justify-between place-items-center">
-                <p class="font-semibold mb-6"><input type="checkbox" class="form-checkbox">  만 14세 이상입니다. <span class="text-[#C65D7B] text-sm">필수</span></p>
+                <p class="font-semibold mb-6"><input type="checkbox" name="a" id="a" class="form-checkbox">  만 14세 이상입니다. <span class="text-[#C65D7B] text-sm">필수</span></p>
                 <a href="#" class="text-right  text-sm text-[#666666] hover:text-[#C65D7B]"> 내용보기 </a>
                </div>
 
                <div class="w-full flex flex-col lg:flex-row justify-between place-items-center">
-                <p class="font-semibold mb-6"><input type="checkbox" class="form-checkbox">  개인정보 처리방침동의 <span class="text-[#C65D7B] text-sm">필수</span></p>
+                <p class="font-semibold mb-6"><input type="checkbox" name="a" id="a"  class="form-checkbox">  개인정보 처리방침동의 <span class="text-[#C65D7B] text-sm">필수</span></p>
                 <a href="#" class="text-right  text-sm text-[#666666] hover:text-[#C65D7B]"> 내용보기 </a>
                </div>
 
                <div class="w-full flex flex-col lg:flex-row justify-between place-items-center">
-                <p class="font-semibold mb-6"><input type="checkbox" class="form-checkbox">  이용약관동의 <span class="text-[#C65D7B] text-sm">필수</span></p>
+                <p class="font-semibold mb-6"><input type="checkbox" name="a" id="a"  class="form-checkbox">  이용약관동의 <span class="text-[#C65D7B] text-sm">필수</span></p>
                 <a href="#" class="text-right text-sm  text-[#666666] hover:text-[#C65D7B]"> 내용보기 </a>
                </div>
   
-               <p class="font-semibold mb-6"><input type="checkbox" class="form-checkbox">  이벤트/마케팅 수신 동의 <span class="text-[#000000] text-sm">선택</span></p>
+               <p class="font-semibold mb-6"><input type="checkbox" name="a" id="a" class="form-checkbox">  이벤트/마케팅 수신 동의 <span class="text-[#000000] text-sm">선택</span></p>
            </div>
 
             <div class="mt-6 text-right">
@@ -142,6 +142,13 @@ include_once('../include/bottom.html');
 
 
 <script>
+
+    function show_name(e){
+        
+        if(e.keyCode == 13){
+            document.getElementById('submit_btn').click();
+        }
+    }
     //주소 api
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -230,27 +237,97 @@ include_once('../include/bottom.html');
         
         this.value = autoHypenPhone( this.value ) ;  
         }
-      //전화번호하이픈
+        
+    
 
 
-        //비동기 통신
-        async function id_check() {
-
+//아이디 체크
+function id_check() {
         const user = document.getElementById('user_id').value;
-
+        const regExpId = /^[0-9a-z]+$/;
         let user_id = user;
-        let base_url = `ajax.php`;
-        let request_parameter = {
-        user_id : user_id,
-        }
 
-        console.log(request_parameter);return false;
-        let response_data = await callAjax(base_url, request_parameter);
-        response_data = await response_data.text();
-            document.getElementById("result").innerText = response_data;
-        }
+
+        $.ajax({ 
+            type: "POST",  
+            url : "ajax.php", 
+            data:  "user_id="+user_id,   
+            dataType:"html", 
+            success : function(data, status, xhr) { 
+                if(data=="N") {
+                    console.log(data);
+                    document.getElementById("id_result").innerText = "이미 사용중인 아이디입니다.";
+                    document.getElementById('user_check').value = "N";
+                    return false;
+                } else {
+                    document.getElementById('user_check').value = "N";
+                    if(regExpId.test(user) == false){
+                        
+                        if(user == ""){
+                            document.getElementById("id_result").innerText = "";
+                            
+                        }else{
+                            document.getElementById("id_result").innerText = "아이디는 숫자, 영문만 입력 가능합니다.";
+                        }
+                        form.user_id.focus();
+                        return;
+                    }else{
+                        document.getElementById("id_result").innerText = "사용 가능한 아이디입니다.";
+                        document.getElementById('user_check').value = "Y";
+                        return;
+                    }  
+                    
+                }				
+            },
+            error: function(jqXHR, textStatus, errorThrown) { alert(jqXHR.responseText); id_check = false;    } 
+        });	
+    }
         //비동기 통신
 
+
+
+        //비밀번호 체크 
+    function pw_check(){
+            const user_pw = document.getElementById('password').value;
+            const regExpPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+            let pw_result = document.getElementById("pw_result");
+                
+            if(!regExpPw.test(user_pw)){
+                if(user_pw == ""){
+                    pw_result.innerText = "";
+                }else{
+                    pw_result.innerText = "특수문자,문자,숫자 조합으로만 가능하십니다.";
+                }
+                return false;
+
+            }else{
+                pw_result.innerText = "유효한 비밀번호입니다.";
+                
+            }
+        }
+
+
+                //비밀번호 체크 
+            function pw_check2(){
+            const re_pw = document.getElementById('re_password').value;
+            const pw1 = document.getElementById('password').value;
+
+            let pw_result2 = document.getElementById("pw_result2");
+
+            if( pw1 != re_pw ) {
+                if(re_pw == ""){
+                    pw_result2.innerText = "";
+                }else{
+                    pw_result2.innerText = "비밀번호가 틀립니다.";
+                }
+                return false;
+            } else{
+                pw_result2.innerText = "비밀번호가 같습니다!";
+                return true;
+            }
+
+
+        }
 
 
         //셀렉트 값 반복 이너 html
@@ -266,7 +343,6 @@ include_once('../include/bottom.html');
         let today = new Date();   
         let year = today.getFullYear();
         year = year-14;
-        console.log(year); 
 
         for(let i = year;i>1920;i--){
             yeararr.push(i);
@@ -315,84 +391,125 @@ include_once('../include/bottom.html');
          
         });
 
+        
+    //체크박스
+    document.getElementById('check_all').onclick = function(){
+            if($("input:checkbox[id='check_all']").prop("checked")){
+                $("input[id=a]").prop("checked", true);
 
+            }else{
+                $("input[id=a]").prop("checked", false);
 
+            };
+    }
+
+    
     //회원가입 조건 문
     function check() {
-       
-        if(form.user_id.value == "") {
-
-        alert("ID를 입력해주세요.");
-
-        form.user_id.focus();
-
-        return false;
-
-        }
-        
-        const regExpId = /^[0-9a-z]+$/;
-  
-
-        if(!regExpId.test(form.user_id.value)){
-            alert("숫자, 영문만 입력 가능");
-
+        if(document.getElementById('user_check').value == "N") {
+            alert("ID를 확인해주세요.");
             form.user_id.focus();
-
             return false;
         }
 
+        if(form.user_id.value == "") {
+            alert("ID를 입력해주세요.");
+            form.user_id.focus();
+            return false;
+
+        }
+
+
 
         if(form.email.value == "") {
-
-        alert("이메일을 입력해주세요.");
-
-        form.email.focus();
-
-        return false;
-
+            alert("이메일을 입력해주세요.");
+            form.email.focus();
+            return false;
         }
 
         if(form.password.value == "") {
-
-        alert("비밀번호를 입력해주세요.");
-
-        form.password.focus();
-
-        return false;
-
-        }
-
-        const regExpPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{4,}$/;
-  
-
-        if(!regExpPw.test(form.password.value)){
-            alert("최소 4 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자")
+            alert("비밀번호를 입력해주세요.");
             form.password.focus();
             return false;
         }
 
 
         if(form.re_password.value == "") {
+            alert("비밀번호 확인을 입력해주세요.");
+            form.re_password.focus();
+            return false;   
+        }
 
-        alert("비밀번호 확인을 입력해주세요.");
-
-        form.re_password.focus();
-
-        return false;
+        if(pw_check() == false) {
+            alert("비밀번호를 확인해주세요");
+            form.password.focus();
+            return false;
 
         }
 
-
-        let p1 = document.getElementById('password').value;
-        let p2 = document.getElementById('re_password').value;
-        if( p1 != p2 ) {
-            alert("비밀번호가 일치 하지 않습니다");
+        if(pw_check2() == false) {
+            alert("비밀번호를 확인해주세요.");
             form.re_password.focus();
             return false;
-        } else{
-            return true;
+
+        }
+        
+        if(form.user_hp.value == "") {
+            alert("핸드폰번호를 입력해주세요.");
+            form.user_hp.focus();
+            return false;   
         }
 
+        if(form.user_hp.value.length != 13) {
+            alert("핸드폰번호를 확인해주세요.");
+            form.user_hp.focus();
+            return false;   
+        }
+
+
+        if(form.address2.value == "") {
+            alert("우편번호를 입력해주세요.");
+            form.address2.click();
+            return false;   
+        }
+        if(form.address.value == "") {
+            alert("주소를 입력해주세요.");
+            form.address.focus();
+            return false;   
+        }
+        if(form.year.value == "") {
+            alert("생년월일을 확인해주세요.");
+            form.year.focus();
+            return false;   
+        }
+
+        if(form.month.value == "") {
+            alert("생년월일을 확인해주세요.");
+            form.month.focus();
+            return false;   
+        }
+        
+        if(form.day.value == "") {
+            alert("생년월일을 확인해주세요.");
+            form.day.focus();
+            return false;   
+        }
+
+   
+
+        if(form.address3.value == "") {
+            alert("상세주소를 입력해주세요.");
+            form.address2.focus();
+            return false;   
+        }
+
+
+        if(form.address3.value == "") {
+            alert("상세주소를 입력해주세요.");
+            form.address2.focus();
+            return false;   
+        }
+        return true;
       
     }
 

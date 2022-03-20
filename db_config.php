@@ -39,7 +39,6 @@
     $res = $stmt->get_result()->fetch_assoc();
     $user_id = $res["user_id"];
    
-    print_r($user_id);exit;
 
 
     
