@@ -5,7 +5,6 @@
     include 'session.php';
   }
 
-  print_r($_SESSION);
 
 ?>
 
@@ -87,12 +86,27 @@ sub - C65D7B -->
           </nav>
         </div>
         <div class="hidden lg:flex px-6 py-2 font-medium">
-          <a href="/member/login.php" class="cursor-pointer mx-2 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl"
-            >로그인
-          </a>
-          <a href="/member/join.php" class="cursor-pointer mx-2 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl">
-            회원가입
-          </a>
+          <?php
+              if($_SESSION[user_id] != ""){
+
+              echo '<p class="cursor-pointer hover:border-[#C65D7B] mx-2 text-[#C65D7B] border-b border-[#dddd] px-2 text-sm">';
+              echo $_SESSION[user_name];
+              echo ' 님 
+                 </p>
+              <a href="/member/login_proc.php?mode=logout" class="text-sm cursor-pointer mx-2 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl">
+                로그아웃
+              </a>
+              ';
+
+              }else{
+                echo '<a href="/member/login.php" class="cursor-pointer mx-2 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl"
+                >로그인
+              </a>
+              <a href="/member/join.php" class="cursor-pointer mx-2 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl">
+                회원가입
+              </a>';
+
+              }?>
         </div>
         <div class="flex lg:hidden">
           <svg class="mobile-menu w-8 h-8 text-[#C65D7B]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -120,14 +134,34 @@ sub - C65D7B -->
           <a href="../item/item_list.php?title=shoes"> # SHOES </a> 
         </li>
             </ul>
-          <div class="flex justify-between items-center px-2 my-5">
-              <a  href="#" class="w-5/12 py-2 text-2xl items-center text-center display: inline-block text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl"
-             >로그인
-              </a>
-              <a  href="#" class="w-5/12 py-2 text-2xl items-center text-center display: inline-block text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl"
-              >회원가입
-               </a>
-          </div>
+            
+            <?php
+              if($_SESSION[user_id] != ""){
+
+                echo '
+                <div class="flex justify-between items-center px-2 my-5">
+                <a  href="#" class="w-5/12 py-2 text-2xl items-center text-center display: inline-block text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl"
+              >$_SESSION[user_id]
+                </a>
+                <a  href="#" class="w-5/12 py-2 text-2xl items-center text-center display: inline-block text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl"
+                >로그아웃
+                </a>
+              </div>
+              ';
+
+              }else{
+
+                echo '<div class="flex justify-between items-center px-2 my-5">
+                <a  href="#" class="w-5/12 py-2 text-2xl items-center text-center display: inline-block text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl"
+              >로그인
+                </a>
+                <a  href="#" class="w-5/12 py-2 text-2xl items-center text-center display: inline-block text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl"
+                >회원가입
+                </a>
+              </div>';
+
+              }?>
+ 
         </nav>
       </div>
 

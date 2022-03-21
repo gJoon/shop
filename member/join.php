@@ -2,7 +2,7 @@
 include_once('../include/top.php');
 
 ?>
-<article class="mx-auto container flex flex-col lg:flex-row mt-24 mb-24 px-3 sm:px-0 w-full lg:w-2/4">
+<article class="mx-auto container flex flex-col lg:flex-row mt-24 mb-24 px-3 sm:px-0 w-full lg:w-3/4">
     <div class="mx-auto w-full lg:w-3/4 py-5 px-6">
         <div class="mx-auto items-center w-full lg:w-2/4">
             <h1 class="text-3xl text-center font-semibold mb-2 text-[#F68989]">
@@ -17,6 +17,15 @@ include_once('../include/top.php');
         <form name="form" method="post" action="login_proc.php" onkeypress="show_name(event)">
             <input type="hidden" name="user_check" id="user_check" value="N">
             <input type="hidden" name="mode" id="mode" value="join">
+            <div>
+              <label for="user_name" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">이름</label>
+              <div class="mt-1">
+                <input type="text" name="user_name" id="user_name"
+                    class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
+                    value="" placeholder="이름 입력" onkeyup='name_check()'> 
+                     <div id='name_result' class="text-[#C65D7B] text-xs mt-2"></div>
+                </div>
+            </div>
             <div>
               <label for="user_id" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">아이디</label>
               <div class="mt-1">
@@ -35,7 +44,7 @@ include_once('../include/top.php');
                   </div>
               </div>
             <div class="mt-6">
-                <label for="password" class="block text-sm font-semibold text-[#C65D7B]">비밀번호</label>
+                <label for="password" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]">비밀번호</label>
                 <div class="mt-1">
                     <input type="password" name="password" id="password"
                         class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
@@ -62,7 +71,7 @@ include_once('../include/top.php');
             </div>
             
             <div class="mt-6">
-                <label for="address2" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">주소</label>
+                <label for="address2" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]">주소</label>
                     <div class="mb-1 flex flex-col lg:flex-row justify-between">
                         <input type="text" id="address2" name="address2" onclick="sample6_execDaumPostcode()" class="px-3 py-2 ml-0 my-1 text-[#C65D7B] w-full lg:w-2/6 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" placeholder="우편번호" readonly="readonly">
                         <input type="text" id="address" name="address" onclick="sample6_execDaumPostcode()" class="px-3 py-2 my-1 m-0 lg:ml-2 text-[#C65D7B] w-full lg:w-4/5 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"  placeholder="주소를 검색해주세요" readonly="readonly">
@@ -74,7 +83,7 @@ include_once('../include/top.php');
                 </div>
 
             <div class="mt-6">
-                <label for="year" class="block text-sm font-semibold text-[#C65D7B]">생년월일</label>
+                <label for="year" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]">생년월일</label>
                 <div class="mt-1 flex flex-col lg:flex-row justify-between">
                     <select name="year" id="year" class="form-select w-full lg:w-2/5 px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#C65D7B] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" aria-label="Default select example">
                         <option value='' selected>년도선택</option>
@@ -93,24 +102,28 @@ include_once('../include/top.php');
 
 
            <div class="border-t my-5 border-[#ddddd]"></div>
-           <div class="text-xl my-4 font-bold"> <input type="checkbox" class="form-checkbox" id="check_all" name="check_all"> 약관 모두 동의</div>
-           <div class="border py-6 rounded-lg shadow px-6">
+           <div class="text-xl my-4 font-bold"> 
+               <input type="checkbox" class="form-checkbox" id="check_all" name="check_all"> 약관 모두 동의
+            </div>
+           <div class="border py-6 rounded-lg shadow px-6 check_yn">
                <div class="w-full flex flex-col lg:flex-row justify-between place-items-center">
-                <p class="font-semibold mb-6"><input type="checkbox" name="a" id="a" class="form-checkbox">  만 14세 이상입니다. <span class="text-[#C65D7B] text-sm">필수</span></p>
+                <p class="font-semibold mb-6"><input type="checkbox" name="age_yn" id="age_yn" class="form-checkbox">  만 14세 이상입니다. <span class="text-[#C65D7B] text-sm">필수</span></p>
+                
+               </div>
+
+               <div class="w-full flex flex-col lg:flex-row justify-between place-items-center">
+                <p class="font-semibold mb-6">
+                    <input type="checkbox" name="privacy_yn" id="privacy_yn"  class="form-checkbox">  
+                    개인정보 처리방침동의 <span class="text-[#C65D7B] text-sm">필수</span></p>
                 <a href="#" class="text-right  text-sm text-[#666666] hover:text-[#C65D7B]"> 내용보기 </a>
                </div>
 
                <div class="w-full flex flex-col lg:flex-row justify-between place-items-center">
-                <p class="font-semibold mb-6"><input type="checkbox" name="a" id="a"  class="form-checkbox">  개인정보 처리방침동의 <span class="text-[#C65D7B] text-sm">필수</span></p>
-                <a href="#" class="text-right  text-sm text-[#666666] hover:text-[#C65D7B]"> 내용보기 </a>
-               </div>
-
-               <div class="w-full flex flex-col lg:flex-row justify-between place-items-center">
-                <p class="font-semibold mb-6"><input type="checkbox" name="a" id="a"  class="form-checkbox">  이용약관동의 <span class="text-[#C65D7B] text-sm">필수</span></p>
+                <p class="font-semibold mb-6"><input type="checkbox" name="terms_yn" id="terms_yn"  class="form-checkbox">  이용약관동의 <span class="text-[#C65D7B] text-sm">필수</span></p>
                 <a href="#" class="text-right text-sm  text-[#666666] hover:text-[#C65D7B]"> 내용보기 </a>
                </div>
   
-               <p class="font-semibold mb-6"><input type="checkbox" name="a" id="a" class="form-checkbox">  이벤트/마케팅 수신 동의 <span class="text-[#000000] text-sm">선택</span></p>
+               <p class="font-semibold mb-6"><input type="checkbox" name="event_yn" id="event_yn" class="form-checkbox">  이벤트/마케팅 수신 동의 <span class="text-[#000000] text-sm">선택</span></p>
            </div>
 
             <div class="mt-6 text-right">
@@ -238,6 +251,28 @@ include_once('../include/bottom.php');
         this.value = autoHypenPhone( this.value ) ;  
         }
         
+
+
+  //이름 체크
+  function name_check(){
+        const user_name = document.getElementById('user_name').value;
+        const regExpname = /^[가-힣a-zA-Z]{2,20}$/;
+        let name_result = document.getElementById("name_result");
+            
+        if(!regExpname.test(user_name)){
+            if(user_name == ""){
+                name_result.innerText = "";
+            }else{
+                name_result.innerText = "한글 및 영어만 사용 가능하며 2자~20자 까지 가능합니다.";
+            }
+            return false;
+
+        }else{
+            name_result.innerText = "사용 가능";
+            
+        }
+    }
+      
     
 
 
@@ -286,7 +321,7 @@ function id_check() {
 
 
 
-        //비밀번호 체크 
+    //비밀번호 체크 
     function pw_check(){
             const user_pw = document.getElementById('password').value;
             const regExpPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
@@ -307,7 +342,7 @@ function id_check() {
         }
 
 
-                //비밀번호 체크 
+            //비밀번호 체크 
             function pw_check2(){
             const re_pw = document.getElementById('re_password').value;
             const pw1 = document.getElementById('password').value;
@@ -395,10 +430,10 @@ function id_check() {
     //체크박스
     document.getElementById('check_all').onclick = function(){
             if($("input:checkbox[id='check_all']").prop("checked")){
-                $("input[id=a]").prop("checked", true);
+                $(".check_yn input").prop("checked", true);
 
             }else{
-                $("input[id=a]").prop("checked", false);
+                $(".check_yn input").prop("checked", false);
 
             };
     }
@@ -406,6 +441,22 @@ function id_check() {
     
     //회원가입 조건 문
     function check() {
+
+
+        
+        if(form.user_name.value == "") {
+            alert("이름을 입력해주세요.");
+            form.user_name.focus();
+            return false;
+
+        }
+        if(name_check() == false) {
+            alert("이름을 확인해주세요.");
+            form.user_name.focus();
+            return false;
+
+        }
+
         if(document.getElementById('user_check').value == "N") {
             alert("ID를 확인해주세요.");
             form.user_id.focus();
@@ -507,6 +558,19 @@ function id_check() {
         if(form.address3.value == "") {
             alert("상세주소를 입력해주세요.");
             form.address2.focus();
+            return false;   
+        }
+
+        if(document.getElementById('age_yn').checked == false) {
+            alert("14세 이상 동의여부는 필수 동의 사항입니다.");
+            return false;   
+        }
+        if(document.getElementById('privacy_yn').checked == false) {
+            alert("개인정보 처리방침동의 해주세요.");
+            return false;   
+        }
+        if(document.getElementById('terms_yn').checked == false) {
+            alert("이용약관에 동의 해주세요.");
             return false;   
         }
         return true;
