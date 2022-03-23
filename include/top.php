@@ -89,10 +89,10 @@ sub - C65D7B -->
           <?php
               if($_SESSION[user_id] != ""){
 
-              echo '<p class="cursor-pointer hover:border-[#C65D7B] mx-2 text-[#C65D7B] border-b border-[#dddd] px-2 text-sm">';
+              echo '<a href="/product/product_edit.php" class="cursor-pointer hover:border-[#C65D7B] mx-2 text-[#C65D7B] border-b border-[#dddd] px-2 text-sm">';
               echo $_SESSION[user_name];
               echo ' 님 
-                 </p>
+                 </a>
               <a href="/member/login_proc.php?mode=logout" class="text-sm cursor-pointer mx-2 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl">
                 로그아웃
               </a>
