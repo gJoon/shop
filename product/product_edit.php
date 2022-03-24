@@ -10,7 +10,7 @@ include_once('../include/top.php');
             </h1>
         </div>
      <div class="bg-white py-5 px-6">
-        <form name="form" method="post" action="#">
+        <form name="form" method="post" enctype="multipart/form-data" action="product_proc.php">
 
             <div class="">
               <label for="category" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">대분류</label>
@@ -60,7 +60,7 @@ include_once('../include/top.php');
               <label for="item_image" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">아이템 메인이미지</label>
               <div class="mt-1 flex">
                 <label class="block">
-                <input type="file" class="block w-full text-sm text-slate-500
+                <input type="file" name="item_image" id="item_image" class="block w-full text-sm text-slate-500
                   file:mr-4 file:py-2 file:px-4
                   file:rounded-full file:border-0
                   file:text-sm file:font-semibold
@@ -70,48 +70,7 @@ include_once('../include/top.php');
               </label>
               </div>
             </div>
-            <div class="">
-              <label for="item_subimg1" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">아이템 서브이미지1</label>
-                <div class="mt-1 flex">
-                  <label class="block">
-                  <input type="file" class="block w-full text-sm text-slate-500
-                    file:mr-4 file:py-2 file:px-4
-                    file:rounded-full file:border-0
-                    file:text-sm file:font-semibold
-                    file:bg-violet-50 file:text-violet-700
-                    hover:file:bg-violet-100
-                  "/>
-                </label>
-                </div>
-            </div>
-            <div class="">
-              <label for="item_subimg2" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">아이템 서브이미지2</label>
-                <div class="mt-1 flex">
-                  <label class="block">
-                  <input type="file" class="block w-full text-sm text-slate-500
-                    file:mr-4 file:py-2 file:px-4
-                    file:rounded-full file:border-0
-                    file:text-sm file:font-semibold
-                    file:bg-violet-50 file:text-violet-700
-                    hover:file:bg-violet-100
-                  "/>
-                </label>
-                </div>
-            </div>
-            <div class="">
-              <label for="item_subimg3" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">아이템 서브이미지3</label>
-                <div class="mt-1 flex">
-                  <label class="block">
-                  <input type="file" class="block w-full text-sm text-slate-500
-                    file:mr-4 file:py-2 file:px-4
-                    file:rounded-full file:border-0
-                    file:text-sm file:font-semibold
-                    file:bg-violet-50 file:text-violet-700
-                    hover:file:bg-violet-100
-                  "/>
-                </label>
-                </div>
-            </div>
+       
 
             <div class="">
               <label for="item_content" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">상품설명</label>
@@ -138,6 +97,14 @@ include_once('../include/top.php');
     
 
 </article>
+
+
+<script>
+    document.getElementById('submit_btn').onclick = function() {
+        form.submit();		
+    };
+
+</script>
 <?php
 include_once('../include/bottom.php');
 ?>
