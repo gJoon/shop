@@ -110,7 +110,7 @@ include_once('include/top.php');
                     <div class="flex w-full rounded-xl text-center flex-col justify-center items-center relative py-24 overflow-hidden mt-10 md:mt-0">
                       <img class="absolute top-0 left-0 w-full h-full object-cover" src="/banner1.png" alt="img">
                       <div class="relative z-20">
-                          <p class="text-white py-5 text-2xl text-center w-full">스타일 가이드</p>
+                          <p class="text-white py-5 text-2xl text-center w-full">나만의 패션</p>
                        
                       </div>
                     </div>
@@ -142,7 +142,7 @@ include_once('include/top.php');
                     <div class="flex w-full rounded-xl text-center flex-col justify-center items-center relative py-24 overflow-hidden mt-10 md:mt-0">
                       <img class="absolute top-0 left-0 w-full h-full object-cover" src="/banner1.png" alt="img">
                       <div class="relative z-20">
-                          <p class="text-white py-5 text-2xl text-center w-full">인기아이템 큐레이터</p>
+                          <p class="text-white py-5 text-2xl text-center w-full">추천아이템</p>
                        
                       </div>
                     </div>
