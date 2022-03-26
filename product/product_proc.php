@@ -20,6 +20,8 @@ while ($lang_loops2--)
 	
 $img_name = $img_name."_".$img_name2;
 
+
+
 // 임시로 저장된 정보(tmp_name)
 $tempFile = $_FILES['item_image']['tmp_name'];
 
@@ -60,7 +62,7 @@ while ($nmr_loops--)
 	$item_code .= $characters[mt_rand(0, strlen($characters) - 1)];  
 }  
 
-
+$user_id = $_SESSION[user_id];
 $item_image = $img_name;
 $item_code = $_POST[category_sub]."_".$item_code;
 $category = $_POST[category];
@@ -69,8 +71,8 @@ $item_title = $_POST[item_title];
 $item_price = $_POST[item_price];
 $item_per = $_POST[item_per];
 $item_content = $_POST[item_content];
-$stmt = $DB->prepare("insert into item (item_code,category,category_sub,item_title,item_price,item_per,item_image,write_time) values (?,?,?,?,?,?,?,?)");
-$stmt->bind_param( "ssssiisi" , $item_code,$category,$category_sub,$item_title,$item_price,$item_per,$item_image,$today);
+$stmt = $DB->prepare("insert into item (item_code,user_id,category,category_sub,item_title,item_price,item_per,item_image,write_time) values (?,?,?,?,?,?,?,?,?)");
+$stmt->bind_param( "sssssiisi" , $item_code,$user_id,$category,$category_sub,$item_title,$item_price,$item_per,$item_image,$today);
 $stmt->execute();
 
 // 이미지 파일이 맞는지 검사. 

@@ -62,7 +62,7 @@ include_once('../include/top.php');
                 <div class="w-full lg:w-3/4 px-4 mt-2">
                   <label for="item_per" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">할인률</label>
                   <div class="mt-1">
-                    <input type="text" name="item_per" id="item_per"
+                    <input type="range" name="item_per" id="item_per"
                         class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
                         value="" placeholder="할인률 설정"> 
                   </div>
