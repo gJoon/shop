@@ -213,7 +213,7 @@ sub - C65D7B -->
                 <div id="<?php echo $menu?>" class="border border-[#C65D7B] hidden menu_list w-full flex flex-col h-100 bg-[#ffffff] left-0 top-[80px] ml-0">
                 
                   <?php foreach($csrow as $k2=>$v2){?>
-                    <a href="../item/item_list.php?title=<?php echo $v[4];?>&bcode=<?php echo $v[2];?>&scode=<?php echo $v2[3];?>" class="border-b-2 mt-2 text-center w-full pl-5 inline-block align-baseline py-4 text-[#C65D7B] text-sm align-middle">
+                    <a href="../item/item_list.php?title=<?php echo $v[4];?>&bcode=<?php echo $v[2];?>&scode=<?php echo $v2[3];?>" class="border-b-2 pt-2 text-center w-full pl-5 inline-block align-baseline py-4 text-[#C65D7B] text-sm align-middle">
                       <?php echo $v2[4]; ?>
                     </a>
 
@@ -236,20 +236,36 @@ sub - C65D7B -->
         <?php
               if($_SESSION[user_id] != ""){
 
-              echo '<a href="/product/product_edit.php" class="cursor-pointer mx-1 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4">';
-              echo $_SESSION[user_name];
-              echo ' 님 
-                 </a>
-                <a href="/member/login_proc.php?mode=logout" class="cursor-pointer mx-1 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4">
+              if($_SESSION[user_type] == "seller"){
+                
+                echo '<span class="cursor-pointer mx-1 text-[#C65D7B] border border-[#C65D7B] px-4">';
+                echo $_SESSION[user_name];
+                echo ' 님 
+                </span>
+                <a href="/product/product_edit.php" class="cursor-pointer mx-1 text-[#C65D7B] border border-[#C65D7B] px-4">
+                  상품등록
+                </a>
+                <a href="/member/login_proc.php?mode=logout" class="cursor-pointer mx-1 text-[#C65D7B] border border-[#C65D7B] px-4">
                   로그아웃
                 </a>
-              ';
+                ';
+              }else{
+                echo '<span class="mx-1 text-[#C65D7B] px-2 text-sm">';
+                echo $_SESSION[user_name];
+                echo ' 님 
+                </span>
+                <a href="#" class="cursor-pointer mx-1 text-[#C65D7B] border border-[#C65D7B] px-4">마이페이지</a>
+                <a href="/member/login_proc.php?mode=logout" class="cursor-pointer mx-1 text-[#C65D7B] border border-[#C65D7B] px-4">
+                  로그아웃
+                </a>
+                ';
+              }
 
               }else{
-                echo '<a href="/member/login.php" class="cursor-pointer mx-1 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4"
+                echo '<a href="/member/login.php" class="cursor-pointer mx-1 text-[#C65D7B] border border-[#C65D7B] px-4"
                 >로그인
               </a>
-              <a href="/member/join.php" class="cursor-pointer mx-1 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4">
+              <a href="/member/join.php" class="cursor-pointer mx-1 text-[#C65D7B] border border-[#C65D7B] px-4">
                 회원가입
               </a>';
 
