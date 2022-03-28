@@ -357,7 +357,7 @@ function id_check() {
                 }
                 return false;
             } else{
-                pw_result2.innerText = "비밀번호가 같습니다!";
+                pw_result2.innerText = "비밀번호가 일치합니다.";
                 return true;
             }
 
