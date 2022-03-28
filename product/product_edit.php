@@ -27,7 +27,7 @@ include_once('../include/top.php');
                 <label for="category" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">대분류</label>
                 <div class="mt-1">
                     <select name="category" onchange="cg_change()" id="category" class="form-select w-full  px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#C65D7B] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" aria-label="Default select example">
-                          <option value=''>123카테고리를 선택해주세요.</option>
+                          <option value=''>카테고리를 선택해주세요.</option>
                             <?php foreach($crow as $k=>$v){
                             
                             ?>
@@ -78,7 +78,7 @@ include_once('../include/top.php');
               <div class="flex flex flex-col lg:flex-row my-2">
                 <div class="w-full lg:w-3/4 px-4 mt-2">
                   <label for="item_per" class="block text-sm font-semibold text-[#C65D7B]">할인률 
-                  <button type="button" onclick="per_minus();"> - </button>           
+                  <button type="button"  onclick="per_minus();"> - </button>           
                     <span id='per_result' class="text-[#C65D7B] text-xs mt-2 mx-2">
                     </span>
                     <button type="button" onclick="per_plus();"> + </button>   
@@ -163,11 +163,9 @@ include_once('../include/top.php');
     }
     //할인률 마이너스 버튼
     function per_minus() {
-    
     }
     //할인률 플러스 버튼
     function per_plus() {
-
     } 
 
     
