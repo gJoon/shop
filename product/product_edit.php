@@ -78,9 +78,10 @@ include_once('../include/top.php');
               <div class="flex flex flex-col lg:flex-row my-2">
                 <div class="w-full lg:w-3/4 px-4 mt-2">
                   <label for="item_per" class="block text-sm font-semibold text-[#C65D7B]">할인률 
-                  <button type="button"  onclick="per_minus();"> - </button>           
+                           
                     <span id='per_result' class="text-[#C65D7B] text-xs mt-2 mx-2">
                     </span>
+                    <button type="button"  onclick="per_minus();"> - </button> 
                     <button type="button" onclick="per_plus();"> + </button>   
                   </label>
                   <div class="mt-1">
@@ -90,19 +91,38 @@ include_once('../include/top.php');
                   </div>
                 </div>
                 <div class="w-full lg:w-3/4 px-4 mt-2">
-                <label for="item_image" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">아이템 메인이미지</label>
+                <label for="item_image" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">썸네일 이미지</label>
                 <div class="mt-1">
                   <label class="block">
                   <input type="file" name="item_image" id="item_image" class="block w-full text-sm text-slate-500
                     file:mr-4 file:py-2 file:px-4
                     file:rounded-full file:border-0
                     file:text-sm file:font-semibold
-                    file:bg-violet-50 file:text-violet-700
-                    hover:file:bg-violet-100
+                    file:bg-black-50 file:text-black-700
+                    hover:file:bg-black-100
                   "/>
                   </label>
                 </div>
               
+                </div>
+              </div>
+
+
+              <div class="flex flex flex-col lg:flex-row my-2">
+                <div class="w-full px-4 mt-2 item_sub">
+                <button type="button" class="btn" onclick="img_add();">이미지 추가</button>
+                      <div id="img_box">
+                     
+                            <input type="file" name="item_sub" class="img_add mt-2 block w-full text-sm text-slate-500
+                              file:mr-4 file:py-2 file:px-4
+                              file:rounded-full file:border-0
+                              file:text-sm file:font-semibold
+                              file:bg-black-50 file:text-black-700
+                              hover:file:bg-black-100
+                            "/>
+                     
+                      </div>
+
                 </div>
               </div>
             
@@ -152,24 +172,34 @@ include_once('../include/top.php');
       
     }
 
-    //퍼센트 텍스트 없을시 텍스트 자동 입력
-    const per_result = document.getElementById("per_result");
-    const item_per = document.getElementById("item_per");
-    per_result.innerText = item_per.value+"%";
+      //퍼센트 텍스트 없을시 텍스트 자동 입력
+      const per_result = document.getElementById("per_result");
+      const item_per = document.getElementById("item_per");
+      per_result.innerText = item_per.value+"%";
 
-    //퍼센트 체인지시 텍스트 변경 
-    function per(e){
-        per_result.innerText = e.value+"%";
-    }
-    //할인률 마이너스 버튼
-    function per_minus() {
-    }
-    //할인률 플러스 버튼
-    function per_plus() {
-    } 
+      //퍼센트 체인지시 텍스트 변경 
+      function per(e){
+         per_result.innerText = e.value+"%";
+      }
+      //할인률 마이너스 버튼
+      function per_minus() {
+         item_per.value--;
+         per_result.innerText = item_per.value+"%";
+      }
+      //할인률 플러스 버튼
+      function per_plus() {
+         item_per.value++;
+         per_result.innerText = item_per.value+"%";
+      }
+   
+      //이미지 동적 추가버튼
+      let img_cnt = 1;
+      function img_add (){
 
-    
+        $('.img_add').clone().appendTo('#img_box').prop('name', 'img_sub' + img_cnt);
+        img_cnt++;
 
+      }
 
     document.getElementById('submit_btn').onclick = function() {
         form.submit();		

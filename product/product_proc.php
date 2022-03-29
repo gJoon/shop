@@ -2,6 +2,10 @@
 include '../session.php';
 include '../db_config.php';
 
+
+print_r($_FILES);
+
+exit;
 //지금시각
 $today =  time();
 
