@@ -109,27 +109,14 @@ include_once('../include/top.php');
 
 
               <div class="flex flex flex-col lg:flex-row my-2">
-                <div class="w-full px-4 mt-2 item_sub">
-                <button type="button" class="btn" onclick="img_add();">이미지 추가</button>
-                      <div id="img_box">
-                     
-                            <input type="file" name="item_sub" class="img_add mt-2 block w-full text-sm text-slate-500
-                              file:mr-4 file:py-2 file:px-4
-                              file:rounded-full file:border-0
-                              file:text-sm file:font-semibold
-                              file:bg-black-50 file:text-black-700
-                              hover:file:bg-black-100
-                            "/>
-                     
-                      </div>
-
-                </div>
+                  <div class="w-full px-4 mt-2 item_sub">
+                  <button type="button" onclick="plus();" class="cursor-pointer border">이미지 추가</button>
+                  
+                  <button type="button" onclick="box_allremove();" class="cursor-pointer border">전체제거</button>
+                  <div id="img_box"></div>           
+                
+                  </div>
               </div>
-            
-
-
-
-
 
             <div class="mt-6 text-right">
               <button type="button" id="submit_btn" onclick="check();" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-full hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
@@ -193,13 +180,50 @@ include_once('../include/top.php');
       }
    
       //이미지 동적 추가버튼
-      let img_cnt = 1;
-      function img_add (){
-
-        $('.img_add').clone().appendTo('#img_box').prop('name', 'img_sub' + img_cnt);
-        img_cnt++;
-
+      let num = 1;
+      const plus = () => {
+       
+        if(num >= 6){
+          alert('이미지는 5개만 추가 가능하십니다.');
+          return num;
+        }else if(num <= 5){
+          const item = document.querySelector("#img_box");
+          let divItem = document.createElement(`span`);
+          item.appendChild(divItem);
+          divItem.innerHTML=`
+          <input type="file" name="item_sub${num}" id="item_sub${num}" class="mt-2 w-2/3 text-sm text-slate-500
+            file:mr-4 file:py-2 file:px-4
+            file:rounded-full file:border-0
+            file:text-sm file:font-semibold
+            file:bg-black-50 file:text-black-700
+            hover:file:bg-black-100
+          "/><span onclick="box_remove('item_sub${num}');" class="border px-2 rounded-full cursor-pointer">제거</span>
+          `;
+          num ++;
+        };
       }
+        //이미지 동적 전체 제거버튼 
+        const box_allremove = () => {
+          if(num != 1){
+              if(confirm("정말 전체 삭제 하시겠습니까?") == true) {
+              num = 1;
+              let all = document.querySelector("#img_box");
+              all.innerHTML = '';
+            }
+          }else{
+            alert('현재 추가하신 이미지가 없습니다.');
+          }
+ 
+        }
+        //이미지 동적 개인 제거버튼 
+        const box_remove = (name) => {
+          num --;
+          let element = document.getElementById(name);
+          let parent = element.parentNode;
+          element.parentNode.remove(parent);
+          console.log(num);
+        }
+
 
     document.getElementById('submit_btn').onclick = function() {
         form.submit();		
