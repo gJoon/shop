@@ -300,7 +300,7 @@ include_once('../include/top.php');
             },
           });
           let data = await get_html.text();   // ajax 통신해서 받은 결과값 promise 를 await로 데이터 값으로 받으면서 text 형식으로 변경해줌
-          document.querySelector(`#option_box`).innerHTML = data;  //파싱된 값을 구역에 넣어줌
+          document.querySelector(`#option_box`).innerHTML = data;  //값을 구역제공
           opt_title_arr = [];
           opt_value_arr = {};
         }
