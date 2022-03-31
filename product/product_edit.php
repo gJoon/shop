@@ -121,14 +121,14 @@ include_once('../include/top.php');
 
 
               <div class="flex flex flex-col lg:flex-row">
-              <div class="w-full lg:w-2/4 px-4 mt-2">
-                  <label for="option_title" class="block text-sm font-semibold text-[#C65D7B] mb-1">옵션명 </label>
+              <div class="w-full lg:w-2/4 px-4">
+                  <label for="option_title2" class="block text-sm font-semibold text-[#C65D7B] mb-1">옵션명 </label>
                            
-              <input type="text" name="option_title" id="option_title"
+                <input type="text" name="option_title" id="option_title"
                         class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
                         value="" placeholder="예) 컬러 "> 
                           </div>
-                <div class="w-full lg:w-2/4 px-4 mt-2">
+                <div class="w-full lg:w-2/4 px-4">
                   <label for="option_value" class="block text-sm font-semibold text-[#C65D7B] mb-1">옵션값은 [ , ]로 구분합니다)</label>
                            
                   <input type="text" name="option_value" id="option_value"
@@ -143,6 +143,21 @@ include_once('../include/top.php');
                  </div>
               </div>
 
+              <div class="flex flex flex-col lg:flex-row">
+              <div class="w-full lg:w-2/4 px-4">        
+                <input type="text" name="option_title2" id="option_title2" class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" value="" placeholder="예) 사이즈 "> 
+                          </div>
+                <div class="w-full lg:w-2/4 px-4">
+   
+                  <input type="text" name="option_value2" id="option_value2" class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" value="" placeholder="S,M,L,XL"> 
+                </div>
+                <div class="w-full lg:w-1/5 px-4"> 
+  
+                 </div>
+              </div>
+
+
+              
               <div id="option_box">
 
               </div>
@@ -262,24 +277,30 @@ include_once('../include/top.php');
          
           opt_title_arr.push(document.querySelector('#option_title').value);
           let value = document.querySelector('#option_value').value;
+          opt_title_arr.push(document.querySelector('#option_title2').value);
+          let value2 = document.querySelector('#option_value2').value;
           opt_value_arr[0] = value; 
+          opt_value_arr[1] = value2; 
+
+
+
           
           // get 방식으로 보내기 위해 우선 opt_value_arr 을 문자열로 직렬화
           opt_value_arr = JSON.stringify(opt_value_arr);  
-          // ajax 통신할 url
           let get_url = `option_ajax.php`;   
           let request_params = {  
             opt_title_arr,
             opt_value_arr,
           }
           request_params = new URLSearchParams(request_params).toString();    // get parameter는 url 방식으로 데이터를 보내기 때문에 url 형식으로 request_params 를 변경해줌
-          let get_html = await fetch(`${get_url}?${request_params}`, { // 실제 ajax 통신을 하기 위해 요청하는 코드 (fetch API 사용)
+          let get_html = await fetch(`${get_url}?${request_params}`, { 
+                        // 실제 ajax 통신을 하기 위해 요청하는 코드 (fetch API 사용)
             headers: {  // json 형태로 보내고 utf-8 인코딩을 해서 보내기 위한 설정
               'Content-Type': 'application/json; charset=utf-8'
             },
           });
           let data = await get_html.text();   // ajax 통신해서 받은 결과값 promise 를 await로 데이터 값으로 받으면서 text 형식으로 변경해줌
-          document.querySelector(`#option_box`).innerHTML = data;  // 파싱된 값을 구역에 넣어줌
+          document.querySelector(`#option_box`).innerHTML = data;  //파싱된 값을 구역에 넣어줌
           opt_title_arr = [];
           opt_value_arr = {};
         }

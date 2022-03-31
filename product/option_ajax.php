@@ -3,6 +3,7 @@ $_GET['opt_title_arr'] = explode(',', $_REQUEST['opt_title_arr']);
 $_GET['opt_value_arr'] = stripslashes($_GET['opt_value_arr']);
 $_GET['opt_value_arr'] = json_decode($_GET['opt_value_arr'], true);
 
+
 foreach ($_GET['opt_value_arr'] as $k => $v){
     $_GET['opt_value_arr'][$k] = explode(',', $v);
 }
