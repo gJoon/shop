@@ -270,14 +270,16 @@ include_once('../include/top.php');
 
 
         // option_title 이 담길 변수 선언
-        let opt_title_arr = [];    
+        let opt_title_arr = [];   
+        let opt_title_arr2 = [];    
         // option_value 가 담길 변수 선언 
-        let opt_value_arr = {};    
+        let opt_value_arr = {}; 
+ 
         async function preview_option(){
          
           opt_title_arr.push(document.querySelector('#option_title').value);
           let value = document.querySelector('#option_value').value;
-          opt_title_arr.push(document.querySelector('#option_title2').value);
+          opt_title_arr2.push(document.querySelector('#option_title2').value);
           let value2 = document.querySelector('#option_value2').value;
           opt_value_arr[0] = value; 
           opt_value_arr[1] = value2; 
@@ -291,6 +293,7 @@ include_once('../include/top.php');
           let request_params = {  
             opt_title_arr,
             opt_value_arr,
+            opt_title_arr2,
           }
           request_params = new URLSearchParams(request_params).toString();    // get parameter는 url 방식으로 데이터를 보내기 때문에 url 형식으로 request_params 를 변경해줌
           let get_html = await fetch(`${get_url}?${request_params}`, { 
