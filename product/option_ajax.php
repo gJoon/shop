@@ -1,5 +1,5 @@
 <?php
-$_GET['opt_title_arr'] = explode(',', $_REQUEST['opt_title_arr']);
+
 $_GET['opt_value_arr'] = stripslashes($_GET['opt_value_arr']);
 $_GET['opt_value_arr'] = json_decode($_GET['opt_value_arr'], true);
 
@@ -8,26 +8,50 @@ foreach ($_GET['opt_value_arr'] as $k => $v){
     $_GET['opt_value_arr'][$k] = explode(',', $v);
 }
 
-$opt_row1 = $_GET['opt_value_arr'][0];
-$opt_title = $_GET['opt_title_arr'][0];
+
+print_r($_GET);
+
+$opt_value = $_GET['opt_value_arr'];
+
+
+$opt_arr= [];
+
+if ($opt_value[0]){
+    foreach ($opt_value[0] as $k => $v) {
+        if($opt_value[1]){
+            foreach ($opt_value[1] as $k2 => $v2) {
+                if($v2 != "") {
+                    array_push($opt_arr, $v.' / '.$v2);
+                }else{
+                    array_push($opt_arr, $v);
+                }
+            }
+        }else{
+            array_push($opt_arr, $v);
+        }
+       
+    }
+}
 
 
 ?>
 
 
+
+
     
     <?php
 
-    foreach($opt_row1 as $k=>$v){  
- 
-                          
+    foreach($opt_arr as $k=>$v){  
+
+    
     ?>  
                 <span class="font-bold text-[#464646] mb-2 relative bottom-[-15px] px-4 bg-white">옵션 <?php echo $k+1 ?></span>
                 <div class="flex flex flex-col lg:flex-row mb-2 border-2 rounded-xl p-4 border-[#C65D7B]">
                     <div class="w-full lg:w-3/4 px-4 block text-sm font-semibold text-[#C65D7B]">
                     <label for="option_title_<?php echo $k ?>" class="block text-sm font-semibold text-[#C65D7B]">옵션명</label>
                       
-                        <input type="text" name="option_title_<?php echo $k ?>" id="option_title_<?php echo $k ?>"  value="<?php echo $opt_title." / ".$v?>" readonly class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"/>
+                        <input type="text" name="option_title_<?php echo $k ?>" id="option_title_<?php echo $k ?>"  value="<?php echo $v?>" readonly class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"/>
                     </div>
                     <div class="w-full lg:w-1/4 px-4">
                         <label for="option_qtr_<?php echo $k ?>" class="block text-sm font-semibold text-[#C65D7B]">수량</label>

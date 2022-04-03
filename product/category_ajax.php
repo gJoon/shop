@@ -13,7 +13,24 @@ include '../db_config.php';
   $stmt->execute();
   $csrow = $stmt->get_result()->fetch_all();
 
+  print_r($_GET[category_val]);
 
+?>
+
+<?php if($_GET[category_val] == ""){
+
+?>
+    <option value='' selected>대분류를 선택해주세요.</option>
+<?php
+}
+?>
+
+<?php if($_GET[category_val] != ""){
+
+?>
+    <option value='' selected>소분류를 선택해주세요.</option>
+<?php
+}
 ?>
 
 <?php foreach($csrow as $k=>$v){
@@ -24,10 +41,3 @@ include '../db_config.php';
 }
 ?>
 
-<?php if($_GET[category_val] == ""){
-
-?>
-    <option value='' selected></option>
-<?php
-}
-?>
