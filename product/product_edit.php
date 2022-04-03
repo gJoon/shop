@@ -159,7 +159,7 @@ while ($nmr_loops--)
               <div class="flex flex flex-col lg:flex-row my-2 py-2">
                  <div id="img_box"></div>           
                 
-                  </div>
+                  
               </div>
               
               <div class="px-4 py-2">
@@ -317,6 +317,7 @@ while ($nmr_loops--)
           let divItem = document.createElement(`span`);
           item.appendChild(divItem);
           divItem.innerHTML=`
+          <label for="item_sub${num}" class="block text-sm font-semibold text-[#C65D7B]">추가이미지${num}</label>
           <input type="file" name="item_sub${num}" accept=".gif, .jpg, .png" id="item_sub${num}" class="mt-2 w-2/3 text-sm text-slate-500
             file:mr-4 file:py-2 file:px-4
             file:rounded-full file:border-0
@@ -359,10 +360,14 @@ while ($nmr_loops--)
         const on_btn = document.getElementById("on_btn");
 
         function opt_off(){
+          const option_box = document.getElementById("option_box");
           off_btn.classList.add('border-class');
           on_btn.classList.remove('border-class');
           option_off.classList.remove('hidden');   
-          option_on.classList.add('hidden');       
+          option_on.classList.add('hidden');   
+        
+          
+          option_box.innerHTML=``;
           option_off.innerHTML=`
                 <div class="w-full lg:w-2/4 px-4 mt-2">
                   <label for="off_item_qty" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">수량</label>
@@ -385,19 +390,25 @@ while ($nmr_loops--)
         let opt_value_arr = {}; 
  
         async function preview_option(){
-         
+          
           if(document.querySelector('#option_value')){ 
+           
               let value = document.querySelector('#option_value').value;
               if(value ==""){
                 alert('옵션값을 적어주세요.');
                 document.querySelector(`#option_box`).innerHTML ='';
                 return false;
               }
+  
+              value = value.replace(/,\s*$/, '');
               opt_value_arr[0] = value; 
+
           }
+          
 
           if(document.querySelector('#option_value2')){ 
               let value2 = document.querySelector('#option_value2').value;
+              value2 = value2.replace(/,\s*$/, '');
               opt_value_arr[1] = value2; 
 
           }
@@ -457,10 +468,17 @@ while ($nmr_loops--)
             `;
         }
 
-        
+      //수량 일괄 적용
+      function qty_all_push(){
+        let div_lang = $('#option_box').children('div').length;
+
+      } 
+               
 
 
-        function check() {
+
+      function check() {
+  
         if(form.category.value == ""){
           alert('대분류를 선택해주세요.');
           form.category.focus();
@@ -486,11 +504,6 @@ while ($nmr_loops--)
 
 
 
-        
-        form.item_content.value =  editor1.getHTML();
-
-        
-
         if(document.querySelector('#off_item_qty')){ 
             let off_item_qty = document.querySelector('#off_item_qty').value;
             if(off_item_qty ==""){
@@ -499,10 +512,21 @@ while ($nmr_loops--)
               return false;
             } 
         }    
+
+
         let div_lang = $('#option_box').children('div').length;
         form.option_lang.value = div_lang
+
+
+          
         
-      
+        form.item_content.value =  editor1.getHTML();
+
+        if(form.item_content.value == ""){
+          alert('상세설명을 입력해주세요!');
+          form.item_content.focus();
+          return false;
+        }
         
         return true;
     };

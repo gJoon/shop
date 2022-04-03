@@ -9,8 +9,6 @@ foreach ($_GET['opt_value_arr'] as $k => $v){
 }
 
 
-print_r($_GET);
-
 $opt_value = $_GET['opt_value_arr'];
 
 
@@ -33,6 +31,10 @@ if ($opt_value[0]){
     }
 }
 
+
+
+
+print_r($opt_arr);
 
 ?>
 
@@ -72,5 +74,16 @@ if ($opt_value[0]){
     <?php
     }
     ?>
+    <label class="w-full block text-sm text-center font-semibold text-[#C65D7B]">수량 일괄적용</label>
+    <span class="mt-1 flex">
+    
+    <input type="text" name="qty_all" id="qty_all" class="px-3 py-3 mx-4 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" value="" placeholder="수량을 입력하세요"> 
+    <button type="button" onclick="qty_all_push();" class="w-full rounded border-[#C65D7B] font-semibold border text-[#C65D7B] text-center hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white">
+        일괄적용
+    </button>
+    </span>
+
+
 
     
+                  
