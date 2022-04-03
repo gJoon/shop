@@ -34,8 +34,6 @@ if ($opt_value[0]){
 
 
 
-print_r($opt_arr);
-
 ?>
 
 

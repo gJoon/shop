@@ -471,7 +471,6 @@ while ($nmr_loops--)
       //수량 일괄 적용
       function qty_all_push(){
         let div_lang = $('#option_box').children('div').length;
-
       } 
                
 
