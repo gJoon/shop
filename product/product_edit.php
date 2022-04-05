@@ -149,7 +149,7 @@ while ($nmr_loops--)
                 <div class="w-full px-4 mt-2 item_sub">
                   <button type="button" onclick="plus();" class="w-1/4 cursor-pointer border-class text-xs py-1 cursor-pointer px-2">추가</button>
                   
-                  <button type="button" onclick="box_allremove();" class="w-1/4 cursor-pointer border-class text-xs py-1 cursor-pointerpx-2">전체제거</button>
+                  <button type="button" onclick="box_allremove();" class="w-2/4 cursor-pointer border-class text-xs py-1 cursor-pointerpx-2">전체제거</button>
                 
               
                 </div>
@@ -228,9 +228,9 @@ while ($nmr_loops--)
 
 
               
-              <div id="option_box">
-              
-              </div>
+                <div id="option_box">
+                
+                </div>
               </div>
 
 
@@ -349,7 +349,6 @@ while ($nmr_loops--)
           let element = document.getElementById(name);
           let parent = element.parentNode;
           element.parentNode.remove(parent);
-          console.log(num);
         }
 
         //옵션선택 버튼
@@ -440,7 +439,6 @@ while ($nmr_loops--)
         let option_list = document.getElementById("option_list");
         function option_plus(){
           const className = option_list.className; 
-          console.log(`className: ${className}`);
 
           option_list.classList.remove('hidden');
 
@@ -470,13 +468,22 @@ while ($nmr_loops--)
 
       //수량 일괄 적용
       function qty_all_push(){
-        let div_lang = $('#option_box').children('div').length;
+
+          let div_lang = $('#option_box').children('div').length;
+          let qty_val_all = document.querySelector('#qty_all').value;
+        
+          if(qty_val_all == "") qty_val_all = 0;
+          for (var i = 0; i < div_lang; i++) {
+            document.querySelector('#option_qtr_'+i).value = qty_val_all;
+          }
       } 
                
 
 
 
       function check() {
+    
+
   
         if(form.category.value == ""){
           alert('대분류를 선택해주세요.');
@@ -529,6 +536,9 @@ while ($nmr_loops--)
         
         return true;
     };
+
+
+    
 
     
     document.getElementById('submit_btn').onclick = function() {
