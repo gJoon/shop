@@ -39,7 +39,7 @@ if ($opt_value[0]){
 
 
 
-    
+    <label class="w-full block my-2 text-sm text-center font-semibold text-[#C65D7B]">수량은 정해주시지 않으시면 0개로 적용됩니다.</label>
     <?php
 
     foreach($opt_arr as $k=>$v){  
@@ -57,7 +57,7 @@ if ($opt_value[0]){
                         <label for="option_qtr_<?php echo $k ?>" class="block text-sm font-semibold text-[#C65D7B]">수량</label>
                       
                         <input type="text" name="option_qtr_<?php echo $k ?>" id="option_qtr_<?php echo $k ?>"
-                        class="qty_val px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
+                        class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
                         value="0" placeholder="10" require> 
                     </div>
                     <div class="w-full lg:w-2/4 px-4"> 

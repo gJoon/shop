@@ -3,8 +3,7 @@ include '../session.php';
 include '../db_config.php';
 
 $today =  time();
-print_r($_POST);
-exit;
+
 //이미지 명 생성
 $namechar  = "0123456789";  
 $lang_loops = 6;  

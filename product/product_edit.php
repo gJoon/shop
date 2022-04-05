@@ -476,6 +476,7 @@ while ($nmr_loops--)
           for (var i = 0; i < div_lang; i++) {
             document.querySelector('#option_qtr_'+i).value = qty_val_all;
           }
+          
       } 
                
 
@@ -483,8 +484,6 @@ while ($nmr_loops--)
 
       function check() {
     
-
-  
         if(form.category.value == ""){
           alert('대분류를 선택해주세요.');
           form.category.focus();
@@ -524,8 +523,6 @@ while ($nmr_loops--)
         form.option_lang.value = div_lang
 
 
-          
-        
         form.item_content.value =  editor1.getHTML();
 
         if(form.item_content.value == ""){
