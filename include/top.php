@@ -106,7 +106,7 @@ sub - C65D7B -->
               ?>
                 <li
                 class="cursor-pointer hover:border-[#C65D7B] border-b-4 border-[transparent] <?php echo $menu_class?> flex w-1/4 text-center relative" onmouseover="menu('<?php echo $menu?>')">
-                  <a class="w-full pt-6 mx-0 text-[#C65D7B] pb-2 px-4" href="../item/item_list.php?title=<?php echo $v[4]; ?>">
+                  <a class="w-full pt-6 mx-0 text-[#C65D7B] pb-2 px-4" href="../item/item_list.php?title=<?php echo $v[4]; ?>&bcode=<?php echo $v[2] ?>">
                     # <?php echo $v[4]; ?>
                   </a>  
 

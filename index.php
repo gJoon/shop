@@ -3,9 +3,9 @@ include_once('include/top.php');
 ?>
 
 <!-- Swiper -->
-<div class="swiper mySwiper h-[500px]">
+<div class="swiper mySwiper h-[250px]">
   <div class="swiper-wrapper ">
-    <div class="swiper-slide h-[500px] w-full overflow-hidden bg-[url(/banner1.png)] bg-center px-4">
+    <div class="swiper-slide h-[250px] w-full overflow-hidden bg-[url(/banner1.png)] bg-center px-4">
       
       <div class="container  mx-auto h-full flex items-end z-20">
         <div class="flex-1 text-right">
@@ -15,7 +15,7 @@ include_once('include/top.php');
       </div>
    
   </div>
-    <div class="swiper-slide h-[500px] w-full overflow-hidden bg-[url(/banner1.png)] bg-center px-4">
+    <div class="swiper-slide h-[250px] w-full overflow-hidden bg-[url(/banner1.png)] bg-center px-4">
       
         <div class="container  mx-auto h-full flex items-end z-20">
           <div class="flex-1 text-right">
