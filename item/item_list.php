@@ -4,10 +4,11 @@ include_once('../include/top.php');
 
 $title = strtoupper($_GET[title]);
 
+
 //카테고리 불러오기
 $bcode = $_GET[bcode];
 $scode = $_GET[scode];
-
+//아이템 옵션
 if($scode != ""){
 $stmt = $DB->prepare("select * from item where category=? and category_sub=?");
 $stmt->bind_param("ss", $bcode,$scode);
@@ -17,6 +18,19 @@ $stmt->bind_param("s", $bcode);
 }
 $stmt->execute();
 $irow = $stmt->get_result()->fetch_all();
+
+
+
+  $stmt = $DB->prepare("select * from category where bcode=? and scode !=''");
+  $stmt->bind_param("s", $bcode); 
+  $stmt->execute();
+  $bcrow = $stmt->get_result()->fetch_all();
+
+  $active_class = "border-[#C65D7B] font-semibold border text-[#C65D7B] px-3 text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8";
+
+  if($scode==""){
+    $active_class="border-[#C65D7B] font-semibold border px-3 text-center rounded-xl bg-[#C65D7B] text-[#ffffff] mt-8";
+  };
 
 ?>
 
@@ -68,8 +82,20 @@ $irow = $stmt->get_result()->fetch_all();
   
 <article class="mx-auto container mt-24 mb-24 px-2 w-full lg:w-3/4">
     
-        <h2 class="text-2xl font-semibold mb-1"># <?php echo $title ?></h2>
-    
+    <h2 class="text-2xl font-semibold mb-4"># <?php echo $title ?></h2>
+    <a href="item_list.php?title=<?php echo $title ?>&bcode=<?php echo $bcode?>" class="<?php echo $active_class?>">전체</a>
+    <?php foreach($bcrow as $k=>$v){
+      if($scode==$v[3]){
+        $active_class="border-[#C65D7B] font-semibold border px-3 text-center rounded-xl bg-[#C65D7B] text-[#ffffff] mt-8";
+      }else{
+        $active_class=$active_class = "border-[#C65D7B] font-semibold border text-[#C65D7B] px-3 text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8";;
+      }
+      
+    ?>
+      <a href="item_list.php?title=<?php echo $title ?>&bcode=<?php echo $bcode?>&scode=<?php echo $v[3] ?>" class="<?php echo $active_class?>"><?php echo $v[4] ?></a>
+    <?php
+    }
+    ?>
     <div class="flex flex-wrap grid grid-cols-4 gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
        <?php foreach($irow as $k=>$v){
             $pesent = $v[8]*($v[9]/100); 
