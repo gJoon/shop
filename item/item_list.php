@@ -128,8 +128,7 @@ $irow = $stmt->get_result()->fetch_all();
 </article>
      
           
-        </main>
-        </div>
+    
 <?php
 include_once('../include/bottom.php');
 ?>

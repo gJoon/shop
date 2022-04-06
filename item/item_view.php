@@ -14,7 +14,23 @@ include_once('../include/top.php');
     $stmt->bind_param("is", $count,$item_code);  
     $stmt->execute();
 
+   
 ?>
+
+
+  
+<article class="mx-auto container mt-24 mb-24 px-2 w-full lg:w-3/4">
+    <div class="w-100 flex justify-between items-center px-2">
+       <div class="flex w-2/4 items-center h-full">
+            <img src="/product/img/<?php echo $row['item_image'] ?>" alt="" class="w-100 h-80 rounded-lg">
+        </div>
+        <div class="hidden lg:flex px-6 py-2 w-2/4 font-medium justify-end">
+         2
+        </div>
+    </div>
+    
+    
+</article>
 
 
 <?php
