@@ -53,7 +53,13 @@ include_once('../include/top.php');
 
 
 <style>
+    .item_class {
+        border-radius: 0.375rem;
+        padding:10px 20px;
+        background-color:#f5f6f6;
+        margin-top:20px;
 
+    }
     .item_content img{
 
             margin-bottom:20px;
@@ -180,7 +186,7 @@ include_once('../include/top.php');
                 <span class="text-[#C65D7B]">
                     <?php echo $row['item_per']?>%
                 </span>
-                <span class="text-[#000000] font-bold">
+                <span class="text-[#000000] font-bold" id="price">
                     <?php echo number_format($price)?>원
                 </span>
                 <span class="font-medium text-base text-zinc-400 line-through"> 
@@ -190,14 +196,14 @@ include_once('../include/top.php');
             <div class="border-b my-4"></div>
             <h2 class="mb-4 pb-2 w-full"><?php echo strtoupper($row['user_id'])?>님의 상품입니다.</h2>
             <div class="mt-1">
-                <select name="item_option" id="item_option" class="form-select w-full  px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#C65D7B] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" aria-label="Default select example">
+                <select name="item_option" id="item_option" onchange="option_item();" class="form-select w-full  px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#C65D7B] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" aria-label="Default select example">
                 <option value="">옵션을 선택해주세요.</option>
 
                         <?php foreach($orow as $k=>$v){
                           
                         ?>
             
-                                <option value="<?php echo $v[3] ?>"><?php echo $v[4] ?></option>
+                            <option value="<?php echo $v[3]?>"><?php echo $v[4] ?></option>
                        
                         <?php
                         }
@@ -205,39 +211,20 @@ include_once('../include/top.php');
                         
                 </select>
             </div>
-
-            <div class="bg-[#f5f6f6] mt-4 rounded-xl px-4 py-2">
-                <div class="justify-between flex">
-                    <span class="w-3/4">RED/BLUE</span>
-
-                    <span class="w-1/4 text-right">X</span>
-                </div>
-                <div class="mt-4 justify-between flex">
-                    <div class="w-50">
-                        <button type="button" class="px-2 h-[30px] w-[30px] rounded-full border-[#dddddd] font-semibold border text-[#000000] text-center">
-                            -
-                        </button> 
-                        <span class="mx-2 px-2 text-center border-b border-[#000000]">
-                            1
-                        </span>
-                        <button type="button" class="px-2 rounded-full h-[30px] w-[30px] border-[#dddddd] font-semibold border text-[#000000] text-center">
-                            +
-                        </button> 
-                    </div>
-                    <div class="w-50">
-                        <?php echo number_format('20000')?>원
-                    </div>
-                </div>
+            
+            <div id="opt_sel_box" class="">
+               
             </div>
 
             
 
             <div class="flex flex-col lg:flex-row border-b">
-                <div class="w-full md:w-4/5 px-2 py-8 pb-2 text-[25px]">
+                <div class="w-full md:w-2/4 px-2 py-8 pb-2 text-[25px]">
                    총 상품 금액
                 </div>
-                <div class="w-full md:w-2/4 px-2 py-8 pb-2 text-[20px] text-[#C65D7B] font-bold  text-right">
-                    0원
+                <!-- 총 토탈 금액 -->
+                <div id="price_box" class="hidden w-full md:w-2/4 px-2 py-8 pb-2 text-[20px] text-[#C65D7B] font-bold text-right">
+                    <span id="total_price"><?php echo $price ?></span> <span>원</span>
                 </div>
             </div>
 
@@ -267,6 +254,128 @@ include_once('../include/top.php');
     </div>
     
 </article>
+
+
+<script>
+    let num = 0;
+    //옵션 선택시 추가
+    function option_item(){
+        
+        let item_option = document.getElementById("item_option");
+        let option_val = item_option.value;
+        let option_title = item_option.options[item_option.selectedIndex].text;
+
+        let price = document.getElementById('price').innerText;
+
+        if(option_val == "") {
+            return false;
+        }
+
+
+
+        const item = document.querySelector("#opt_sel_box");
+        const value_check = document.querySelector(`.${option_val}`);
+        //없을시에만 막기
+        if(value_check) {
+            return false;
+        }
+
+        let divItem = document.createElement(`div`);
+        divItem.classList.add("item_class");
+        divItem.classList.add(option_val);
+        num++;
+        
+        item.appendChild(divItem);
+
+        divItem.innerHTML=`
+        <input type="hidden" name="option_value_${num}" value="${option_val}"/>
+        <div class="justify-between flex">
+            <span class="w-3/4">${option_title}</span>
+
+            <button type="button" class="w-1/4 text-right" onclick="option_delete('${option_val}');">X</button>
+        </div>
+        <div class="mt-4 justify-between flex">
+            <div class="w-50">
+                <button type="button" onclick="option_minus('${option_val}');" class="px-2 h-[30px] w-[30px] rounded-full border-[#dddddd] font-semibold border text-[#000000] text-center">
+                    -
+                </button> 
+                <span class="mx-2 px-2 text-center border-b border-[#000000] option_cnt">
+                    1
+                </span>
+                <button type="button" onclick="option_plus('${option_val}');" class="px-2 rounded-full h-[30px] w-[30px] border-[#dddddd] font-semibold border text-[#000000] text-center">
+                    +
+                </button> 
+            </div>
+            <div class="w-50 option_price">
+                <?php echo number_format($price)?>
+            </div>
+            
+        </div>`;
+
+
+        pull_price('<?php echo $price?>');
+
+
+    }
+
+
+// 옵션 삭제 + 수량 마이너스 는 따로 토탈 계산해야함 , 전체금액이 자꾸 문자열로 들어감
+
+ //옵션삭제
+ function option_delete(code){
+    let price = <?php echo $price?>;
+    cnt = document.querySelector(`.${code} .option_cnt`).innerText;
+    let total_price = price* cnt;
+    
+    const opt_sel_del = document.querySelector(`.${code}`).remove();   
+    num--;
+    
+ }
+
+ //수량추가
+ function option_plus(code){
+    cnt = document.querySelector(`.${code} .option_cnt`).innerText;
+    cnt++;
+    document.querySelector(`.${code} .option_cnt`).innerHTML = `${cnt}`; 
+    let price = <?php echo $price?>;
+    //옵션 금액 변경
+    let option_price_txt = price * cnt;
+    const option_price = document.querySelector(`.${code} .option_price`).innerText = option_price_txt.toLocaleString() +" 원"; 
+    pull_price(option_price_txt);
+ }
+
+//수량제거
+ function option_minus(code){
+    if(cnt == 0){
+        return false;
+    }
+    cnt = document.querySelector(`.${code} .option_cnt`).innerText;
+    //옵션 금액 변경
+    let m_price = <?php echo $price?>;
+    let m_price2 = m_price * cnt;
+    let moption_price_txt = m_price2 - m_price;
+    cnt--;
+    document.querySelector(`.${code} .option_cnt`).innerHTML = `${cnt}`; 
+    
+  
+    document.querySelector(`.${code} .option_price`).innerText = moption_price_txt.toLocaleString() +" 원"; 
+
+ }
+  //전체금액
+ function pull_price(sel_price){
+    let div = document.querySelector('#price_box');
+    div.classList.remove("hidden");
+
+    price = document.querySelector('#total_price').innerText;
+    pull = price + sel_price;
+
+    console.log(pull);
+
+    document.querySelector('#total_price').innerText = price.toLocaleString(); 
+ }
+
+
+</script>
 
 
 <?php
