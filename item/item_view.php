@@ -223,8 +223,8 @@ include_once('../include/top.php');
                    총 상품 금액
                 </div>
                 <!-- 총 토탈 금액 -->
-                <div id="price_box" class="hidden w-full md:w-2/4 px-2 py-8 pb-2 text-[20px] text-[#C65D7B] font-bold text-right">
-                    <span id="total_price"><?php echo $price ?></span> <span>원</span>
+                <div id="price_box" class="w-full md:w-2/4 px-2 py-8 pb-2 text-[20px] text-[#C65D7B] font-bold text-right">
+                    <span id="total_price">0</span> <span>원</span>
                 </div>
             </div>
 
@@ -320,7 +320,7 @@ include_once('../include/top.php');
 
 
 // 옵션 삭제 + 수량 마이너스 는 따로 토탈 계산해야함 , 전체금액이 자꾸 문자열로 들어감
-
+// 수량만큼 추가하는거 막아야함 
  //옵션삭제
  function option_delete(code){
     let price = <?php echo $price?>;
@@ -363,8 +363,6 @@ include_once('../include/top.php');
  }
   //전체금액
  function pull_price(sel_price){
-    let div = document.querySelector('#price_box');
-    div.classList.remove("hidden");
 
     price = document.querySelector('#total_price').innerText;
     pull = price + sel_price;
