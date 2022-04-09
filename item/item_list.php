@@ -40,7 +40,7 @@ $irow = $stmt->get_result()->fetch_all();
     <div class="swiper-slide h-[250px] w-full overflow-hidden bg-[url(/banner1.png)] bg-center px-4">
       <div class="container  mx-auto h-full flex items-end z-20">
         <div class="flex-1 text-right">
-          <h1 class="text-3xl text-white text-right py-2">SPAO</h1>
+          <h1 class="text-3xl text-white text-right py-2">SPAO1</h1>
           <h2 class="text-2xl mb-8 text-white"># 아우터를 확인하세요. :)</h2>
          </div>
       </div>
