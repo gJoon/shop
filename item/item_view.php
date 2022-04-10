@@ -1,5 +1,19 @@
 <?php
+//쿠키 생성(아이템 조회수)
+$cookieName = 'item_Count';
+if($_SESSION['user_id'] != ""){
+    $cookievalue = $_SESSION['user_id'];
+}else{
+    $cookievalue = 'non-login';
+}
+
+if(!isset($_COOKIE[$cookieName])) {
+    setcookie($cookieName,$cookievalue,time()+(3 * 24 * 60 * 60), "/"); 
+}
+
 include_once('../include/top.php');
+
+
 
     //컬럼
     $item_code=$_GET[item_code];
@@ -38,11 +52,13 @@ include_once('../include/top.php');
     $orow = $stmt->get_result()->fetch_all();
 
 
-    //조회수
-    $count = $row[count]+1;
-    $stmt = $DB->prepare("update item SET count =? where item_code =?");
-    $stmt->bind_param("is", $count,$item_code);  
-    $stmt->execute();
+    //조회수 인원이 새로고침한다고해서 무작정  같이 올라가게 하지않게 
+    if(!isset($_COOKIE[$cookieName])) {
+        $count = $row[count]+1;
+        $stmt = $DB->prepare("update item SET count =? where item_code =?");
+        $stmt->bind_param("is", $count,$item_code);  
+        $stmt->execute();
+    }
 
 
     $pesent = $row['item_price']*($row['item_per']/100); 
@@ -165,7 +181,9 @@ include_once('../include/top.php');
                 </script>   
     
         <div class="h-full p-4 w-full rounded-lg lg:w-2/4 md:mt-0 mt-8 border">
-            <form action="#">
+            <form name="form" method="post" action="order.php">
+            <input type="hidden" id="arr_lang" name="arr_lang" value="">
+            <input type="hidden" id="item_code" name="item_code" value="<?php echo $row['item_code'] ?>">
             <div class="flex mb-6">
                 <div class="w-3/4 text-sm font-semibold">
                     <a href="/" class=""> HOME </a> / 
@@ -184,13 +202,23 @@ include_once('../include/top.php');
             <h2 class="text-[25px] w-full  font-bold"><?php echo $row['item_title']?></h2>
             <div class="text-[25px]">
                 <span class="text-[#C65D7B]">
-                    <?php echo $row['item_per']?>%
+                    <?php if($$row['item_per'] != ""){?>
+                        <?php echo $row['item_per']?>%
+                    <?php
+                    }
+                    ?>
                 </span>
                 <span class="text-[#000000] font-bold" id="price">
                     <?php echo number_format($price)?>원
                 </span>
                 <span class="font-medium text-base text-zinc-400 line-through"> 
-                    <?php echo number_format($row['item_price'])?>원
+                    <?php if($$row['item_per'] != ""){?>
+                        <?php echo number_format($row['item_price'])?>원
+                    <?php
+                    }
+                    ?>
+
+                    
                 </span>
             </div>
             <div class="border-b my-4"></div>
@@ -200,10 +228,15 @@ include_once('../include/top.php');
                 <option value="">옵션을 선택해주세요.</option>
 
                         <?php foreach($orow as $k=>$v){
-                          
+                            if($v[6] == "0"){
+                                $qty_style="color:#888;background-color:#d3d3d3;";
+                            }else{
+                                $qty_style="";
+                            };
+
                         ?>
-            
-                            <option value="<?php echo $v[3]?>"><?php echo $v[4] ?></option>
+
+                            <option value="<?php echo $v[3]?>,<?php echo $v[6]?>"  style="<?php echo $qty_style ?>"><?php echo $v[4] ?></option>
                        
                         <?php
                         }
@@ -231,7 +264,7 @@ include_once('../include/top.php');
 
             <div class="flex">
                 <div class="w-full px-2">
-                    <button type="button" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
+                    <button type="button" id="submit_btn"  class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
                         바로구매
                     </button>
                 </div>
@@ -258,11 +291,19 @@ include_once('../include/top.php');
 
 <script>
     let num = 0;
+    let cnt_index = 0;
     //옵션 선택시 추가
     function option_item(){
         
         let item_option = document.getElementById("item_option");
-        let option_val = item_option.value;
+        let split =  item_option.value.split(',');
+        let option_val = split[0];
+        let option_cnt = split[1];
+        if(option_cnt == "0") {
+            alert('품절 상품입니다.'); 
+            
+            return false;
+        }
         let option_title = item_option.options[item_option.selectedIndex].text;
 
         let price = document.getElementById('price').innerText;
@@ -284,13 +325,22 @@ include_once('../include/top.php');
         divItem.classList.add("item_class");
         divItem.classList.add(option_val);
         num++;
-        
+        cnt_index++;
+
+
+        let arr_lang = document.getElementById('arr_lang').value = cnt_index;
+
+
         item.appendChild(divItem);
 
+        
+
         divItem.innerHTML=`
-        <input type="hidden" name="option_value_${num}" value="${option_val}"/>
+        <input type="hidden" name="option_value_${num}" value="${option_val},${option_title}"/>
+        <input type="hidden" id="${option_val}_cnt" name="${option_val}_cnt" value="${option_cnt}"/>
+        <input type="hidden" class="item_list" name="item_arr_${cnt_index}" id="item_arr_${cnt_index}" value="1,${option_title},${option_val}, <?php echo $price?>"/>
         <div class="justify-between flex">
-            <span class="w-3/4">${option_title}</span>
+            <span class="w-3/4" id="option_title">${option_title}</span>
 
             <button type="button" class="w-1/4 text-right" onclick="option_delete('${option_val}');">X</button>
         </div>
@@ -299,9 +349,10 @@ include_once('../include/top.php');
                 <button type="button" onclick="option_minus('${option_val}');" class="px-2 h-[30px] w-[30px] rounded-full border-[#dddddd] font-semibold border text-[#000000] text-center">
                     -
                 </button> 
-                <span class="mx-2 px-2 text-center border-b border-[#000000] option_cnt">
-                    1
-                </span>
+  
+                 <input type="text" id="item_cnt_${cnt_index}" name="item_cnt_${cnt_index}"  class="option_cnt px-2 bg-white border shadow-sm border-[transparent] w-[25%] font-bold text-center placeholder-slate-400 focus:outline-none focus:border-[transparent] focus:ring-[transparent] rounded-md sm:text-sm focus:ring-1" value="1" readonly/>
+                   
+  
                 <button type="button" onclick="option_plus('${option_val}');" class="px-2 rounded-full h-[30px] w-[30px] border-[#dddddd] font-semibold border text-[#000000] text-center">
                     +
                 </button> 
@@ -309,69 +360,154 @@ include_once('../include/top.php');
             <div class="w-50 option_price">
                 <?php echo number_format($price)?>
             </div>
-            
         </div>`;
 
 
         pull_price('<?php echo $price?>');
-
+        
 
     }
 
 
-// 옵션 삭제 + 수량 마이너스 는 따로 토탈 계산해야함 , 전체금액이 자꾸 문자열로 들어감
 // 수량만큼 추가하는거 막아야함 
  //옵션삭제
  function option_delete(code){
     let price = <?php echo $price?>;
-    cnt = document.querySelector(`.${code} .option_cnt`).innerText;
-    let total_price = price* cnt;
-    
+    cnt = document.querySelector(`.${code} .option_cnt`).value;
+    let delete_price = price* cnt;
     const opt_sel_del = document.querySelector(`.${code}`).remove();   
     num--;
+
+    total_price = document.querySelector('#total_price').innerText;
+    total_price = parseInt(total_price.replace(/,/g,""));
+    total_price = total_price - parseInt(delete_price);
+    document.querySelector('#total_price').innerText = total_price.toLocaleString();
+
+    
+
+    item_title = document.querySelector(`.${code} .item_list`).value = "";
     
  }
 
  //수량추가
  function option_plus(code){
-    cnt = document.querySelector(`.${code} .option_cnt`).innerText;
+    let cnt = document.querySelector(`.${code} .option_cnt`).value;
+    //옵션의 갯수 
+    let option_cnt = document.querySelector(`#${code}_cnt`).value; 
     cnt++;
-    document.querySelector(`.${code} .option_cnt`).innerHTML = `${cnt}`; 
-    let price = <?php echo $price?>;
-    //옵션 금액 변경
-    let option_price_txt = price * cnt;
-    const option_price = document.querySelector(`.${code} .option_price`).innerText = option_price_txt.toLocaleString() +" 원"; 
-    pull_price(option_price_txt);
+
+    if(cnt > option_cnt) {
+        cnt--;
+        alert(`재고가 ${option_cnt} 개 남았습니다.`); return false;
+    }else{
+        
+
+        document.querySelector(`.${code} .option_cnt`).value = `${cnt}`; 
+
+
+        let price = <?php echo $price?>;
+        //옵션 금액 변경
+        let option_price_txt = price * cnt;
+        const option_price = document.querySelector(`.${code} .option_price`).innerText = option_price_txt.toLocaleString() +" 원"; 
+        pull_price_plus();
+
+
+        //아이템정보 
+        let item_arr = [];
+        let item_title = document.querySelector(`.${code} #option_title`).innerText;
+        item_arr = [`${cnt}`,item_title,`${code}`,option_price_txt];
+
+
+        document.querySelector(`.${code} .item_list`).value = item_arr;
+
+
+
+
+
+    }
+
  }
 
 //수량제거
  function option_minus(code){
+
+
+    cnt = document.querySelector(`.${code} .option_cnt`).value;
     if(cnt == 0){
         return false;
     }
-    cnt = document.querySelector(`.${code} .option_cnt`).innerText;
+
     //옵션 금액 변경
     let m_price = <?php echo $price?>;
     let m_price2 = m_price * cnt;
     let moption_price_txt = m_price2 - m_price;
     cnt--;
-    document.querySelector(`.${code} .option_cnt`).innerHTML = `${cnt}`; 
+    document.querySelector(`.${code} .option_cnt`).value = `${cnt}`; 
     
   
     document.querySelector(`.${code} .option_price`).innerText = moption_price_txt.toLocaleString() +" 원"; 
+    pull_price_minus();
+
+    //아이템정보 
+    let item_arr = [];
+    let item_title = document.querySelector(`.${code} #option_title`).innerText;
+    item_arr = [`${cnt}`,item_title,`${code}`,moption_price_txt];
+    
+    document.querySelector(`.${code} .item_list`).value = item_arr;
 
  }
+
+ 
+
   //전체금액
  function pull_price(sel_price){
-
     price = document.querySelector('#total_price').innerText;
-    pull = price + sel_price;
-
-    console.log(pull);
+    price = parseInt(price.replace(/,/g,""));
+    if(price == "0"){ 
+        price = <?php echo $price?>;
+        document.querySelector('#total_price').innerText = price.toLocaleString();
+    }else{
+        price = price + parseInt(sel_price);
+    }
 
     document.querySelector('#total_price').innerText = price.toLocaleString(); 
  }
 
+ 
+  //수량 체크 가격 올라가기
+  function pull_price_plus(){
+    total_price = document.querySelector('#total_price').innerText;
+    total_price = parseInt(total_price.replace(/,/g,""));
+    price = <?php echo $price?>;
+    total_price = total_price + parseInt(price);
+    document.querySelector('#total_price').innerText = total_price.toLocaleString();
+
+
+ }
+  
+  //수량 체크 가격 내려가기
+  function pull_price_minus(){
+    total_price = document.querySelector('#total_price').innerText;
+    total_price = parseInt(total_price.replace(/,/g,""));
+    price = <?php echo $price?>;
+    total_price = total_price - parseInt(price);
+
+    document.querySelector('#total_price').innerText = total_price.toLocaleString();
+   
+ }
+
+
+
+
+    document.getElementById('submit_btn').onclick = function() {
+        
+        if(document.querySelector('#total_price').innerText == "0") {
+            
+            alert('옵션을 선택해주세요.'); return false;
+        }
+    
+        form.submit();		
+    };
 
 </script>
 

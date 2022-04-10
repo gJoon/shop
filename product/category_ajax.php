@@ -13,7 +13,7 @@ include '../db_config.php';
   $stmt->execute();
   $csrow = $stmt->get_result()->fetch_all();
 
-  print_r($_GET[category_val]);
+
 
 ?>
 
