@@ -184,6 +184,7 @@ include_once('../include/top.php');
             <form name="form" method="post" action="order.php">
             <input type="hidden" id="arr_lang" name="arr_lang" value="">
             <input type="hidden" id="item_code" name="item_code" value="<?php echo $row['item_code'] ?>">
+            <input type="hidden" id="price_arr" name="price_arr" value="">
             <div class="flex mb-6">
                 <div class="w-3/4 text-sm font-semibold">
                     <a href="/" class=""> HOME </a> / 
@@ -201,25 +202,28 @@ include_once('../include/top.php');
             </div>
             <h2 class="text-[25px] w-full  font-bold"><?php echo $row['item_title']?></h2>
             <div class="text-[25px]">
-                <span class="text-[#C65D7B]">
+              
                     <?php if($$row['item_per'] != ""){?>
+                        <span class="text-[#C65D7B]">
                         <?php echo $row['item_per']?>%
+                        </span>
                     <?php
                     }
                     ?>
-                </span>
                 <span class="text-[#000000] font-bold" id="price">
                     <?php echo number_format($price)?>원
                 </span>
-                <span class="font-medium text-base text-zinc-400 line-through"> 
+               
                     <?php if($$row['item_per'] != ""){?>
-                        <?php echo number_format($row['item_price'])?>원
+                        <span class="font-medium text-base text-zinc-400 line-through"> 
+                            <?php echo number_format($row['item_price'])?>원
+                        </span>
                     <?php
                     }
                     ?>
 
                     
-                </span>
+              
             </div>
             <div class="border-b my-4"></div>
             <h2 class="mb-4 pb-2 w-full"><?php echo strtoupper($row['user_id'])?>님의 상품입니다.</h2>
@@ -505,7 +509,10 @@ include_once('../include/top.php');
             
             alert('옵션을 선택해주세요.'); return false;
         }
-    
+
+        price_arr = document.querySelector('#total_price').innerText;
+        price_arr = parseInt(price_arr.replace(/,/g,""));
+        document.querySelector('#price_arr').value = price_arr;
         form.submit();		
     };
 

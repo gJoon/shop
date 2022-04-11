@@ -34,12 +34,18 @@ if($_POST[mode] == 'join'){
 		$event_yn = "Y";
 	};
 
-
+	$defalut = 'Y';
 	
 
 	$stmt = $DB->prepare("insert into member (user_name,user_id,user_pw,email,hp,birth,address,address2,address3,age_yn,privacy_yn,terms_yn,event_yn,user_type) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 	$stmt->bind_param( "ssssssssssssss" , $user_name,$user_id,$user_pw,$email,$hp,$birth,$address,$address2,$address3,$age_yn,$privacy_yn,$terms_yn,$event_yn,$user_type);
 	$stmt->execute();
+
+	$stmt = $DB->prepare("insert into delivery (delivery_name,user_id,hp,address,address2,address3,defalut) values (?,?,?,?,?,?,?)");
+	$stmt->bind_param( "sssssss" , $user_name,$user_id,$hp,$address,$address2,$address3,$defalut);
+	$stmt->execute();
+
+
 
 		echo "<script>alert('회원가입이 완료 되었습니다.');
 				location.href='/member/login.php'
