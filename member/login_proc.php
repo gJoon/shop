@@ -41,7 +41,7 @@ if($_POST[mode] == 'join'){
 	$stmt->bind_param( "ssssssssssssss" , $user_name,$user_id,$user_pw,$email,$hp,$birth,$address,$address2,$address3,$age_yn,$privacy_yn,$terms_yn,$event_yn,$user_type);
 	$stmt->execute();
 
-	$stmt = $DB->prepare("insert into delivery (delivery_name,user_id,hp,address,address2,address3,defalut) values (?,?,?,?,?,?,?)");
+	$stmt = $DB->prepare("insert into delivery_service (delivery_name,user_id,hp,address,address2,address3,defalut) values (?,?,?,?,?,?,?)");
 	$stmt->bind_param( "sssssss" , $user_name,$user_id,$hp,$address,$address2,$address3,$defalut);
 	$stmt->execute();
 
