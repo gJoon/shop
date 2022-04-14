@@ -16,7 +16,7 @@ include_once('../include/top.php');
 
 
     //컬럼
-    $item_code=$_GET[item_code];
+    $item_code= $_GET[item_code];
     $stmt = $DB->prepare("select * from item where item_code =?");
     $stmt->bind_param("s", $item_code);  
     $stmt->execute();
@@ -63,6 +63,15 @@ include_once('../include/top.php');
 
     $pesent = $row['item_price']*($row['item_per']/100); 
     $price = $row['item_price'] - $pesent;
+
+//찜목록
+$stmt = $DB->prepare("select * from item_wish where user_id =? and item_code =?");
+$stmt->bind_param("ss", $_SESSION['user_id'],$item_code);  
+$stmt->execute();
+$wishrow = $stmt->get_result()->fetch_assoc();
+
+
+
 
    
 ?>
@@ -191,19 +200,30 @@ include_once('../include/top.php');
                     <span class=""> #<?php echo $bcode_title ?> </span> / 
                     <span class=""> <?php echo $scode_title ?> </span>
                 </div>
-                <div class="w-1/4 px-2 text-right">
-                    <button type="button" class="">
-                        <svg class="w-6 h-6 stroke-[#C65D7B]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <div class="w-1/4 px-2 text-right" id="wish_btn">
+                <?php if($wishrow != ""){?> 
+                    <button type="button" onclick="my_wish('<?php echo $item_code ?>','delete');">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 stroke-[#C65D7B] text-[#C65D7B]" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                <?php }else {?>
+                    <button type="button" onclick="my_wish('<?php echo $item_code ?>','insert');">
+                        <svg class="w-8 h-8 stroke-[#C65D7B]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
                         </path>
                         </svg>
                     </button>
+                <?php
+                } ?>
+
+  
                 </div>
             </div>
             <h2 class="text-[25px] w-full  font-bold"><?php echo $row['item_title']?></h2>
             <div class="text-[25px]">
               
-                    <?php if($$row['item_per'] != ""){?>
+                    <?php if($row['item_per'] != ""){?>
                         <span class="text-[#C65D7B]">
                         <?php echo $row['item_per']?>%
                         </span>
@@ -214,7 +234,7 @@ include_once('../include/top.php');
                     <?php echo number_format($price)?>원
                 </span>
                
-                    <?php if($$row['item_per'] != ""){?>
+                    <?php if($row['item_per'] != ""){?>
                         <span class="font-medium text-base text-zinc-400 line-through"> 
                             <?php echo number_format($row['item_price'])?>원
                         </span>
@@ -267,7 +287,12 @@ include_once('../include/top.php');
 
 
             <div class="flex">
-                <div class="w-full px-2">
+                <div class="w-full lg:w-2/4 px-2">
+                    <button type="button" onclick="my_basket();" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
+                        장바구니
+                    </button>
+                </div>
+                <div class="w-full lg:w-2/4 px-2">
                     <button type="button" id="submit_btn"  class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
                         바로구매
                     </button>
@@ -294,6 +319,33 @@ include_once('../include/top.php');
 
 
 <script>
+
+//찜하기
+async function my_wish(item_code,mode){
+        let code = item_code;
+        let user_id = '<?php  echo $_SESSION['user_id']?>';
+
+        if (user_id == "") {
+            alert('로그인이 필요합니다.');
+            document.location.href = "/member/login.php"
+            return false;
+        }
+            
+        
+        let type = mode;
+        let get_url = `wish_ajax.php`;
+        let request_params = { 
+            code,
+            user_id,
+            type,
+        }
+        request_params = new URLSearchParams(request_params).toString(); 
+        get_url = get_url+"?"+request_params;
+        let res = await fetch(get_url);
+        let data = await res.text();          
+        document.getElementById("wish_btn").innerHTML = data;  
+    }
+
     let num = 0;
     let cnt_index = 0;
     //옵션 선택시 추가
@@ -389,7 +441,7 @@ include_once('../include/top.php');
 
     
 
-    item_title = document.querySelector(`.${code} .item_list`).value = "";
+   
     
  }
 
@@ -432,7 +484,7 @@ include_once('../include/top.php');
 
  }
 
-//수량제거
+ //수량제거
  function option_minus(code){
 
 
@@ -515,6 +567,52 @@ include_once('../include/top.php');
         document.querySelector('#price_arr').value = price_arr;
         form.submit();		
     };
+
+
+//장바구니
+//첨부터 다시해야할듯함
+async function my_basket(){
+    let user_id = '<?php  echo $_SESSION['user_id']?>';
+    let item_title ='<?php echo $row['item_title']?>';  
+    let item_code ='<?php echo $_GET['item_code']?>';       
+    if (user_id == "") {
+        alert('로그인이 필요합니다.');
+        document.location.href = "/member/login.php"
+        return false;
+    }
+
+    var basket = new Array(''); 
+    let option_lang = document.getElementsByClassName('item_class').length;
+
+      basket[0] = '';
+        for($i = 1; $i <= option_lang; $i++){
+            
+            let arr_val = document.querySelector(`#item_arr_${$i}`).value;
+            basket[$i] = arr_val;
+        }
+
+    
+    let get_url = `basket_ajax.php`;
+    let request_params = { 
+        user_id,
+        basket,
+        item_code,
+        item_title,
+        option_lang,
+        
+    }
+    request_params = new URLSearchParams(request_params).toString(); 
+    get_url = get_url+"?"+request_params;
+    let res = await fetch(get_url);
+    let data = await res.text();          
+    //document.getElementById("").innerHTML = data;  
+    //console.log(data);
+}
+
+
+
+
+
 
 </script>
 

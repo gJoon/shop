@@ -100,21 +100,22 @@ $irow = $stmt->get_result()->fetch_all();
        <?php foreach($irow as $k=>$v){
             $pesent = $v[8]*($v[9]/100); 
             $price = $v[8] - $pesent;
-           ?>
 
             
-            <a href="item_view.php?item_code=<?php echo $v[2] ?>" class="my-24 cursor-pointer">
+
+            //찜목록
+          $stmt = $DB->prepare("select * from item_wish where user_id =? and item_code =?");
+          $stmt->bind_param("ss", $_SESSION['user_id'],$v[2]);  
+          $stmt->execute();
+          $wishrow = $stmt->get_result()->fetch_assoc();
+
+
+           ?>
+
+            <div class="relative my-24">   
+            <a href="item_view.php?item_code=<?php echo $v[2] ?>" class="cursor-pointer">
             <div class="h-64 overflow-hidden rounded-lg relative group"><img src="/product/img/<?php echo $v[6]?>"
                 alt="succulent img" class="w-full h-full object-cover hover:scale-110">
-                <div
-                    class="flex space-x-2 px-3 py-1 absolute right-1 bottom-1 rounded-full ">
-                    <svg class="w-6 h-6 stroke-[#C65D7B]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                    </path>
-                    </svg>
-                </div>
             </div>
             <div class="pt-3"><span class="font-bold text-[#C65D7B]"><?php echo strtoupper($v[1]) ?></span>
             <h3 class="text-lg font-semibold"><?php echo $v[5] ?></h3>
@@ -144,6 +145,25 @@ $irow = $stmt->get_result()->fetch_all();
             </div>  
         
             </a>
+            <div class="flex space-x-2 px-3 py-1 absolute right-1 top-1 rounded-full" id="wish_btn">
+                  <?php if($wishrow != ""){?> 
+                      <button type="button" onclick="my_wish('<?php echo $v[2] ?>','delete');">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 stroke-[#C65D7B] text-[#C65D7B]" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                          </svg>
+                      </button>
+                  <?php }else {?>
+                      <button type="button" onclick="my_wish('<?php echo $v[2] ?>','insert');">
+                          <svg class="w-8 h-8 stroke-[#C65D7B]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                          </path>
+                          </svg>
+                      </button>
+                  <?php
+                  } ?>
+                </div>
+            </div>   
+ 
        <?php
         }
         ?>
@@ -153,6 +173,34 @@ $irow = $stmt->get_result()->fetch_all();
     
 </article>
      
+
+<script>
+
+//찜하기
+async function my_wish(item_code,mode){
+        let code = item_code;
+        let user_id = '<?php  echo $_SESSION['user_id']?>';
+
+               
+        if (user_id == "") {
+            alert('로그인이 필요합니다.');
+            document.location.href = "/member/login.php"
+            return false;
+        }
+        let type = mode;
+        let get_url = `wish_ajax.php`;
+        let request_params = { 
+            code,
+            user_id,
+            type,
+        }
+        request_params = new URLSearchParams(request_params).toString(); 
+        get_url = get_url+"?"+request_params;
+        let res = await fetch(get_url);
+        let data = await res.text();          
+        document.getElementById("wish_btn").innerHTML = data;  
+    }
+</script>
           
     
 <?php

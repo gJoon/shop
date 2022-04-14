@@ -7,11 +7,21 @@ $order_no = uniqid('O_'); ;
 
 $user_id = $_SESSION['user_id'];
 
+
+if($user_id == ""){ echo "<script>
+alert('로그인 후 이용가능 합니다.');
+location.href='/member/login.php'
+</script>"; exit;
+}
+
+
 //멤버 테이블
 $stmt = $DB->prepare("select * from member where user_id =?");
 $stmt->bind_param("s", $user_id);  
 $stmt->execute();
 $mrow = $stmt->get_result()->fetch_assoc();
+
+
 
 
 //배송 테이블
@@ -40,11 +50,11 @@ $item_lang = $_POST['arr_lang'];
 
 //옵션 배열
 $item = array();
-
 //배열 넣기 
 for($i = 0; $i <= $item_lang; $i++){
     $item[$i] = $_POST['item_arr_'.$i];
 }
+
 
 //배열 나누기
 foreach ($item as $k => $v){
@@ -56,20 +66,25 @@ foreach ($item as $k => $v){
      }
  
 }
+
+
 ?>
 
 
- 
+
+ <!-- 부트페이 -->
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.3.min.js" type="application/javascript"></script>
+
 <article class="mx-auto container mt-24 mb-24 w-full lg:w-2/4 px-2" >
-    <form name="form" method="post" action="#">
-        <input type="hidden" name="order_intro" vlaue="">
-        <input type="hidden" name="order_addr" vlaue="">
-        <input type="hidden" name="item_title" vlaue="<?php echo $row['item_title']?>">
-        <input type="hidden" name="item_code" vlaue="<?php echo $item_code?>">
-        <input type="hidden" name="user_id" vlaue="<?php echo $user_id?>">
-        <input type="hidden" name="total_price" vlaue="<?php echo $_POST['price_arr']?>">
-        <input type="hidden" name="order_no" vlaue="<?php echo $order_no?>">
-        
+    <form name="order_form" method="POST" action="order_proc.php">
+        <input type="hidden" name="intro" id="intro" value="">
+        <input type="hidden" name="addr" id="addr" value="">
+        <input type="hidden" name="order_title" id="order_title" value="<?php echo $row['item_title']?>">
+        <input type="hidden" name="order_code" id="order_code" value="<?php echo $item_code?>">
+        <input type="hidden" name="order_id" id="order_id" value="<?php echo $user_id?>">
+        <input type="hidden" name="order_price" id="order_price" value="<?php echo $_POST['price_arr']?>">
+        <input type="hidden" name="order_no" id="order_no" value="<?php echo $order_no?>">
+        <input type="hidden" name="option_lang" id="option_lang" value="<?php echo $item_lang ?>">
         
         <h2 class="text-[30px] text-[#C65D7B] pb-2">주문하기</h2>
         <div class="bg-[#e2e2e2] px-1 py-1 rounded-lg">
@@ -86,9 +101,9 @@ foreach ($item as $k => $v){
                     <div class="w-2/4">
                         <span>배송지 정보</span>
                     </div>
-                    <div class="w-2/4 text-right font-normal text-[12px]">
-                        <span class="cursor-pointer" onclick="delivery_add();">추가하기</span> 
-                        <span class="cursor-pointer" onclick="delivery_cg();">변경하기</span> 
+                    <div class="w-2/4 text-right text-[12px]">
+                        <span id="add_text" class="cursor-pointer hover:text-[#C65D7B]" onclick="delivery_add();">배송지추가</span> 
+                        <span id="cg_text" class="cursor-pointer hover:text-[#C65D7B]" onclick="delivery_cg();">배송지변경</span> 
                     </div>
                    
                 </div>
@@ -203,6 +218,7 @@ foreach ($item as $k => $v){
 
                         foreach($item as $k=>$v){  
                         ?> 
+                        <input type="hidden" name="option_arr_<?php echo $k ?>" value="<?php echo $v[0]?>,<?php echo $v[1]?>,<?php echo $v[2]?>,<?php echo $v[3]?>">
                         <div class="flex mt-2 pb-2 border-b py-1 my-1">
                             <div class="flex w-[30%] md:w-[15%] rounded-xl text-center flex-col justify-center items-center relative overflow-hidden mt-0">
                             <img class="absolute top-0 left-0 w-full h-full object-cover" src="/product/img/<?php echo $row['item_image'] ?>" alt="img">
@@ -245,6 +261,8 @@ foreach ($item as $k => $v){
         </div>   
     </form> 
 </article>
+
+
 
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -348,6 +366,8 @@ function sample6_execDaumPostcode() {
 
       //배송지 변경
       function delivery_cg(){
+
+    
         const dv_box_flex = document.getElementById("dv_box_flex"); 
         const dv_box_class = dv_box_flex.classList; 
 
@@ -356,11 +376,16 @@ function sample6_execDaumPostcode() {
 
         if (dv_box_class.contains('hidden')){
             document.getElementById("dv_box_flex").classList.remove('hidden');
+                    
+            document.getElementById("cg_text").classList.add('text-[#C65D7B]');
             if (!dv_box_class.contains('hidden')){
+                document.getElementById("add_text").classList.remove('text-[#C65D7B]');
                 document.getElementById("dv_add").classList.add('hidden');
             }
             
         }else{
+            document.getElementById("add_text").classList.remove('text-[#C65D7B]');
+            document.getElementById("cg_text").classList.remove('text-[#C65D7B]');
             document.getElementById("dv_box_flex").classList.add('hidden');
             document.getElementById("dv_add").classList.add('hidden');
         }
@@ -383,10 +408,14 @@ function sample6_execDaumPostcode() {
 
         if (dv_add_class2.contains('hidden')){
             document.getElementById("dv_add").classList.remove('hidden');
+            document.getElementById("add_text").classList.add('text-[#C65D7B]');
             if (!dv_box_class2.contains('hidden')){
+                document.getElementById("cg_text").classList.remove('text-[#C65D7B]');
                 document.getElementById("dv_box_flex").classList.add('hidden');
             }
         }else{
+            document.getElementById("add_text").classList.remove('text-[#C65D7B]');
+            document.getElementById("cg_text").classList.remove('text-[#C65D7B]');
             document.getElementById("dv_add").classList.add('hidden');
             document.getElementById("dv_box_flex").classList.add('hidden');
         }
@@ -470,6 +499,9 @@ function sample6_execDaumPostcode() {
                         this.value = autoHypenPhone(_val) ;
                 }
             }
+
+            document.getElementById("add_text").classList.remove('text-[#C65D7B]');
+            document.getElementById("cg_text").classList.remove('text-[#C65D7B]');
       
     }
 
@@ -561,7 +593,8 @@ function sample6_execDaumPostcode() {
                         this.value = autoHypenPhone(_val) ;
                 }
             }
-
+            document.getElementById("add_text").classList.remove('text-[#C65D7B]');
+            document.getElementById("cg_text").classList.remove('text-[#C65D7B]');
 
       
     }
@@ -595,6 +628,8 @@ function sample6_execDaumPostcode() {
                         this.value = autoHypenPhone(_val) ;
                 }
             }
+            document.getElementById("add_text").classList.remove('text-[#C65D7B]');
+            document.getElementById("cg_text").classList.remove('text-[#C65D7B]');
 
       
     }
@@ -641,9 +676,61 @@ function sample6_execDaumPostcode() {
                 }
             }
 
+              document.getElementById("add_text").classList.remove('text-[#C65D7B]');
+            document.getElementById("cg_text").classList.remove('text-[#C65D7B]');
+
         }
     }
+
+
+    
+    document.getElementById('submit_btn').onclick = function() {
+        
+        if(document.getElementById('buy_yn').checked == false) {
+            alert("이용약관에 동의 해주세요.");
+            return false;   
+        }else{
+            pay();	
+        }
+
+    };
+
+    //부트페이 연동
+    function pay(){
+        //실제 복사하여 사용시에는 모든 주석을 지운 후 사용하세요
+     
+        BootPay.request({
+            price: '<?php echo $_POST['price_arr']?>', //실제 결제되는 가격
+            application_id: "625800752701800020f68e2f",
+            name: '<?php echo $row['item_title']?>', //결제창에서 보여질 이름
+            pg: 'nicepay',
+            show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
+            user_info: {
+                username: '<?php echo $mrow['user_name'] ?>',
+                email: '<?php echo $mrow['email'] ?>',
+                addr: '<?php echo $mrow['address'] ?> <?php echo $mrow['address2'] ?>  <?php echo $mrow['address3'] ?> ',
+                phone: '<?php echo $mrow['hp'] ?>'
+            },
+            order_id: '<?php echo $order_no?>', //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
+        }).error(function (data) {
+            //결제 진행시 에러가 발생하면 수행됩니다.
+           alert("결제에 실패했습니다.");
+        }).done(function (data) {
+            
+                //상세정보 및 전화번호 넣기
+                let intro = document.querySelector('#order_intro').innerText;
+                let addr = document.querySelector('#order_addr').innerText;
+                document.querySelector('#intro').value = intro;
+                document.querySelector('#addr').value = addr;
+
+                order_form.submit();	
+        });
+
+    }
+
 </script>
+
+
 
 
 <?php
