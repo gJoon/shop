@@ -164,7 +164,8 @@ while ($nmr_loops--)
               
               <div class="px-4 py-2">
                 <div class="border-t-2 border-[#ddddd] mb-2 px-4"></div>
-                옵션선택 
+                옵션선택 <span class="text-xs font-semibold text-[#C65D7B] before:content-['*'] before:ml-0.5 before:text-[#C65D7B]'"> 단일상품은 추후에 옵션 추가 가 불가능합니다.</span> 
+                
               </div>
               
               <div class="flex flex flex-col lg:flex-row mb-4  px-4">
@@ -173,7 +174,7 @@ while ($nmr_loops--)
                   <button type="button" onclick="opt_on();" id="on_btn" class="cursor-pointer  text-xs py-1 mx-2 px-2">옵션상품</button> 
               </div>
 
-              <div class="flex flex flex-col lg:flex-row my-2" id="option_off">
+              <div class="flex flex flex-col lg:flex-col my-2" id="option_off">
                 <div class="w-full lg:w-2/4 px-4 mt-2">
                   <label for="off_item_qty" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">수량</label>
                   <div class="mt-1">

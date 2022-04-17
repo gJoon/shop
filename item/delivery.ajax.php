@@ -18,6 +18,7 @@ if($_GET['mode'] == 'select'){
 
 
 if($_GET['mode'] == 'insert'){
+
     if($_GET['defalut_val'] == 'Y'){
         $stmt = $DB->prepare("update delivery_service set defalut = 'N' WHERE user_id =?");
         $stmt->bind_param("s", $user_id);  
@@ -30,10 +31,8 @@ if($_GET['mode'] == 'insert'){
         $stmt = $DB->prepare("INSERT INTO delivery_service (delivery_name,user_id,hp,address,address2,address3,defalut)  VALUES (?,?,?,?,?,?,?)");
         $stmt->bind_param("sssssss", $_GET['insert_name_val'],$_GET['user_id'],$_GET['insert_hp_val'],$_GET['address_val'],$_GET['address2_val'],$_GET['address3_val'],$_GET['defalut_val']);  
         $stmt->execute();
-
     }
-
-
+    
 }
 
 
