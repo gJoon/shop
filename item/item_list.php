@@ -104,10 +104,10 @@ $irow = $stmt->get_result()->fetch_all();
             
 
             //찜목록
-          $stmt = $DB->prepare("select * from item_wish where user_id =? and item_code =?");
-          $stmt->bind_param("ss", $_SESSION['user_id'],$v[2]);  
-          $stmt->execute();
-          $wishrow = $stmt->get_result()->fetch_assoc();
+            $stmt = $DB->prepare("select * from item_wish where user_id =? and item_code =?");
+            $stmt->bind_param("ss", $_SESSION['user_id'],$v[2]);  
+            $stmt->execute();
+            $wishrow = $stmt->get_result()->fetch_assoc();
 
 
            ?>
@@ -145,7 +145,7 @@ $irow = $stmt->get_result()->fetch_all();
             </div>  
         
             </a>
-            <div class="flex space-x-2 px-3 py-1 absolute right-1 top-1 rounded-full" id="wish_btn">
+            <div class="flex space-x-2 px-3 py-1 absolute right-1 top-1 rounded-full" id="<?php echo $v[2] ?>">
                   <?php if($wishrow != ""){?> 
                       <button type="button" onclick="my_wish('<?php echo $v[2] ?>','delete');">
                           <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 stroke-[#C65D7B] text-[#C65D7B]" viewBox="0 0 20 20" fill="currentColor">
@@ -197,8 +197,10 @@ async function my_wish(item_code,mode){
         request_params = new URLSearchParams(request_params).toString(); 
         get_url = get_url+"?"+request_params;
         let res = await fetch(get_url);
-        let data = await res.text();          
-        document.getElementById("wish_btn").innerHTML = data;  
+        let data = await res.text();     
+        console.log(data);
+        
+        document.getElementById(code).innerHTML = data;  
     }
 </script>
           

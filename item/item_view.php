@@ -190,7 +190,7 @@ $wishrow = $stmt->get_result()->fetch_assoc();
                 </script>   
     
         <div class="h-full p-4 w-full rounded-lg lg:w-2/4 md:mt-0 mt-8 border">
-            <form name="form" method="post" action="order.php">
+            <form name="form" id="form" method="post" action="order.php">
             <input type="hidden" id="arr_lang" name="arr_lang" value="">
             <input type="hidden" id="item_code" name="item_code" value="<?php echo $row['item_code'] ?>">
             <input type="hidden" id="price_arr" name="price_arr" value="">
@@ -392,7 +392,7 @@ async function my_wish(item_code,mode){
         
 
         divItem.innerHTML=`
-        <input type="hidden" name="option_value_${num}" value="${option_val},${option_title}"/>
+        <input type="hidden" class="option_value_${num}" name="option_value_${num}" value="${option_val},${option_title}"/>
         <input type="hidden" id="${option_val}_cnt" name="${option_val}_cnt" value="${option_cnt}"/>
         <input type="hidden" class="item_list" name="item_arr_${cnt_index}" id="item_arr_${cnt_index}" value="1,${option_title},${option_val}, <?php echo $price?>"/>
         <div class="justify-between flex">
@@ -489,7 +489,7 @@ async function my_wish(item_code,mode){
 
 
     cnt = document.querySelector(`.${code} .option_cnt`).value;
-    if(cnt == 0){
+    if(cnt == 1){
         return false;
     }
 
@@ -570,44 +570,42 @@ async function my_wish(item_code,mode){
 
 
 //장바구니
-//첨부터 다시해야할듯함
-async function my_basket(){
-    let user_id = '<?php  echo $_SESSION['user_id']?>';
-    let item_title ='<?php echo $row['item_title']?>';  
-    let item_code ='<?php echo $_GET['item_code']?>';       
-    if (user_id == "") {
-        alert('로그인이 필요합니다.');
-        document.location.href = "/member/login.php"
-        return false;
-    }
-
-    var basket = new Array(''); 
-    let option_lang = document.getElementsByClassName('item_class').length;
-
-      basket[0] = '';
-        for($i = 1; $i <= option_lang; $i++){
-            
-            let arr_val = document.querySelector(`#item_arr_${$i}`).value;
-            basket[$i] = arr_val;
+function my_basket() {
+        let user_id = '<?php  echo $_SESSION['user_id']?>';     
+        if (user_id == "") {
+            alert('로그인이 필요합니다.');
+            document.location.href = "/member/login.php"
+            return false;
         }
 
-    
-    let get_url = `basket_ajax.php`;
-    let request_params = { 
-        user_id,
-        basket,
-        item_code,
-        item_title,
-        option_lang,
+        //옵션 미선택
+        if(document.querySelector('.option_value_1') == null) {
+            alert('옵션을 먼저 선택해주세요.');
+            return false;
+        }
+   
+        let formData = $("#form").serialize();
         
+        $.ajax({
+            type: "POST",
+            url: "basket_ajax.php",
+            data: formData,
+            dataType: "html",
+            success: function (data, status, xhr) {
+                console.log(data);
+                   if(data != 'N'){
+                    alert('장바구니에 추가되었습니다.');
+                   
+                }else{
+                    alert('옵션을 먼저 선택해주세요.');
+                }
+              
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
     }
-    request_params = new URLSearchParams(request_params).toString(); 
-    get_url = get_url+"?"+request_params;
-    let res = await fetch(get_url);
-    let data = await res.text();          
-    //document.getElementById("").innerHTML = data;  
-    //console.log(data);
-}
 
 
 

@@ -53,8 +53,8 @@ $today = time();
 
 
 //오더 테이블 생성
-$stmt = $DB->prepare("insert into user_order (order_info,item_title,item_code,order_id,total_price,order_no,write_time) values (?,?,?,?,?,?,?)");
-$stmt->bind_param("ssssisi", $_POST['intro'],$_POST['order_title'],$_POST['order_code'],$_POST['order_id'],$_POST['order_price'],$_POST['order_no'],$today);
+$stmt = $DB->prepare("insert into user_order (order_info,order_addr,item_title,item_code,order_id,total_price,order_no,write_time) values (?,?,?,?,?,?,?,?)");
+$stmt->bind_param("sssssisi", $_POST['intro'],$_POST['addr'],$_POST['order_title'],$_POST['order_code'],$_POST['order_id'],$_POST['order_price'],$_POST['order_no'],$today);
 $stmt->execute();
 
 

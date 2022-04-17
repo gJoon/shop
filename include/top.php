@@ -154,7 +154,7 @@ sub - C65D7B -->
                 echo $_SESSION[user_name];
                 echo ' 님 
                 </span>
-                <a href="#" class="text-sm cursor-pointer mx-1 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl">마이페이지</a>
+                <a href="/mypage/my_order.php" class="text-sm cursor-pointer mx-1 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl">마이페이지</a>
                 <a href="/member/login_proc.php?mode=logout" class="text-sm cursor-pointer mx-1 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl">
                   로그아웃
                 </a>
@@ -254,7 +254,7 @@ sub - C65D7B -->
                 echo $_SESSION[user_name];
                 echo ' 님 
                 </span>
-                <a href="#" class="cursor-pointer mx-1 text-[#C65D7B] border border-[#C65D7B] px-4">마이페이지</a>
+                <a href="/mypage/my_order.php" class="cursor-pointer mx-1 text-[#C65D7B] border border-[#C65D7B] px-4">마이페이지</a>
                 <a href="/member/login_proc.php?mode=logout" class="cursor-pointer mx-1 text-[#C65D7B] border border-[#C65D7B] px-4">
                   로그아웃
                 </a>

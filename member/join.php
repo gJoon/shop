@@ -145,9 +145,6 @@ include_once('../include/top.php');
 
 </article>
 
-<?php
-include_once('../include/bottom.php');
-?>
 
 
 
@@ -584,3 +581,6 @@ function id_check() {
 </script>
 
 
+<?php
+include_once('../include/bottom.php');
+?>
