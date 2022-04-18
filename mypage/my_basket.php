@@ -24,7 +24,9 @@ $user_id = $_SESSION['user_id'];
 
     <article class="px-4 w-full lg:w-3/4 bg-[#ffffff] lg:mx-2 py-8">
             <h2 class="text-2xl font-semibold mb-4 w-full">장바구니</h2>
-
+        <form action="#">
+            
+        </form>
      
             
     </article>
