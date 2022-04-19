@@ -9,7 +9,7 @@ $user_id = $_SESSION['user_id'];
 
 $mode = $_GET['mode'];
 
-//장바구니 한개 삭제
+//장바구니 한개 삭제.
 if($mode == "ONE"){
     
   $stmt = $DB->prepare("DELETE from user_basket where basket_seq =?");
