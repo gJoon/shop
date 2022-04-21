@@ -9,8 +9,8 @@ $item_code = $_GET['item_code'];
 
 $user_id = $_SESSION['user_id'];
 
-$stmt = $DB->prepare("select * from option_log where order_no=? and item_code=?");
-$stmt->bind_param("ss", $order_no,$item_code);  
+$stmt = $DB->prepare("select * from option_log where order_no=?");
+$stmt->bind_param("s", $order_no);  
 $stmt->execute();
 $orow = $stmt->get_result()->fetch_all();
 

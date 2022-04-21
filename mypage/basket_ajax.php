@@ -151,8 +151,9 @@ $cnt = $orow[0][6];
                     <div class="chk_container flex mt-2 pb-2 py-1 my-1 flex-row ">
                         <input type="hidden" id="<?=$v[3]?>_cnt" value="<?=$cnt?>"/>
                         <div class="flex w-[30%] lg:w-[10%] rounded-xl text-center flex-col justify-center items-center relative overflow-hidden mt-0">
-                            <input type="checkbox"  name="option_item[<?=$k?>]" value="<?=$v[0]?>,<?=$v[1]?>,<?=$v[2]?>,<?=$v[3]?>,<?=$v[4]?>,<?=$v[5]?>" class="chk w-[20px] h-[20px] md:w-[30px] md:h-[30px]" style="border-radius:30px"/>
-                        </div>
+                            <input type="checkbox" id="option_item_<?=$k?>" onclick="HiddenPrice('hidden_price_<?=$k?>','option_item_<?=$k?>');" name="option_item[<?=$k?>]" value="<?=$v[0]?>,<?=$v[1]?>,<?=$v[2]?>,<?=$v[3]?>,<?=$v[4]?>,<?=$v[5]?>,<?=$v[6]?>" class="chk w-[20px] h-[20px] md:w-[30px] md:h-[30px]" style="border-radius:30px"/>
+                            <input type="checkbox" id="hidden_price_<?=$k?>" name="hidden_price[<?=$k?>]" value="<?=$v[5]?>" class="chk2 absolute left-[-9999px]"/>
+                      </div>
                         <div class="flex w-[100%] lg:w-[20%] py-4 text-center flex-col justify-center items-center relative overflow-hidden mt-0 ">
                             <img class="absolute top-0 left-0 w-full h-full object-cover md:object-top" src="/product/img/<?=$img?>" alt="img">
                         </div>

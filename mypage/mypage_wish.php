@@ -61,7 +61,7 @@ $scode_title = $ccrow['title'];
 
 ?>
 
-    <div class="relative my-12">   
+    <div class="relative mb-2">   
         
             <div class="h-64 overflow-hidden rounded-lg relative group">
                 <img src="/product/img/<?=$irow[0][6]?>" alt="succulent img" class="w-full h-full object-cover">

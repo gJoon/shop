@@ -48,8 +48,9 @@ $row = $stmt->get_result()->fetch_all();
             ?>
             <?php foreach($row as $k=>$v){
 
+            $tem_code = explode(',', $v[4]);
             $stmt = $DB->prepare("select * from item where item_code=?");
-            $stmt->bind_param("s", $v[4]);  
+            $stmt->bind_param("s", $tem_code[0]);  
             $stmt->execute();
             $irow = $stmt->get_result()->fetch_all();
             $img = $irow[0][6];
@@ -61,7 +62,7 @@ $row = $stmt->get_result()->fetch_all();
                             <span>
                                 주문상품
                             </span> 
-                            <span class="text-[12px] cursor-pointer hover:text-[#C65D7B]" id="order_btn" onclick="order_info('<?=$v[7]?>','<?=$v[4]?>');">
+                            <span class="text-[12px] cursor-pointer hover:text-[#C65D7B]" id="order_btn" onclick="order_info('<?=$v[7]?>');">
                                 상세조회
                             </span>    
                         </div>
@@ -120,13 +121,13 @@ $row = $stmt->get_result()->fetch_all();
     }
 
     //배송선택
-    async function order_info(order_no,item_code){
+    async function order_info(order_no){
          document.getElementById('order_box').classList.remove('hidden');
 
           let get_url = `order_ajax.php`;
           let request_params = { 
             order_no,
-            item_code,
+      
           }
           request_params = new URLSearchParams(request_params).toString(); 
           get_url = get_url+"?"+request_params;
