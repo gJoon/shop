@@ -45,6 +45,60 @@ if($mode == "ALL"){
 
 
 
+  if($mode == "plus"){
+ 
+    $stmt = $DB->prepare("select * from user_basket where user_id=? and option_code=?");
+    $stmt->bind_param("ss", $user_id,$_GET['option_code']);  
+    $stmt->execute();
+    $ubrow = $stmt->get_result()->fetch_all();
+
+    $stmt = $DB->prepare("select * from item where item_code=?");
+    $stmt->bind_param("s", $_GET['item_code']);  
+    $stmt->execute();
+    $irow = $stmt->get_result()->fetch_all();
+
+    $price = $ubrow[0][5];
+    $iprice = $irow[0][8];
+    $PulsPrice = $price+$iprice;
+
+    $cnt = $ubrow[0][4] +1;
+    
+    $stmt = $DB->prepare("update user_basket set cnt=?,price=? WHERE user_id =? and option_code=?");
+    $stmt->bind_param("iiss", $cnt,$PulsPrice,$user_id,$_GET['option_code']);  
+    $stmt->execute();
+    
+
+  }
+
+
+  if($mode == "minus"){
+ 
+    $stmt = $DB->prepare("select * from user_basket where user_id=? and option_code=?");
+    $stmt->bind_param("ss", $user_id,$_GET['option_code']);  
+    $stmt->execute();
+    $ubrow = $stmt->get_result()->fetch_all();
+
+    $stmt = $DB->prepare("select * from item where item_code=?");
+    $stmt->bind_param("s", $_GET['item_code']);  
+    $stmt->execute();
+    $irow = $stmt->get_result()->fetch_all();
+
+    $price = $ubrow[0][5];
+    $iprice = $irow[0][8];
+    $PulsPrice = $price-$iprice;
+
+    $cnt = $ubrow[0][4] -1;
+    
+    $stmt = $DB->prepare("update user_basket set cnt=?,price=? WHERE user_id =? and option_code=?");
+    $stmt->bind_param("iiss", $cnt,$PulsPrice,$user_id,$_GET['option_code']);  
+    $stmt->execute();
+    
+
+  }
+
+
+
+
 
 $stmt = $DB->prepare("select * from user_basket where user_id=?");
 $stmt->bind_param("s", $user_id);  
@@ -82,12 +136,20 @@ $irow = $stmt->get_result()->fetch_all();
 $img = $irow[0][6];
 
 
+
+$stmt = $DB->prepare("select * from item_option where option_code=?");
+$stmt->bind_param("s", $v[3]);  
+$stmt->execute();
+$orow = $stmt->get_result()->fetch_all();
+$cnt = $orow[0][6];
+
 ?>
 
 <div class="text-[15px] bg-white mt-2 p-2 rounded border mb2">  
                     
                                    
                     <div class="chk_container flex mt-2 pb-2 py-1 my-1 flex-row ">
+                        <input type="hidden" id="<?=$v[3]?>_cnt" value="<?=$cnt?>"/>
                         <div class="flex w-[30%] lg:w-[10%] rounded-xl text-center flex-col justify-center items-center relative overflow-hidden mt-0">
                             <input type="checkbox"  name="option_item[<?=$k?>]" value="<?=$v[0]?>,<?=$v[1]?>,<?=$v[2]?>,<?=$v[3]?>,<?=$v[4]?>,<?=$v[5]?>" class="chk w-[20px] h-[20px] md:w-[30px] md:h-[30px]" style="border-radius:30px"/>
                         </div>
@@ -113,7 +175,16 @@ $img = $irow[0][6];
 
                             <div class="text-[#999999] font-normal text-[12px] flex flex-col lg:flex-row mt-1">
                                 <span class="text-[13px] font-semibold text-[#000000]">개수 : </span> 
-                                <span class="text-[13px] pl-0 md:pl-2 text-ellipsis overflow-hidden ..."> <?=$v[4]?> 개 </span> 
+                                <span class="text-[13px] pl-0 md:pl-2 text-ellipsis overflow-hidden ...">
+
+                                    <button type="button" onclick="CntMinus('<?=$v[3]?>','<?=$v[4]?>','<?=$v[2]?>','<?=$v[6]?>');" class="px-2 py-1 border-[#dddddd] font-semibold border text-[#000000] text-center">
+                                        - 
+                                    </button>
+                                    <?=$v[4]?> 개 
+                                    <button type="button" onclick="CntPlus('<?=$v[3]?>','<?=$v[4]?>','<?=$v[2]?>','<?=$v[6]?>');" class="px-2 py-1 border-[#dddddd] font-semibold border text-[#000000] text-center">
+                                        + 
+                                    </button>
+                                </span> 
                             </div>
                             
                             <div class="text-[#999999] font-normal text-[12px] flex flex-col lg:flex-row mt-2">

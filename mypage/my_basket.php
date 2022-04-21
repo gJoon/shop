@@ -74,15 +74,21 @@ $hidden_class = "hidden";
             $irow = $stmt->get_result()->fetch_all();
             $img = $irow[0][6];
 
+            $stmt = $DB->prepare("select * from item_option where option_code=?");
+            $stmt->bind_param("s", $v[3]);  
+            $stmt->execute();
+            $orow = $stmt->get_result()->fetch_all();
+            $cnt = $orow[0][6];
 
             ?>
-
             <div class="text-[15px] bg-white mt-2 p-2 rounded border mb2">  
                     
                                    
                     <div class="chk_container flex mt-2 pb-2 py-1 my-1 flex-row ">
+                        
+                        <input type="hidden" id="<?=$v[3]?>_cnt" value="<?=$cnt?>"/>
                         <div class="flex w-[30%] lg:w-[10%] rounded-xl text-center flex-col justify-center items-center relative overflow-hidden mt-0">
-                            <input type="checkbox"  name="option_item[<?=$k?>]" value="<?=$v[0]?>,<?=$v[1]?>,<?=$v[2]?>,<?=$v[3]?>,<?=$v[4]?>,<?=$v[5]?>" class="chk w-[20px] h-[20px] md:w-[30px] md:h-[30px]" style="border-radius:30px"/>
+                            <input type="checkbox" name="option_item[<?=$k?>]" value="<?=$v[0]?>,<?=$v[1]?>,<?=$v[2]?>,<?=$v[3]?>,<?=$v[4]?>,<?=$v[5]?>" class="chk w-[20px] h-[20px] md:w-[30px] md:h-[30px]" style="border-radius:30px"/>
                         </div>
                         <div class="flex w-[100%] lg:w-[20%] py-4 text-center flex-col justify-center items-center relative overflow-hidden mt-0 ">
                             <img class="absolute top-0 left-0 w-full h-full object-cover md:object-top" src="/product/img/<?=$img?>" alt="img">
@@ -107,12 +113,14 @@ $hidden_class = "hidden";
                             <div class="text-[#999999] font-normal text-[12px] flex flex-col lg:flex-row mt-1">
                                 <span class="text-[13px] font-semibold text-[#000000]">개수 : </span> 
                                 <span class="text-[13px] pl-0 md:pl-2 text-ellipsis overflow-hidden ...">
-                                    <button type="button" onclick="" class="px-2 py-1 border-[#dddddd] font-semibold border text-[#000000] text-center">
-                                         - 
-                                    </button> 
+                                    <button type="button" onclick="CntMinus('<?=$v[3]?>','<?=$v[4]?>','<?=$v[2]?>','<?=$v[6]?>');" class="px-2 py-1 border-[#dddddd] font-semibold border text-[#000000] text-center">
+                                        - 
+                                    </button>
+                                    
                                     <?=$v[4]?> 개 
-                                    <button type="button" onclick="" class="px-2 py-1 border-[#dddddd] font-semibold border text-[#000000] text-center">
-                                          + 
+
+                                    <button type="button" onclick="CntPlus('<?=$v[3]?>','<?=$v[4]?>','<?=$v[2]?>','<?=$v[6]?>');" class="px-2 py-1 border-[#dddddd] font-semibold border text-[#000000] text-center">
+                                        + 
                                     </button>
                                 </span> 
                             </div>
@@ -229,6 +237,70 @@ $hidden_class = "hidden";
     
 
 
+    async function CntPlus(option_code,num,item_code,option_title){
+   
+            let mode = "plus";
+
+            let MaxCnt = document.querySelector(`#${option_code}_cnt`).value;
+            console.log(num);
+            console.log(MaxCnt);
+
+            if(num == MaxCnt) {
+
+                alert(`${option_title} 의 주문가능한 개수는 ${num} 개 입니다.`); return false;
+            }
+
+
+        
+
+            let get_url = `basket_ajax.php`;
+            let request_params = { 
+                mode,
+                option_code,
+                num,
+                item_code,
+            }
+            request_params = new URLSearchParams(request_params).toString(); 
+            get_url = get_url+"?"+request_params;
+            let res = await fetch(get_url);
+            let data = await res.text();          
+            document.getElementById("basket_box").innerHTML = data;  
+            alert(`${option_title} 상품 개수를 추가 하셨습니다.`);
+        
+         
+    }
+
+
+
+async function CntMinus(option_code,num,item_code,option_title){
+   
+   let mode = "minus";
+
+
+   if(num == 1) {
+
+     return false;
+   }
+
+
+
+
+   let get_url = `basket_ajax.php`;
+   let request_params = { 
+       mode,
+       option_code,
+       num,
+       item_code,
+   }
+   request_params = new URLSearchParams(request_params).toString(); 
+   get_url = get_url+"?"+request_params;
+   let res = await fetch(get_url);
+   let data = await res.text();          
+   document.getElementById("basket_box").innerHTML = data;  
+   alert(`${option_title} 상품 개수를 취소 하셨습니다.`);
+
+
+}
 
         
         
