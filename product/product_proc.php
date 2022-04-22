@@ -32,7 +32,7 @@ $resFile = "img/{$img_name}";
 
 // 임시 저장된 파일을 우리가 저장할 디렉토리 및 파일명으로 옮김
 $imageUpload = move_uploaded_file($tempFile, $resFile);
-	
+$item_image = $img_name;	
 $item_code = $_POST[item_code];
 $user_id = $_SESSION[user_id];
 $item_image = $img_name;
@@ -46,11 +46,13 @@ $item_content = $_POST[item_content];
 
 
 $item_delete = "N";
-
-
+$option_type = "option";
+if($_POST[off_item_qty] != ""){
+	$option_type = "single";
+}
  //아이템 테이블
- $stmt = $DB->prepare("insert into item (item_code,user_id,category,category_sub,item_title,item_price,item_per,item_image,write_time,item_content,item_delete) values (?,?,?,?,?,?,?,?,?,?,?)");
- $stmt->bind_param( "sssssiisiss" , $item_code,$user_id,$category,$category_sub,$item_title,$item_price,$item_per,$item_image,$today,$item_content,$item_delete);
+ $stmt = $DB->prepare("insert into item (item_code,user_id,category,category_sub,item_title,item_price,item_per,item_image,write_time,item_content,item_delete,option_type) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+ $stmt->bind_param( "sssssiisisss" , $item_code,$user_id,$category,$category_sub,$item_title,$item_price,$item_per,$item_image,$today,$item_content,$item_delete,$option_type);
  $stmt->execute();
 
 
@@ -85,9 +87,11 @@ $resFile_sub1 = "img/{$item_sub1}";
 // 임시 저장된 파일을 우리가 저장할 디렉토리 및 파일명으로 옮김
 $imageUpload = move_uploaded_file($tempFile, $resFile_sub1);
 
+
+$num = 1;
 //이미지 테이블
-$stmt = $DB->prepare("insert into item_image (item_code,item_image,write_time) values (?,?,?)");
-$stmt->bind_param( "ssi" , $item_code,$item_sub1,$today);
+$stmt = $DB->prepare("insert into item_image (item_code,item_image,write_time,num) values (?,?,?,?)");
+$stmt->bind_param( "ssii" , $item_code,$item_sub1,$today,$num);
 $stmt->execute();
 
 }
@@ -124,10 +128,10 @@ if($_FILES['item_sub2']!= ""){
 	
 	// 임시 저장된 파일을 우리가 저장할 디렉토리 및 파일명으로 옮김
 	$imageUpload = move_uploaded_file($tempFile, $resFile_sub2);
-	
+	$num = 2;
 	//이미지 테이블
-	$stmt = $DB->prepare("insert into item_image (item_code,item_image,write_time) values (?,?,?)");
-	$stmt->bind_param( "ssi" , $item_code,$item_sub2,$today);
+	$stmt = $DB->prepare("insert into item_image (item_code,item_image,write_time,num) values (?,?,?,?)");
+	$stmt->bind_param( "ssii" , $item_code,$item_sub2,$today,$num);
 	$stmt->execute();
 	}
 
@@ -162,11 +166,12 @@ if($_FILES['item_sub3']!= ""){
 	
 	// 임시 저장된 파일을 우리가 저장할 디렉토리 및 파일명으로 옮김
 	$imageUpload = move_uploaded_file($tempFile, $resFile_sub3);
-	
+	$num = 3;
 	//이미지 테이블
-	$stmt = $DB->prepare("insert into item_image (item_code,item_image,write_time) values (?,?,?)");
-	$stmt->bind_param( "ssi" , $item_code,$item_sub3,$today);
+	$stmt = $DB->prepare("insert into item_image (item_code,item_image,write_time,num) values (?,?,?,?)");
+	$stmt->bind_param( "ssii" , $item_code,$item_sub3,$today,$num);
 	$stmt->execute();
+	
 	}
 
 

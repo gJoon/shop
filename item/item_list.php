@@ -96,6 +96,21 @@ $irow = $stmt->get_result()->fetch_all();
     <?php
     }
     ?>
+
+
+
+            <?php if (empty($irow)) {?>
+                <div class="text-[#000000] font-bold mt-4 py-1 my-1">
+                    상품 준비중입니다.
+            
+                </div>
+
+
+            
+            <?php
+            }
+            ?>
+
     <div class="flex flex-wrap grid grid-cols-4 gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
        <?php foreach($irow as $k=>$v){
             $pesent = $v[8]*($v[9]/100); 

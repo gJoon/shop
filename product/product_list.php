@@ -99,7 +99,7 @@ $hidden_class = "hidden";
                                             </span> 
                                             
                                             <span class="text-[12px] order-1 lg:order-2 text-right">
-                                            <a href="#" class="cursor-pointer hover:text-[#C65D7B]">수정</a>
+                                            <a href="/product/product_update.php?item_code=<?=$v[2]?>" class="cursor-pointer hover:text-[#C65D7B]">수정</a>
                                             <a href="#" class="cursor-pointer hover:text-[#C65D7B]" onclick="deleteOne('<?=$v[0]?>','ONE','<?=$v[5]?>');"> 삭제</a>
 
                                             </span>    
