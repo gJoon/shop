@@ -5,7 +5,7 @@ include_once('../include/top.php');
 
 $user_id = $_SESSION['user_id'];
 
-
+//테스트
 
 
 $stmt = $DB->prepare("select * from item where user_id=? and item_delete='N'");
