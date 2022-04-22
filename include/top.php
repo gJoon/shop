@@ -143,7 +143,7 @@ sub - C65D7B -->
                 echo ' 님 
                 </span>
                 <a href="/product/product_edit.php" class="text-sm cursor-pointer mx-1 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl">
-                  상품등록
+                SELLER
                 </a>
                 <a href="/member/login_proc.php?mode=logout" class="text-sm cursor-pointer mx-1 hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4 rounded-xl">
                   로그아웃
@@ -243,7 +243,7 @@ sub - C65D7B -->
                 echo ' 님 
                 </span>
                 <a href="/product/product_edit.php" class="cursor-pointer mx-1 text-[#C65D7B] border border-[#C65D7B] px-4">
-                  상품등록
+                  SELLER
                 </a>
                 <a href="/member/login_proc.php?mode=logout" class="cursor-pointer mx-1 text-[#C65D7B] border border-[#C65D7B] px-4">
                   로그아웃

@@ -40,13 +40,21 @@ while ($nmr_loops--)
 
 <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.css" />
 <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-<article class="mx-auto container flex flex-col lg:flex-row mt-24 mb-24 px-3 sm:px-0 w-full lg:w-3/4">
-    <div class="mx-auto w-full lg:w-3/4 py-5 px-6">
-        <div class="mx-auto items-center">
-            <h1 class="text-3xl text-center font-semibold mb-2 text-[#F68989]">
-                상품 등록
-            </h1>
-        </div>
+
+<div class="flex p-2 lg:p-8 flex-col lg:flex-row  bg-[#f2f2f2]"> 
+    <article class="flex flex-col w-full lg:w-1/4 bg-[#ffffff] lg:mx-2 p-2 py-8 lg:rounded-xl">
+            <h2 class="text-2xl font-semibold mb-2 w-full">SELLER</h2>
+            <div class="w-full flex-row lg:flex-col flex">
+                <a href="#" class="border-[#C65D7B] w-full font-semibold border px-3 py-2 text-center bg-[#C65D7B] text-[#ffffff] mt-2">상품 등록</a>
+                <a href="/product/product_list.php" class="border-[#C65D7B] w-full font-semibold border px-3 py-2 text-center text-[#999999] hover:bg-[#C65D7B] hover:text-[#ffffff] mt-2">나의 상품</a>
+            </div>
+     
+    </article>
+
+<article class="px-4 w-full lg:w-3/4 bg-[#ffffff] lg:mx-2 py-8">
+      <h2 class="text-2xl font-semibold mb-4 w-full">상품 등록</h2>
+
+ 
      <div class="bg-white py-5 px-6">
         <form name="form" method="post" enctype="multipart/form-data" action="product_proc.php">
             <input type="hidden" name="item_code" id="item_code" value="<?php echo $item_code ?>">
@@ -260,14 +268,14 @@ while ($nmr_loops--)
               </button>
               
             </div>
-           </div>
+           
           </form>
      </div>
     
 
 </article>
 
-
+</div>
 <script>
   //분류 가져오기 (비동기 통신)
   async function cg_change(){

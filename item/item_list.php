@@ -10,10 +10,10 @@ $bcode = $_GET[bcode];
 $scode = $_GET[scode];
 //아이템 옵션
 if($scode != ""){
-$stmt = $DB->prepare("select * from item where category=? and category_sub=?");
+$stmt = $DB->prepare("select * from item where category=? and category_sub=? and item_delete ='N'");
 $stmt->bind_param("ss", $bcode,$scode);
 }else{
-$stmt = $DB->prepare("select * from item where category=?");
+$stmt = $DB->prepare("select * from item where category=? and item_delete ='N'");
 $stmt->bind_param("s", $bcode); 
 }
 $stmt->execute();

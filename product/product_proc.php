@@ -45,10 +45,12 @@ $item_per = $_POST[item_per];
 $item_content = $_POST[item_content];
 
 
+$item_delete = "N";
+
 
  //아이템 테이블
- $stmt = $DB->prepare("insert into item (item_code,user_id,category,category_sub,item_title,item_price,item_per,item_image,write_time,item_content) values (?,?,?,?,?,?,?,?,?,?)");
- $stmt->bind_param( "sssssiisis" , $item_code,$user_id,$category,$category_sub,$item_title,$item_price,$item_per,$item_image,$today,$item_content);
+ $stmt = $DB->prepare("insert into item (item_code,user_id,category,category_sub,item_title,item_price,item_per,item_image,write_time,item_content,item_delete) values (?,?,?,?,?,?,?,?,?,?,?)");
+ $stmt->bind_param( "sssssiisiss" , $item_code,$user_id,$category,$category_sub,$item_title,$item_price,$item_per,$item_image,$today,$item_content,$item_delete);
  $stmt->execute();
 
 

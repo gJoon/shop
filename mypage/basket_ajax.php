@@ -118,6 +118,10 @@ $abrow = $stmt->get_result()->fetch_all();
                     구매하러가기
                 </a>
             </div>
+
+            <div class="h-[300px] w-full">
+
+            </div>
             
         
         <?php

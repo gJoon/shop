@@ -25,6 +25,10 @@ $rrow = $stmt->get_result()->fetch_all();
         찜한 목록이 없습니다.
 
     </div>
+
+    <div class="h-[400px] w-full">
+
+    </div>
     
 
 <?php
