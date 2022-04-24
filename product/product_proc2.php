@@ -314,9 +314,11 @@ if($option_type == "single"){
 }
 
 if($option_type == "option"){
-
+ 
+  
 }
 
+exit;
 echo "<script>alert('작품이 수정 되었습니다.');
     location.href='/product/product_list.php'
     </script>";
