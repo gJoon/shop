@@ -168,7 +168,7 @@ $hidden_class = "hidden";
         };
     }
 
-//장바구니 선택 삭제
+    //장바구니 선택 삭제
     async function deleteALL(){
                 let seq_arr = {};
                 let mode = "ALL";
@@ -208,7 +208,7 @@ $hidden_class = "hidden";
                 let res = await fetch(get_url);
                 let data = await res.text();          
                 document.getElementById("item_box").innerHTML = data;  
-                alert(`${title} 상품이 삭제처리 되었습니다.`);
+                alert(`선택하신 상품이 삭제처리 되었습니다.`);
                 if(document.querySelector('.chk_container') == null){
                     document.getElementById("delete_btn_box").classList.add('hidden');
                 }

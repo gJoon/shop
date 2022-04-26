@@ -59,6 +59,7 @@ while ($nmr_loops--)
         <form name="form" method="post" enctype="multipart/form-data" action="product_proc.php">
             <input type="hidden" name="item_code" id="item_code" value="<?php echo $item_code ?>">
             <input type="hidden" name="option_lang" id="option_lang" value="">
+            <input type="hidden" name="option_type" id="option_type" value="off">
             <div class="flex flex flex-col lg:flex-row">
               <div class="w-full lg:w-3/4 px-4 mt-2">
                 <label for="category" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">대분류</label>
@@ -368,6 +369,9 @@ while ($nmr_loops--)
         const on_btn = document.getElementById("on_btn");
 
         function opt_off(){
+
+          document.getElementById("option_type").value = 'off';
+          
           const option_box = document.getElementById("option_box");
           off_btn.classList.add('border-class');
           on_btn.classList.remove('border-class');
@@ -386,6 +390,7 @@ while ($nmr_loops--)
          }
 
         function opt_on(){
+          document.getElementById("option_type").value = 'on';
           off_btn.classList.remove('border-class');
           on_btn.classList.add('border-class');
           option_off.classList.add('hidden');
@@ -491,8 +496,8 @@ while ($nmr_loops--)
 
 
 
-      function check() {
-    
+      function check() { 
+        
         if(form.category.value == ""){
           alert('대분류를 선택해주세요.');
           form.category.focus();
@@ -517,6 +522,41 @@ while ($nmr_loops--)
         }
 
 
+         if(document.querySelector('#item_sub1')){ 
+            let item_sub1 = document.querySelector('#item_sub1').value;
+            if(item_sub1 ==""){
+              alert('이미지를 첨부해주세요.');
+              form.item_sub1.focus();
+              return false;
+            } 
+        }    
+
+        if(document.querySelector('#item_sub2')){ 
+            let item_sub2 = document.querySelector('#item_sub2').value;
+            if(item_sub1 ==""){
+              alert('이미지를 첨부해주세요.');
+              form.item_sub2.focus();
+              return false;
+            } 
+        }    
+
+        if(document.querySelector('#item_sub3')){ 
+            let item_sub3 = document.querySelector('#item_sub3').value;
+            if(item_sub3 ==""){
+              alert('이미지를 첨부해주세요.');
+              form.item_sub3.focus();
+              return false;
+            } 
+        }    
+        //옵션 안적엇을경우 리턴시키기
+        let option_type = document.querySelector('#option_type').value;
+        if(option_type == 'on' && document.querySelector('#option_box').innerHTML == ""){
+            let dd = "dd";
+            alert('옵션을 추가해주세요.');
+            return false;
+            
+        }
+
 
         if(document.querySelector('#off_item_qty')){ 
             let off_item_qty = document.querySelector('#off_item_qty').value;
@@ -533,14 +573,22 @@ while ($nmr_loops--)
 
 
         form.item_content.value =  editor1.getHTML();
+        
+        if(form.item_content.value == '<p><br></p>'){
+          alert('상세설명을 입력해주세요!');
+          form.item_content.focus();
+          return false;
+        }
 
-        if(form.item_content.value == ""){
+        if(form.item_content.value == ''){
           alert('상세설명을 입력해주세요!');
           form.item_content.focus();
           return false;
         }
         
+
         return true;
+
     };
 
 

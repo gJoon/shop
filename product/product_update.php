@@ -363,14 +363,15 @@ $oprow= $stmt->get_result()->fetch_assoc();
               
 
             <?php if($row['option_type'] == "option"){?>
-                <div>
-                    현재 추가된 옵션
+                <div class="text-[15px] font-bold">
+                    현재 상품 옵션
                 </div>
+                <div id="now_opt_box">
                 <?php foreach($item_option as $k=>$v){
                     
                     ?>
                   
-                  <div class="flex flex flex-col lg:flex-row mb-4 border-2 rounded-xl p-4 border-[#C65D7B]">
+                   <div class="flex flex flex-col lg:flex-row mb-4 border-2 rounded-xl p-4 border-[#C65D7B]">
                           <input type="hidden" name="item_option_code[<?=$k?>]" value="<?=$v[3]?>">
                           <div class="w-full lg:w-3/4 px-4 block text-sm font-semibold text-[#C65D7B]">
                           <label for="item_option_title[<?=$k?>]" class="block text-sm font-semibold text-[#C65D7B]">옵션명</label> 
@@ -398,12 +399,12 @@ $oprow= $stmt->get_result()->fetch_assoc();
                           </div>
                           <div class="w-full lg:w-1/4 px-4"> 
                               
-                              <button type="button" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-4">삭제</button>
+                              <button type="button" onclick="option_delete('<?=$v[3]?>','<?=$item_code?>','<?=$v[4]?>','<?=$k?>');" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-4">삭제</button>
                           </div>
                       </div>
                 <?php
                 }?>
-                 
+              </div>
 
               <div class="mt-16" id="option_on">
               <div class="flex flex flex-row">
@@ -627,7 +628,33 @@ $oprow= $stmt->get_result()->fetch_assoc();
       } 
                
 
+    async function option_delete(option_code,item_code,item_title,num){
+       
+        if(num == 0){
+          alert('옵션은 최소 한개가 존재해야합니다.');
+          return false;
+        }
 
+        if (confirm(`${item_title} 옵션을 제거 하시겠습니까?`) == false){   
+
+          return false;
+
+        }else{
+          let get_url = `delete_opt_ajax.php`;
+          let request_params = { 
+            option_code,
+            item_code,
+          }
+          request_params = new URLSearchParams(request_params).toString(); 
+          get_url = get_url+"?"+request_params;
+          let res = await fetch(get_url);
+          let data = await res.text();          
+          document.getElementById("now_opt_box").innerHTML = data;
+        }
+          
+       
+      
+    }
 
       function check() {
     

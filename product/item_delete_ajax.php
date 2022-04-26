@@ -33,6 +33,10 @@ if($mode = 'ONE'){
         unlink("img/".$v[0]);    
     }
 
+    //옵션 제거
+    $stmt = $DB->prepare("DELETE from item_option where item_code =?");
+    $stmt->bind_param("s", $item_code);  
+    $stmt->execute();
 
     //이미지 제거
     $stmt = $DB->prepare("DELETE from item_image where item_code =?");
@@ -76,6 +80,11 @@ if($mode = 'ALL'){
         $irow = $stmt->get_result()->fetch_all();
         $item_code = $irow[0][0];
         
+
+        //옵션 제거
+        $stmt = $DB->prepare("DELETE from item_option where item_code =?");
+        $stmt->bind_param("s", $item_code);  
+        $stmt->execute();
 
 
         $stmt = $DB->prepare("select item_image from item_image where item_code=?");

@@ -136,7 +136,7 @@ if($_FILES['item_sub2']!= ""){
 	}
 
 
-	//아이템 서브이미지3
+//아이템 서브이미지3
 if($_FILES['item_sub3']!= ""){
 	//이미지 명 생성
 	$namechar3  = "0123456789";  
@@ -216,6 +216,6 @@ if($_POST[off_item_qty] != ""){
 }
 
 echo "<script>alert('작품이 등록되었습니다.');
-    location.href='/'
+    location.href='/product/product_list.php'
     </script>";
 ?>
