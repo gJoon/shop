@@ -364,13 +364,14 @@ $oprow= $stmt->get_result()->fetch_assoc();
 
             <?php if($row['option_type'] == "option"){?>
                 <div>
-                    기존옵션 
+                    현재 추가된 옵션
                 </div>
                 <?php foreach($item_option as $k=>$v){
                     
                     ?>
                   
                   <div class="flex flex flex-col lg:flex-row mb-4 border-2 rounded-xl p-4 border-[#C65D7B]">
+                          <input type="hidden" name="item_option_code[<?=$k?>]" value="<?=$v[3]?>">
                           <div class="w-full lg:w-3/4 px-4 block text-sm font-semibold text-[#C65D7B]">
                           <label for="item_option_title[<?=$k?>]" class="block text-sm font-semibold text-[#C65D7B]">옵션명</label> 
                               <input type="text" name="item_option_title[<?=$k?>]" id="item_option_title[<?=$k?>]" value="<?=$v[4]?>" readonly class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none">
@@ -380,7 +381,7 @@ $oprow= $stmt->get_result()->fetch_assoc();
                             
                               <input type="text" name="item_option_qty[<?=$k?>]" id="item_option_qty[<?=$k?>]" value="<?=$v[6]?>" class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" value="0" placeholder="10" require=""> 
                           </div>
-                          <div class="w-full lg:w-2/4 px-4"> 
+                          <div class="w-full lg:w-1/4 px-4"> 
                               <label for="item_option_yn[<?=$k?>]" class="block text-sm font-semibold text-[#C65D7B]">판매여부</label>
                             
                               <select name="item_option_yn[<?=$k?>]" id="item_option_yn[<?=$k?>]" class="form-select w-full  px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#C65D7B] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" aria-label="Default select example">
@@ -395,16 +396,20 @@ $oprow= $stmt->get_result()->fetch_assoc();
                                   }?>>아니오</option>
                               </select>
                           </div>
+                          <div class="w-full lg:w-1/4 px-4"> 
+                              
+                              <button type="button" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-4">삭제</button>
+                          </div>
                       </div>
                 <?php
                 }?>
                  
 
-              <div class="" id="option_on">
+              <div class="mt-16" id="option_on">
               <div class="flex flex flex-row">
                 <div class="w-full flex flex-col lg:flex-row mb-2">
                     <div class="lg:w-3/4 w-full">
-                    <label for="option_title2" class="mx-4 text-sm font-semibold text-[#00000] mb-1">옵션 추가</label>
+                    <label for="option_title2" class="mx-4 text-sm font-semibold text-[#00000] mb-1">추가옵션</label>
                       <button type="button" type="button"onclick="option_plus();" class="px-2 rounded border-[#C65D7B] font-semibold border text-[#C65D7B] text-center hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white">
                         +
                       </button> 
@@ -442,7 +447,7 @@ $oprow= $stmt->get_result()->fetch_assoc();
               </div>
 
 
-              
+            
                 <div id="option_box">
                 
                 </div>

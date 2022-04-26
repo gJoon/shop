@@ -32,6 +32,11 @@ $off_item_qty = $_POST['off_item_qty'];
 $today =  time();
 
 
+//유저아이디 
+
+$user_id = $_SESSION[user_id];
+
+
 
 //아이템 업데이트
 $stmt = $DB->prepare("update item set category=?,category_sub=?,item_title=?,item_price=?,item_per=?,item_content=? WHERE item_code=?");
@@ -314,11 +319,44 @@ if($option_type == "single"){
 }
 
 if($option_type == "option"){
- 
-  
+
+//현재옵션 업데이트 
+  foreach($_POST['item_option_code'] as $k=>$v){
+    
+    $option_code = $v;
+    $option_qty = $_POST['item_option_qty'][$k];
+    $item_option_yn = $_POST['item_option_yn'][$k];
+
+
+    $stmt = $DB->prepare("update item_option set option_qty=?,option_yn=? WHERE option_code=?");
+    $stmt->bind_param("iss", $option_qty,$item_option_yn,$option_code);  
+    $stmt->execute();
+  }
+
+
+  	//옵션 테이블 추가
+	$option_type ="option";
+
+	$index = 0;
+	$option_lang = (int)$_POST[option_lang];
+
+
+	while($index<$option_lang){
+		$option_title = $_POST[option_title_.$index];
+		$option_qty = $_POST[option_qtr_.$index];
+		$option_yn = $_POST[option_yn_.$index];	
+		$option_code_plus = uniqid('no_');  
+
+		$stmt = $DB->prepare("insert into item_option (user_id,item_code,option_code,option_title,option_type,option_qty,option_yn,write_time) values (?,?,?,?,?,?,?,?)");
+		$stmt->bind_param( "sssssisi" , $user_id,$item_code,$option_code_plus,$option_title,$option_type,$option_qty,$option_yn,$today);
+		$stmt->execute();
+		$index ++;
+	
+	}
+
 }
 
-exit;
+
 echo "<script>alert('작품이 수정 되었습니다.');
     location.href='/product/product_list.php'
     </script>";
