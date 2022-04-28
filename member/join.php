@@ -276,7 +276,7 @@ include_once('../include/top.php');
 //아이디 체크
 function id_check() {
         const user = document.getElementById('user_id').value;
-        const regExpId = /^[0-9a-z]+$/;
+        const regExpId = /^[0-9a-z]\w{4,19}$/;
         let user_id = user;
 
 
@@ -298,8 +298,12 @@ function id_check() {
                         if(user == ""){
                             document.getElementById("id_result").innerText = "";
                             
+                        }else if(user.length < 5){
+                            document.getElementById("id_result").innerText = "아이디는 숫자, 영문 포함 5자 이상 적어주세요.";
+                        }else if(user.length > 20){
+                            document.getElementById("id_result").innerText = "아이디는 숫자, 영문 포함 20자 이하까지 가능합니다.";
                         }else{
-                            document.getElementById("id_result").innerText = "아이디는 숫자, 영문만 입력 가능합니다.";
+                            document.getElementById("id_result").innerText = "아이디는 숫자, 영문(4~20자)만 입력 가능합니다.";
                         }
                         form.user_id.focus();
                         return;

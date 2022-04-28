@@ -53,15 +53,26 @@ include_once('../include/top.php');
     $pesent = $row['item_price']*($row['item_per']/100); 
     $price = $row['item_price'] - $pesent;
 
-//찜목록
-$stmt = $DB->prepare("select * from item_wish where user_id =? and item_code =?");
-$stmt->bind_param("ss", $_SESSION['user_id'],$item_code);  
-$stmt->execute();
-$wishrow = $stmt->get_result()->fetch_assoc();
+        
+    //찜목록
+    $stmt = $DB->prepare("select * from item_wish where user_id =? and item_code =?");
+    $stmt->bind_param("ss", $_SESSION['user_id'],$item_code);  
+    $stmt->execute();
+    $wishrow = $stmt->get_result()->fetch_assoc();
 
 
+    //리뷰
+    $stmt = $DB->prepare("select * from item_review where item_code =?");
+    $stmt->bind_param("s", $item_code);  
+    $stmt->execute();
+    $review_row = $stmt->get_result()->fetch_all();
 
-
+    //리뷰 카운트
+    $stmt = $DB->prepare("select count(*) as cnt from item_review where item_code =?");
+    $stmt->bind_param("s", $item_code);  
+    $stmt->execute();
+    $r_count = $stmt->get_result()->fetch_assoc();
+    $r_count = $r_count['cnt'];
    
 ?>
 
@@ -69,6 +80,45 @@ $wishrow = $stmt->get_result()->fetch_assoc();
 <style>
 
     html {scroll-behavior:smooth}
+
+    .star {
+        position: relative;
+        font-size: 1.5rem;
+        color: #ddd;
+    }
+    
+    .star input {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+    
+    .star span {
+        width: 0;
+        position: absolute; 
+        left: 0;
+        color: red;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    .star2 {
+        position: relative;
+        font-size: 1rem;
+        color: #ddd;
+    }
+    
+    .star2 span {
+        width: 0;
+        position: absolute; 
+        left: 0;
+        color: red;
+        overflow: hidden;
+        pointer-events: none;
+    }
 
     .text-style {
         padding: 20px;
@@ -318,31 +368,74 @@ $wishrow = $stmt->get_result()->fetch_assoc();
         </div>
         <div class="bg-[#f8f8f8] rounded p-2">
             <div id="review_box" class="">
-                <div class="border-b-2 mb-4 border-[#000] px-2 text-black font-bold py-4">리뷰 (1)</div>
-                <div class="py-2 my-2 bg-white px-2 text-black py-4">
-                    <div>
-                    <span class="font-bold">jo**</span>
-                    <span> 2022-04-28 12:00:45 </span>
-                    <span>
-                         <svg class="w-6 h-6 stroke-[#C65D7B] inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                        </path>
-                        </svg>
-                        2
-                    </span>
+                <div class="border-b-2 mb-4 border-[#000] px-2 text-black font-bold py-4">리뷰 (<?=$r_count?>)</div>
+               
+                <?php foreach($review_row as $k=>$v){
                     
+               
+                $star = $v[4] *10; 
+                $user_id = substr($v[2],0,-3). "***";
+                   
+          
+                ?>
+                    <div class="py-2 my-2 bg-white px-2 text-black py-4">
+                        <?php if($v[2] == $_SESSION['user_id']){?>
+                            <div class="text-right mb-2">
+                                <span class="cursor-pointer hover:text-[#C65D7B] text-[12px]" onclick="review_delete('<?=$v[0]?>','<?=$item_code?>');">
+                                 리뷰삭제
+                                </span> 
+                            </div>
+                        <?php
+                        }?>
+                        <div class="flex justify-between"> 
+                        
+                            <div>
+                                
+                            <span class="star2">
+                                ★★★★★
+                                <span style="width:<?=$star?>%">★★★★★</span>
+                            </span>
+
+                            </div>       
+                            <span class="text-[15px]">
+                                <svg class="w-6 h-6 stroke-[#C65D7B] inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                </path>
+                                </svg>
+                                좋아요 2
+                            </span>
+                        </div>
+                        <div class="flex justify-between lg:justify-start">
+                            <span class="font-bold"><?=$user_id?></span>
+                            <span class="pl-2"> <?=date( 'Y-m-d H:i:s', $v[6])?></span>
+                            
+                        </div>
+                        <div class="text-normal border-b p-2 pl-0"><?=$v[3]?></div>
+                        
+                        
                     </div>
-                    <div class="text-normal">└ 정말 가격대비 진짜 가성비 있는거같습니다!</div>
-                </div>
+                
+                <?php
+                }?>
+               
                 
             </div>
         </div>
 
 
         <div class="mt-4 bg-[#f8f8f8] p-4">
+            <div>
+                                
+                <span class="star">
+                ★★★★★
+                <span>★★★★★</span>
+                    <input type="range" id="star" oninput="drawStar(this)" value="0" step="0" min="0" max="10">
+                </span>
+            </div>
             <textarea name="review_comment" id="review_comment" onkeyup='text_check(this.value)' class="text-style w-full block focus:outline-none focus:border-[transparent] focus:ring-[transparent] border-none" placeholder="구매 후, 이용해주세요"></textarea>
             <div class="text-right mt-2">
-               <span id="text_num" class="text-[#bbbbbb]">0</span><span class="text-[#bbbbbb]"> / 200</span> <button class="text-black font-semibold text-[13px]"> 리뷰 등록 </button>
+               <span id="text_num" class="text-[#bbbbbb]">0</span><span class="text-[#bbbbbb]"> / 200</span> 
+               <button class="text-black font-semibold text-[13px]" onclick="review('<?=$item_code?>');"> 리뷰 등록 </button>
             </div>
         </div>
  
@@ -645,6 +738,7 @@ function my_basket() {
 
     //리뷰
 
+    //리뷰 텍스트 제한
     function text_check(num) {
        let text_value = document.querySelector('#review_comment').value ;
         if(num.length > 200){
@@ -656,10 +750,81 @@ function my_basket() {
         }
 
         document.querySelector('#text_num').innerText = num.length;
+  
+        drawStar(document.querySelector(`#star`));
     }
 
+    //별점 최초 집어넣기
+    if(document.querySelector(`#star`).value == 0){
+        let my_value = document.querySelector(`#star`).value = 10;
+        document.querySelector(`.star span`).style.width = `${my_value * 10}%`;
+        
+    };
+
+    //별점 
+
+    const drawStar = (target) => {
+
+        document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
+
+        document.querySelector(`#star`).value = `${target.value}`;
+    }
+
+    //리뷰 달기
+    async function review(item_code){
+           
+            let mode = 'comment';
+            let user_id = '<?php  echo $_SESSION['user_id']?>';
+            let text_value = document.querySelector('#review_comment').value ;
+            let star = document.querySelector('#star').value;
 
 
+            if (user_id == "") {
+                alert('로그인이 필요합니다.');
+                document.location.href = "/member/login.php"
+                return false;
+            }
+
+            
+            if (text_value == "") {
+                alert('내용을 입력해주세요.');
+                return false;
+            }
+       
+            let get_url = `review_ajax.php`;
+            let request_params = { 
+                mode,
+                user_id,
+                item_code,
+                text_value,
+                star,
+            }
+            request_params = new URLSearchParams(request_params).toString(); 
+            get_url = get_url+"?"+request_params;
+            let res = await fetch(get_url);
+            let data = await res.text();          
+            document.getElementById("review_box").innerHTML = data;  
+        }
+
+
+        //리뷰삭제
+        async function review_delete(seq,item_code){
+           
+           let mode = 'delete';
+
+           let get_url = `review_ajax.php`;
+           let request_params = { 
+               mode,
+               seq,
+               item_code,
+           }
+           request_params = new URLSearchParams(request_params).toString(); 
+           get_url = get_url+"?"+request_params;
+           let res = await fetch(get_url);
+           let data = await res.text();          
+           document.getElementById("review_box").innerHTML = data;  
+       }
+        
 </script>
 
 
