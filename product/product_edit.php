@@ -533,7 +533,7 @@ while ($nmr_loops--)
 
         if(document.querySelector('#item_sub2')){ 
             let item_sub2 = document.querySelector('#item_sub2').value;
-            if(item_sub1 ==""){
+            if(item_sub2 ==""){
               alert('이미지를 첨부해주세요.');
               form.item_sub2.focus();
               return false;
@@ -548,6 +548,7 @@ while ($nmr_loops--)
               return false;
             } 
         }    
+
         //옵션 안적엇을경우 리턴시키기
         let option_type = document.querySelector('#option_type').value;
         if(option_type == 'on' && document.querySelector('#option_box').innerHTML == ""){

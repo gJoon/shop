@@ -67,6 +67,17 @@ $wishrow = $stmt->get_result()->fetch_assoc();
 
 
 <style>
+
+    html {scroll-behavior:smooth}
+
+    .text-style {
+        padding: 20px;
+        background-color: #fff;
+        resize: none;
+        overflow: hidden;
+        overflow-y: auto;
+    }
+      
     .item_class {
         border-radius: 0.375rem;
         padding:10px 20px;
@@ -293,15 +304,48 @@ $wishrow = $stmt->get_result()->fetch_assoc();
     </div>
 
 
-    <div>
-        <div class="flex">
-        <h3 class="w-2/4 border-b-4 text-[22px] pb-2 text-center mt-24 border-[#000000]">상품정보</h3>
-        <h3 class="w-2/4 border-b-4 text-[22px] pb-2 text-center mt-24">리뷰</h3>
+    <div class="mt-24">
+        <div class="flex sticky top-[79px] z-40 bg-white">
+            <h3 class="w-2/4 border-b-4 text-[22px] text-center border-[#000000]"><a href="#item_box" class="py-4 block w-full"> 상품정보</a></h3>
+            <h3 class="w-2/4 border-b-4 text-[22px] text-center"><a href="#item_box2" class="py-4 block w-full"> 리뷰 </a></h3>
 
         </div>
-        <div class="item_content p-8 pt-8">
+        <div id="item_box" class="item_content p-0 pt-[160px] md:p-[160px]">
             <?php echo $row['item_content'] ?>
         </div>
+        <div id="item_box2" class="item_content p-0 md:mb-[160px] h-[1px] border-b-2">
+            
+        </div>
+        <div class="bg-[#f8f8f8] rounded p-2">
+            <div id="review_box" class="">
+                <div class="border-b-2 mb-4 border-[#000] px-2 text-black font-bold py-4">리뷰 (1)</div>
+                <div class="py-2 my-2 bg-white px-2 text-black py-4">
+                    <div>
+                    <span class="font-bold">jo**</span>
+                    <span> 2022-04-28 12:00:45 </span>
+                    <span>
+                         <svg class="w-6 h-6 stroke-[#C65D7B] inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                        </path>
+                        </svg>
+                        2
+                    </span>
+                    
+                    </div>
+                    <div class="text-normal">└ 정말 가격대비 진짜 가성비 있는거같습니다!</div>
+                </div>
+                
+            </div>
+        </div>
+
+
+        <div class="mt-4 bg-[#f8f8f8] p-4">
+            <textarea name="review_comment" id="review_comment" onkeyup='text_check(this.value)' class="text-style w-full block focus:outline-none focus:border-[transparent] focus:ring-[transparent] border-none" placeholder="구매 후, 이용해주세요"></textarea>
+            <div class="text-right mt-2">
+               <span id="text_num" class="text-[#bbbbbb]">0</span><span class="text-[#bbbbbb]"> / 200</span> <button class="text-black font-semibold text-[13px]"> 리뷰 등록 </button>
+            </div>
+        </div>
+ 
     </div>
     
 </article>
@@ -598,6 +642,21 @@ function my_basket() {
 
 
 
+
+    //리뷰
+
+    function text_check(num) {
+       let text_value = document.querySelector('#review_comment').value ;
+        if(num.length > 200){
+            alert('200자를 초과하였습니다.');
+            var result1 = text_value.substr(0, 200);
+            document.querySelector('#review_comment').value = result1;
+            document.querySelector('#text_num').innerText = 200;
+            return false;
+        }
+
+        document.querySelector('#text_num').innerText = num.length;
+    }
 
 
 
