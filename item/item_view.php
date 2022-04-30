@@ -73,7 +73,58 @@ include_once('../include/top.php');
     $stmt->execute();
     $r_count = $stmt->get_result()->fetch_assoc();
     $r_count = $r_count['cnt'];
-   
+
+
+    //리뷰 카운트
+    $stmt = $DB->prepare("select count(*) as cnt from item_review where item_code =?");
+    $stmt->bind_param("s", $item_code);  
+    $stmt->execute();
+    $r_count = $stmt->get_result()->fetch_assoc();
+    $r_count = $r_count['cnt'];
+
+    //구매 확인
+    if($_SESSION['user_id'] != ""){
+        //구매 한지
+        $stmt = $DB->prepare("select item_code from user_order where order_id=?");
+        $stmt->bind_param("s", $_SESSION['user_id']);  
+        $stmt->execute();
+        $order_code = $stmt->get_result()->fetch_all();
+
+
+        foreach($order_code as $k=>$v){
+       
+            
+            $order_code[$k] = explode(',', $v[0]);
+
+            if(in_array($item_code, $order_code[$k]) ) { 
+                $order_YN = 'Y';
+                break;
+            }else{ 
+                $order_YN = 'N';
+            }
+            
+        }
+        
+
+    }
+
+
+    //상품 평점 가져오기
+    $stmt = $DB->prepare("select review_star from item_review where item_code=?");
+    $stmt->bind_param("s", $item_code);  
+    $stmt->execute();
+    $star_arr = $stmt->get_result()->fetch_all();
+
+    foreach($star_arr as $k=>$v){
+       
+        $total_star += $v[0];
+    }
+
+    //아이템 총 평점
+    $total_star_width = $total_star/$r_count *10;
+
+    
+
 ?>
 
 
@@ -100,7 +151,7 @@ include_once('../include/top.php');
         width: 0;
         position: absolute; 
         left: 0;
-        color: red;
+        color: #C65D7B;
         overflow: hidden;
         pointer-events: none;
     }
@@ -115,7 +166,7 @@ include_once('../include/top.php');
         width: 0;
         position: absolute; 
         left: 0;
-        color: red;
+        color: #C65D7B;
         overflow: hidden;
         pointer-events: none;
     }
@@ -270,6 +321,15 @@ include_once('../include/top.php');
   
                 </div>
             </div>
+
+            <div>
+                                
+            <span class="star2">
+                ★★★★★
+                <span style="width:<?=$total_star_width?>%">★★★★★</span>
+            </span>
+
+            </div>   
             <h2 class="text-[25px] w-full  font-bold"><?php echo $row['item_title']?></h2>
             <div class="text-[25px]">
               
@@ -375,7 +435,7 @@ include_once('../include/top.php');
                
                 $star = $v[4] *10; 
                 $user_id = substr($v[2],0,-3). "***";
-                   
+                
           
                 ?>
                     <div class="py-2 my-2 bg-white px-2 text-black py-4">
@@ -397,13 +457,13 @@ include_once('../include/top.php');
                             </span>
 
                             </div>       
-                            <span class="text-[15px]">
+                            <!-- <span class="text-[15px]">
                                 <svg class="w-6 h-6 stroke-[#C65D7B] inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
                                 </path>
                                 </svg>
                                 좋아요 2
-                            </span>
+                            </span> -->
                         </div>
                         <div class="flex justify-between lg:justify-start">
                             <span class="font-bold"><?=$user_id?></span>
@@ -432,7 +492,24 @@ include_once('../include/top.php');
                     <input type="range" id="star" oninput="drawStar(this)" value="0" step="0" min="0" max="10">
                 </span>
             </div>
-            <textarea name="review_comment" id="review_comment" onkeyup='text_check(this.value)' class="text-style w-full block focus:outline-none focus:border-[transparent] focus:ring-[transparent] border-none" placeholder="구매 후, 이용해주세요"></textarea>
+
+            <?php
+            if($_SESSION['user_id'] == ""){
+                    $review_readonly = 'readonly';
+                    $review_place = "로그인 후 사용 가능합니다.";
+            }else{
+               if($order_YN == "Y"){
+                    $review_place = "상품 평을 남겨주세요!";
+                    $review_readonly = '';
+               }else{
+                    $review_place = "구매 후, 이용가능합니다.";
+                    $review_readonly = 'readonly';
+               }
+
+            };
+            
+            ?>
+            <textarea name="review_comment" id="review_comment" onkeyup='text_check(this.value)' <?=$review_readonly?> class="text-style w-full block focus:outline-none focus:border-[transparent] focus:ring-[transparent] border-none" placeholder="<?=$review_place?>"></textarea>
             <div class="text-right mt-2">
                <span id="text_num" class="text-[#bbbbbb]">0</span><span class="text-[#bbbbbb]"> / 200</span> 
                <button class="text-black font-semibold text-[13px]" onclick="review('<?=$item_code?>');"> 리뷰 등록 </button>
@@ -772,16 +849,22 @@ function my_basket() {
 
     //리뷰 달기
     async function review(item_code){
+
            
             let mode = 'comment';
             let user_id = '<?php  echo $_SESSION['user_id']?>';
             let text_value = document.querySelector('#review_comment').value ;
             let star = document.querySelector('#star').value;
-
+            let order_yn = '<?=$order_YN?>';
 
             if (user_id == "") {
                 alert('로그인이 필요합니다.');
                 document.location.href = "/member/login.php"
+                return false;
+            }
+
+            if(order_yn == "N"){
+                alert('구매 후 리뷰 작성 가능합니다.');
                 return false;
             }
 
