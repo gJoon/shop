@@ -12,6 +12,12 @@ include_once('../include/top.php');
     $row = $stmt->get_result()->fetch_assoc();
 
 
+    if($row['item_delete'] == "Y"){
+        echo "<script>
+        alert('판매가 종료된 상품입니다.');
+        location.href='/mypage/my_order.php'
+        </script>"; exit;
+    };
     //이미지
     $stmt = $DB->prepare("select item_image from item_image where item_code =?");
     $stmt->bind_param("s", $item_code);  
@@ -67,13 +73,6 @@ include_once('../include/top.php');
     $stmt->execute();
     $review_row = $stmt->get_result()->fetch_all();
 
-    //리뷰 카운트
-    $stmt = $DB->prepare("select count(*) as cnt from item_review where item_code =?");
-    $stmt->bind_param("s", $item_code);  
-    $stmt->execute();
-    $r_count = $stmt->get_result()->fetch_assoc();
-    $r_count = $r_count['cnt'];
-
 
     //리뷰 카운트
     $stmt = $DB->prepare("select count(*) as cnt from item_review where item_code =?");
@@ -81,6 +80,19 @@ include_once('../include/top.php');
     $stmt->execute();
     $r_count = $stmt->get_result()->fetch_assoc();
     $r_count = $r_count['cnt'];
+
+    //마이 리뷰 카운트
+    $stmt = $DB->prepare("select count(*) as cnt from item_review where item_code =? and user_id=?");
+    $stmt->bind_param("ss", $item_code,$_SESSION['user_id']);  
+    $stmt->execute();
+    $my_count = $stmt->get_result()->fetch_assoc();
+    $my_count = $my_count['cnt'];
+
+
+    $my_hidden = "";
+    if($my_count == "1"){
+        $my_hidden = "hidden";
+    }
 
     //구매 확인
     if($_SESSION['user_id'] != ""){
@@ -436,7 +448,9 @@ include_once('../include/top.php');
                 $star = $v[4] *10; 
                 $user_id = substr($v[2],0,-3). "***";
                 
-          
+                
+
+                    
                 ?>
                     <div class="py-2 my-2 bg-white px-2 text-black py-4">
                         <?php if($v[2] == $_SESSION['user_id']){?>
@@ -483,38 +497,37 @@ include_once('../include/top.php');
         </div>
 
 
-        <div class="mt-4 bg-[#f8f8f8] p-4">
-            <div>
-                                
-                <span class="star">
-                ★★★★★
-                <span>★★★★★</span>
-                    <input type="range" id="star" oninput="drawStar(this)" value="0" step="0" min="0" max="10">
-                </span>
-            </div>
+     
 
-            <?php
-            if($_SESSION['user_id'] == ""){
-                    $review_readonly = 'readonly';
-                    $review_place = "로그인 후 사용 가능합니다.";
-            }else{
-               if($order_YN == "Y"){
-                    $review_place = "상품 평을 남겨주세요!";
-                    $review_readonly = '';
-               }else{
-                    $review_place = "구매 후, 이용가능합니다.";
-                    $review_readonly = 'readonly';
-               }
-
-            };
+            <?php 
             
-            ?>
-            <textarea name="review_comment" id="review_comment" onkeyup='text_check(this.value)' <?=$review_readonly?> class="text-style w-full block focus:outline-none focus:border-[transparent] focus:ring-[transparent] border-none" placeholder="<?=$review_place?>"></textarea>
-            <div class="text-right mt-2">
-               <span id="text_num" class="text-[#bbbbbb]">0</span><span class="text-[#bbbbbb]"> / 200</span> 
-               <button class="text-black font-semibold text-[13px]" onclick="review('<?=$item_code?>');"> 리뷰 등록 </button>
+            if($order_YN == "Y"){
+                $review_place = "상품 평을 남겨주세요!";
+                    $review_readonly = '';
+            }
+
+            if($order_YN == 'Y'){?>
+                <div class="mt-4 bg-[#f8f8f8] p-4 <?=$my_hidden?>" id="review_text_box">
+                    <h1>리뷰 남기기</h1>
+                <div>
+                                
+                    <span class="star">
+                    ★★★★★
+                    <span>★★★★★</span>
+                        <input type="range" id="star" oninput="drawStar(this)" value="0" step="0" min="0" max="10">
+                    </span>
+                </div>
+                <textarea name="review_comment" id="review_comment" onkeyup='text_check(this.value)' <?=$review_readonly?> class="text-style w-full block focus:outline-none focus:border-[transparent] focus:ring-[transparent] border-none" placeholder="<?=$review_place?>"></textarea>
+                <div class="text-right mt-2">
+                <span id="text_num" class="text-[#bbbbbb]">0</span><span class="text-[#bbbbbb]"> / 200</span> 
+                
+                <button class="text-black font-semibold text-[13px]" onclick="review('<?=$item_code?>');"> 리뷰 등록 </button>
+                </div>
             </div>
-        </div>
+            <?php
+            }?>
+
+        
  
     </div>
     
@@ -887,6 +900,8 @@ function my_basket() {
             let res = await fetch(get_url);
             let data = await res.text();          
             document.getElementById("review_box").innerHTML = data;  
+            document.getElementById("review_text_box").classList.add('hidden');
+           
         }
 
 
@@ -906,6 +921,7 @@ function my_basket() {
            let res = await fetch(get_url);
            let data = await res.text();          
            document.getElementById("review_box").innerHTML = data;  
+           document.getElementById("review_text_box").classList.remove('hidden');
        }
         
 </script>

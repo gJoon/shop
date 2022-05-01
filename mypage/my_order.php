@@ -54,7 +54,16 @@ $row = $stmt->get_result()->fetch_all();
             $stmt->execute();
             $irow = $stmt->get_result()->fetch_all();
             $img = $irow[0][6];
+
+            //마이 리뷰 카운트
+            $stmt = $DB->prepare("select count(*) as cnt from item_review where item_code =? and user_id=?");
+            $stmt->bind_param("ss", $tem_code[0],$user_id);  
+            $stmt->execute();
+            $my_count = $stmt->get_result()->fetch_assoc();
+            $my_count = $my_count['cnt'];
             
+            $item_delete_yn = $irow[0][11];
+
 
             ?>
                 <div class="text-[15px] bg-white mt-4 p-2 rounded border mb2">  
@@ -62,15 +71,28 @@ $row = $stmt->get_result()->fetch_all();
                             <span>
                                 주문상품
                             </span> 
-                            <span class="text-[12px] cursor-pointer hover:text-[#C65D7B]" id="order_btn" onclick="order_info('<?=$v[7]?>');">
-                                상세조회
-                            </span>    
+                            <div>
+                                <?php if($my_count == "0" && $item_delete_yn == 'N'){
+                                ?>
+                                    <a href="/item/item_view.php?item_code=<?=$tem_code[0]?>" class="text-[12px] cursor-pointer hover:text-[#C65D7B]">
+                                        상품리뷰
+                                    </a> 
+                                <?php
+                                }
+                                ?>
+                                
+                                <span class="text-[12px] cursor-pointer hover:text-[#C65D7B]" id="order_btn" onclick="order_info('<?=$v[7]?>');">
+                                    상세조회
+                                </span>    
+                            </div>
+                         
                         </div>
                     
                     <div class="flex mt-2 pb-2 py-1 my-1 flex-col lg:flex-row ">
                         <div class="flex w-[100%] lg:w-[15%] py-32 lg:py-16 rounded-xl text-center flex-col justify-center items-center relative overflow-hidden mt-0">
                             <img class="absolute top-0 left-0 w-full h-full object-cover" src="/product/img/<?=$img?>" alt="img">
                         </div>
+                        
                     
                         <div class=" w-[100%]  lg:w-[85%] pl-2">
                         <div class="text-[#999999] font-normal text-[12px] mt-2">

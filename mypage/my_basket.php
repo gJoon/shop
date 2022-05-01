@@ -305,14 +305,11 @@ $hidden_class = "hidden";
             let mode = "plus";
 
             let MaxCnt = document.querySelector(`#${option_code}_cnt`).value;
-         
-
-            if(num >= MaxCnt) {
-                alert(`${option_title} 의 주문가능한 개수는 ${num} 개 입니다.`); return false;
+            console.log(num);
+            console.log(MaxCnt);
+            if(num == MaxCnt) {
+                alert(`${option_title} 의 주문가능한 개수는 ${MaxCnt} 개 입니다.`); return false;
             }
-
-
-        
 
             let get_url = `basket_ajax.php`;
             let request_params = { 
@@ -326,7 +323,7 @@ $hidden_class = "hidden";
             let res = await fetch(get_url);
             let data = await res.text();          
             document.getElementById("basket_box").innerHTML = data;  
-            alert(`${option_title} 상품 개수를 추가 하셨습니다.`);
+            //alert(`${option_title} 상품 개수를 추가 하셨습니다.`);
             HiddenPrice();
          
     }
@@ -358,7 +355,7 @@ async function CntMinus(option_code,num,item_code,option_title){
    let res = await fetch(get_url);
    let data = await res.text();          
    document.getElementById("basket_box").innerHTML = data;  
-   alert(`${option_title} 상품 개수를 취소 하셨습니다.`);
+   //alert(`${option_title} 상품 개수를 취소 하셨습니다.`);
    HiddenPrice();
 
 }

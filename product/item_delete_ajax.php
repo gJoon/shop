@@ -52,6 +52,11 @@ if($mode = 'ONE'){
     $stmt = $DB->prepare("DELETE from item_wish where item_code =?");
     $stmt->bind_param("s", $item_code);  
     $stmt->execute();
+
+    //모든 리뷰 제거
+    $stmt = $DB->prepare("DELETE from item_review where item_code =?");
+    $stmt->bind_param("s", $item_code);  
+    $stmt->execute();
     
     //아이템 업데이트
     $stmt = $DB->prepare("update item set item_delete='Y' WHERE item_code=?");
@@ -111,6 +116,12 @@ if($mode = 'ALL'){
             $stmt = $DB->prepare("DELETE from item_wish where item_code =?");
             $stmt->bind_param("s", $item_code);  
             $stmt->execute();
+            
+            //모든 리뷰 제거
+            $stmt = $DB->prepare("DELETE from item_review where item_code =?");
+            $stmt->bind_param("s", $item_code);  
+            $stmt->execute();
+
             
             //아이템 업데이트
             $stmt = $DB->prepare("update item set item_delete='Y' WHERE item_code=?");

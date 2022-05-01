@@ -2,16 +2,15 @@
 include_once('../include/top.php');
 ?>
 <article class="mx-auto container flex flex-col lg:flex-row mt-24 mb-24 px-3 sm:px-0 w-full lg:w-3/4">
-    <div class="mx-auto items-center w-full lg:w-2/4">
+
+    <div class="mx-auto w-full lg:w-2/4 py-5 px-6">
         <h1 class="text-3xl text-center font-semibold mb-2 text-[#F68989]">
             @rtist_SH0:P
         </h1>
         <h2 class="text-2xl text-center font-semibold mb-6">
-          로그인
+            로그인
         </h2>
 
-    </div>
-    <div class="mx-auto w-full lg:w-2/4 py-5 px-6">
 
      <div class="border bg-white shadow py-5 px-6">
         <form name="form" action="login_proc.php" method="post" onkeypress="show_name(event)">
@@ -50,7 +49,7 @@ include_once('../include/top.php');
     
     </div>
         
-     <div class="cursor-pointer text-center flex border my-6 mb-2 mx-0 py-3 bg-white text-[#999] hover:text-[#000] font-bold hover:bg-[#cacaca]">
+     <!-- <div class="cursor-pointer text-center flex border my-6 mb-2 mx-0 py-3 bg-white text-[#999] hover:text-[#000] font-bold hover:bg-[#cacaca]">
         <span class="pl-5">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4">
@@ -82,14 +81,13 @@ include_once('../include/top.php');
         <span class="w-full">
         Google 로그인
         </span>
-    </div>
+    </div> -->
     
 
         
         
 
       
-    </div>
     
 
 </article>

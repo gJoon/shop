@@ -4,6 +4,15 @@ include '../db_config.php';
 
 $today =  time();
 
+
+
+if($_FILES['item_image'] == ""){
+	echo "<script>alert('메인 이미지 파일 용량이 너무 큽니다!');
+    	history.back();
+    </script>";
+};
+
+
 //이미지 명 생성
 $namechar  = "0123456789";  
 $lang_loops = 6;  
@@ -21,8 +30,17 @@ $img_name = $img_name."_".$img_name2;
 $tempFile = $_FILES['item_image']['tmp_name'];
 // 파일타입 및 확장자 체크
 $fileTypeExt = explode("/", $_FILES['item_image']['type']);
+
 // 파일 타입 
 $fileType = $fileTypeExt[0];
+
+if($fileType == ""){
+	echo "<script>alert('메인 이미지 파일이 지원하지 않는 파일 형태입니다.');
+	history.back();
+	</script>";
+	exit;
+}
+
 // 파일 확장자
 $fileExt = $fileTypeExt[1];
 $img_name .= ".".$fileExt;
