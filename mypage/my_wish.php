@@ -20,9 +20,9 @@ $row = $stmt->get_result()->fetch_all();
     <article class="flex flex-col w-full lg:w-1/4 bg-[#ffffff] lg:mx-2 p-2 py-8 lg:rounded-xl">
             <h2 class="text-2xl font-semibold mb-2 w-full">MY</h2>
             <div class="w-full flex-row lg:flex-col flex">
-                <a href="/mypage/my_order.php" class="border-[#C65D7B] w-full font-semibold border px-3 py-2 text-center text-[#999999] hover:bg-[#C65D7B] hover:text-[#ffffff] mt-2" >구매내역</a>
-                <a href="#" class="border-[#C65D7B] w-full font-semibold border px-3 py-2 text-center bg-[#C65D7B] text-[#ffffff] mt-2">찜목록</a>
-                <a href="/mypage/my_basket.php" class="border-[#C65D7B] w-full font-semibold border px-3 py-2 text-center text-[#999999] hover:bg-[#C65D7B] hover:text-[#ffffff] mt-2">장바구니</a>
+                <a href="/mypage/my_order.php" class="border-[#092532] w-full font-semibold border px-3 py-2 text-center text-[#999999] hover:bg-[#092532] hover:text-[#ffffff] mt-2" >구매내역</a>
+                <a href="#" class="border-[#092532] w-full font-semibold border px-3 py-2 text-center bg-[#092532] text-[#ffffff] mt-2">찜목록</a>
+                <a href="/mypage/my_basket.php" class="border-[#092532] w-full font-semibold border px-3 py-2 text-center text-[#999999] hover:bg-[#092532] hover:text-[#ffffff] mt-2">장바구니</a>
             </div>
      
     </article>
@@ -85,17 +85,17 @@ $row = $stmt->get_result()->fetch_all();
                                 #<?=$bcode_title?> / <?=$scode_title?>
                             </div>
                             <div class="pt-2 text-center">
-                                <span class="font-bold text-[#C65D7B]"><?=$irow[0][5]?></span>
+                                <span class="font-bold text-[#092532]"><?=$irow[0][5]?></span>
                             </div>  
                     
                             <div class="flex mt-2">
                                 <div class="w-full lg:w-2/4 px-2">
-                                    <a href="/item/item_view.php?item_code=<?=$v[1]?>" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white">
+                                    <a href="/item/item_view.php?item_code=<?=$v[1]?>" class="w-full border-[#092532] font-semibold border text-[#092532] py-3 block  text-center rounded-xl hover:bg-[#092532] hover:text-[#ffffff] transition-colors hover:text-white">
                                         구매하기
                                     </a>
                                 </div>
                                 <div class="w-full lg:w-2/4 px-2">
-                                    <button type="button" onclick="my_wish('<?php echo $v[1]?>');" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white">
+                                    <button type="button" onclick="my_wish('<?php echo $v[1]?>');" class="w-full border-[#092532] font-semibold border text-[#092532] py-3 block  text-center rounded-xl hover:bg-[#092532] hover:text-[#ffffff] transition-colors hover:text-white">
                                         삭제하기
                                     </button>
                                 </div>

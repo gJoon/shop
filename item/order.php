@@ -86,7 +86,7 @@ foreach ($item as $k => $v){
         <input type="hidden" name="order_no" id="order_no" value="<?php echo $order_no?>">
         <input type="hidden" name="option_lang" id="option_lang" value="<?php echo $item_lang ?>">
         
-        <h2 class="text-[30px] text-[#C65D7B] pb-2">주문하기</h2>
+        <h2 class="text-[30px] text-[#092532] pb-2">주문하기</h2>
         <div class="bg-[#e2e2e2] px-1 py-1 rounded-lg">
             <div class="text-[15px] bg-white my-1 p-2 rounded">  
                 <div class="text-[#000000] font-bold">
@@ -102,32 +102,32 @@ foreach ($item as $k => $v){
                         <span>배송지 정보</span>
                     </div>
                     <div class="w-2/4 text-right text-[12px]">
-                        <span id="add_text" class="cursor-pointer hover:text-[#C65D7B]" onclick="delivery_add();">배송지추가</span> 
-                        <span id="cg_text" class="cursor-pointer hover:text-[#C65D7B]" onclick="delivery_cg();">배송지변경</span> 
+                        <span id="add_text" class="cursor-pointer hover:text-[#092532]" onclick="delivery_add();">배송지추가</span> 
+                        <span id="cg_text" class="cursor-pointer hover:text-[#092532]" onclick="delivery_cg();">배송지변경</span> 
                     </div>
                    
                 </div>
                 <div id="dv_container" class="relative">
                         <div id="dv_add" class="hidden rounded-lg drop-shadow-lg  p-4 absolute bg-white border top-0 right-0 w-[100%] lg:w-[70%] z-50">
                             <div class="mt-6">
-                            <label for="insert_name" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]">이름</label>
+                            <label for="insert_name" class="block text-sm font-semibold text-[#092532] after:content-['*'] after:ml-0.5 after:text-[#092532]">이름</label>
                             <div class="mb-1 flex flex-col lg:flex-row justify-between">
-                                <input type="text" id="insert_name" name="insert_name" class="px-3 py-2 my-1 m-0 text-[#C65D7B] w-full mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"  placeholder="이름을 입력해주세요.">
+                                <input type="text" id="insert_name" name="insert_name" class="px-3 py-2 my-1 m-0 text-[#092532] w-full mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none"  placeholder="이름을 입력해주세요.">
                             </div>
 
-                            <label for="insert_hp" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]">핸드폰번호</label>
+                            <label for="insert_hp" class="block text-sm font-semibold text-[#092532] after:content-['*'] after:ml-0.5 after:text-[#092532]">핸드폰번호</label>
                             <div class="mb-1 flex flex-col lg:flex-row justify-between">
-                                <input type="text" id="insert_hp" name="insert_hp" maxlength="13" class="hp_class px-3 py-2 my-1 m-0 text-[#C65D7B] w-full mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"  placeholder="010-1234-1234">
+                                <input type="text" id="insert_hp" name="insert_hp" maxlength="13" class="hp_class px-3 py-2 my-1 m-0 text-[#092532] w-full mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none"  placeholder="010-1234-1234">
                             </div>
                             
-                            <label for="address2" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]">주소</label>
+                            <label for="address2" class="block text-sm font-semibold text-[#092532] after:content-['*'] after:ml-0.5 after:text-[#092532]">주소</label>
                                 <div class="mb-1 flex flex-col lg:flex-row justify-between">
-                                    <input type="hidden" id="address2" name="address2" onclick="sample6_execDaumPostcode()" class="px-3 py-2 ml-0 my-1 text-[#C65D7B] w-full lg:w-2/6 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" placeholder="우편번호" readonly>
-                                    <input type="text" id="address" name="address" onclick="sample6_execDaumPostcode()" class="px-3 py-2 my-1 m-0 text-[#C65D7B] w-full mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"  placeholder="주소를 검색해주세요" readonly>
+                                    <input type="hidden" id="address2" name="address2" onclick="sample6_execDaumPostcode()" class="px-3 py-2 ml-0 my-1 text-[#092532] w-full lg:w-2/6 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none" placeholder="우편번호" readonly>
+                                    <input type="text" id="address" name="address" onclick="sample6_execDaumPostcode()" class="px-3 py-2 my-1 m-0 text-[#092532] w-full mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none"  placeholder="주소를 검색해주세요" readonly>
                                 </div>
                                 <div class="mb-1 flex flex-col lg:flex-row justify-between">
-                                    <input type="text" id="address3" name="address3" class="px-3 py-2 text-[#C65D7B] mb-2 lg:mb-0 w-full lg:w-3/5 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"  placeholder="상세주소를 입력해주세요" >
-                                    <button type="button" id="add_btn" class="text-sm w-full lg:w-2/5 m-0 lg:ml-2 px-1 py-2 cursor-pointer hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4 rounded" id="add_btn" onclick="sample6_execDaumPostcode()">우편번호찾기</button>
+                                    <input type="text" id="address3" name="address3" class="px-3 py-2 text-[#092532] mb-2 lg:mb-0 w-full lg:w-3/5 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none"  placeholder="상세주소를 입력해주세요" >
+                                    <button type="button" id="add_btn" class="text-sm w-full lg:w-2/5 m-0 lg:ml-2 px-1 py-2 cursor-pointer hover:bg-[#092532] hover:text-[#ffffff] text-[#092532] border border-[#092532] px-4 rounded" id="add_btn" onclick="sample6_execDaumPostcode()">우편번호찾기</button>
                                 </div>
                                 <div class="w-full my-2">
                                 
@@ -239,7 +239,7 @@ foreach ($item as $k => $v){
 
                 </div>
                 <div class="text-[#000000] font-bold py-1 my-1 text-right">
-                최종결제 금액 <span class="px-2 py-8 pb-2 text-[#C65D7B] font-bold"><?php echo number_format($_POST['price_arr']) ?>원</span> 
+                최종결제 금액 <span class="px-2 py-8 pb-2 text-[#092532] font-bold"><?php echo number_format($_POST['price_arr']) ?>원</span> 
                 </div>
             </div>
 
@@ -252,7 +252,7 @@ foreach ($item as $k => $v){
                     <input type="checkbox" name="buy_yn" id="buy_yn"> <label for="buy_yn">  위 상품의 구매조건을 확인하였으며, 결제 및 개인정보 제3자 제공에 모두 동의합니다.</label>
                 </div>
                         
-                <button type="button" id="submit_btn" class="w-full text-white font-semibold border py-2 block  text-center rounded-lg bg-[#C65D7B] hover:text-[#ffffff]">
+                <button type="button" id="submit_btn" class="w-full text-white font-semibold border py-2 block  text-center rounded-lg bg-[#092532] hover:text-[#ffffff]">
                     주문하기
                 </button>
             </div>
@@ -377,15 +377,15 @@ function sample6_execDaumPostcode() {
         if (dv_box_class.contains('hidden')){
             document.getElementById("dv_box_flex").classList.remove('hidden');
                     
-            document.getElementById("cg_text").classList.add('text-[#C65D7B]');
+            document.getElementById("cg_text").classList.add('text-[#092532]');
             if (!dv_box_class.contains('hidden')){
-                document.getElementById("add_text").classList.remove('text-[#C65D7B]');
+                document.getElementById("add_text").classList.remove('text-[#092532]');
                 document.getElementById("dv_add").classList.add('hidden');
             }
             
         }else{
-            document.getElementById("add_text").classList.remove('text-[#C65D7B]');
-            document.getElementById("cg_text").classList.remove('text-[#C65D7B]');
+            document.getElementById("add_text").classList.remove('text-[#092532]');
+            document.getElementById("cg_text").classList.remove('text-[#092532]');
             document.getElementById("dv_box_flex").classList.add('hidden');
             document.getElementById("dv_add").classList.add('hidden');
         }
@@ -408,14 +408,14 @@ function sample6_execDaumPostcode() {
 
         if (dv_add_class2.contains('hidden')){
             document.getElementById("dv_add").classList.remove('hidden');
-            document.getElementById("add_text").classList.add('text-[#C65D7B]');
+            document.getElementById("add_text").classList.add('text-[#092532]');
             if (!dv_box_class2.contains('hidden')){
-                document.getElementById("cg_text").classList.remove('text-[#C65D7B]');
+                document.getElementById("cg_text").classList.remove('text-[#092532]');
                 document.getElementById("dv_box_flex").classList.add('hidden');
             }
         }else{
-            document.getElementById("add_text").classList.remove('text-[#C65D7B]');
-            document.getElementById("cg_text").classList.remove('text-[#C65D7B]');
+            document.getElementById("add_text").classList.remove('text-[#092532]');
+            document.getElementById("cg_text").classList.remove('text-[#092532]');
             document.getElementById("dv_add").classList.add('hidden');
             document.getElementById("dv_box_flex").classList.add('hidden');
         }
@@ -500,8 +500,8 @@ function sample6_execDaumPostcode() {
                 }
             }
 
-            document.getElementById("add_text").classList.remove('text-[#C65D7B]');
-            document.getElementById("cg_text").classList.remove('text-[#C65D7B]');
+            document.getElementById("add_text").classList.remove('text-[#092532]');
+            document.getElementById("cg_text").classList.remove('text-[#092532]');
       
     }
 
@@ -593,8 +593,8 @@ function sample6_execDaumPostcode() {
                         this.value = autoHypenPhone(_val) ;
                 }
             }
-            document.getElementById("add_text").classList.remove('text-[#C65D7B]');
-            document.getElementById("cg_text").classList.remove('text-[#C65D7B]');
+            document.getElementById("add_text").classList.remove('text-[#092532]');
+            document.getElementById("cg_text").classList.remove('text-[#092532]');
 
       
     }
@@ -628,8 +628,8 @@ function sample6_execDaumPostcode() {
                         this.value = autoHypenPhone(_val) ;
                 }
             }
-            document.getElementById("add_text").classList.remove('text-[#C65D7B]');
-            document.getElementById("cg_text").classList.remove('text-[#C65D7B]');
+            document.getElementById("add_text").classList.remove('text-[#092532]');
+            document.getElementById("cg_text").classList.remove('text-[#092532]');
 
       
     }
@@ -676,8 +676,8 @@ function sample6_execDaumPostcode() {
                 }
             }
 
-              document.getElementById("add_text").classList.remove('text-[#C65D7B]');
-            document.getElementById("cg_text").classList.remove('text-[#C65D7B]');
+              document.getElementById("add_text").classList.remove('text-[#092532]');
+            document.getElementById("cg_text").classList.remove('text-[#092532]');
 
         }
     }

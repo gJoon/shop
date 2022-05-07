@@ -1,17 +1,17 @@
-<footer class="py-16 bg-[#F6E7D8] border-t border-zinc-100 ">
+<footer class="pb-32 pt-12 bg-[#F7F5F2] border-t border-zinc-100 ">
     <div class="container flex-col mx-auto flex flex-wrap justify-between sm:flex-row">
       <div class="flex flex-col pl-5">
         <h1 class="text-2xl text-[#F68989] font-bold"><a href="/"> @rtist_SH0:P</a></h1>
-        <p class="text-zinc-500 md:mt-10 sm:mt-5">
+        <p class="md:mt-10 sm:mt-5">
           @rtist_SH0:P | 대표 송준
         </p>
-        <p class="text-zinc-500">
+        <p class="">
           사업자 등록번호 : 000-00-00000
         </p>
-        <p class="text-zinc-500">
+        <p class="">
           개인정보관리책임 : 송준
         </p>
-        <p class="text-zinc-500">
+        <p class="">
           주소 : 서울특별시 도봉구 도봉동
         </p>
       </div>

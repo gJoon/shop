@@ -34,7 +34,7 @@ $order_row = $stmt->get_result()->fetch_assoc();
     <span>
         주문상세조회
     </span> 
-    <span class="text-right text-[16px] cursor-pointer hover:text-[#C65D7B]" id="order_close" onclick="order_close();">X</span>
+    <span class="text-right text-[16px] cursor-pointer hover:text-[#092532]" id="order_close" onclick="order_close();">X</span>
 
 </div>
 

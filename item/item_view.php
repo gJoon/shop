@@ -163,7 +163,7 @@ include_once('../include/top.php');
         width: 0;
         position: absolute; 
         left: 0;
-        color: #C65D7B;
+        color: #092532;
         overflow: hidden;
         pointer-events: none;
     }
@@ -178,7 +178,7 @@ include_once('../include/top.php');
         width: 0;
         position: absolute; 
         left: 0;
-        color: #C65D7B;
+        color: #092532;
         overflow: hidden;
         pointer-events: none;
     }
@@ -316,13 +316,13 @@ include_once('../include/top.php');
                 <div class="w-1/4 px-2 text-right" id="wish_btn">
                 <?php if($wishrow != ""){?> 
                     <button type="button" onclick="my_wish('<?php echo $item_code ?>','delete');">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 stroke-[#C65D7B] text-[#C65D7B]" viewBox="0 0 20 20" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 stroke-[#F56D91] text-[#F56D91]" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
                         </svg>
                     </button>
                 <?php }else {?>
                     <button type="button" onclick="my_wish('<?php echo $item_code ?>','insert');">
-                        <svg class="w-8 h-8 stroke-[#C65D7B]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-8 h-8 stroke-[#F56D91]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
                         </path>
                         </svg>
@@ -346,7 +346,7 @@ include_once('../include/top.php');
             <div class="text-[25px]">
               
                     <?php if($row['item_per'] != ""){?>
-                        <span class="text-[#C65D7B]">
+                        <span class="text-[#092532]">
                         <?php echo $row['item_per']?>%
                         </span>
                     <?php
@@ -370,7 +370,7 @@ include_once('../include/top.php');
             <div class="border-b my-4"></div>
             <h2 class="mb-4 pb-2 w-full"><?php echo strtoupper($row['user_id'])?>님의 상품입니다.</h2>
             <div class="mt-1">
-                <select name="item_option" id="item_option" onchange="option_item();" class="form-select w-full  px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#C65D7B] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" aria-label="Default select example">
+                <select name="item_option" id="item_option" onchange="option_item();" class="form-select w-full  px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#092532] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none" aria-label="Default select example">
                 <option value="">옵션을 선택해주세요.</option>
 
                         <?php foreach($orow as $k=>$v){
@@ -402,7 +402,7 @@ include_once('../include/top.php');
                    총 상품 금액
                 </div>
                 <!-- 총 토탈 금액 -->
-                <div id="price_box" class="w-full md:w-2/4 px-2 py-8 pb-2 text-[20px] text-[#C65D7B] font-bold text-right">
+                <div id="price_box" class="w-full md:w-2/4 px-2 py-8 pb-2 text-[20px] text-[#092532] font-bold text-right">
                     <span id="total_price">0</span> <span>원</span>
                 </div>
             </div>
@@ -410,12 +410,12 @@ include_once('../include/top.php');
 
             <div class="flex">
                 <div class="w-full lg:w-2/4 px-2">
-                    <button type="button" onclick="my_basket();" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
+                    <button type="button" onclick="my_basket();" class="w-full border-[#092532] font-semibold border text-[#092532] py-3 block  text-center rounded-xl hover:bg-[#092532] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
                         장바구니
                     </button>
                 </div>
                 <div class="w-full lg:w-2/4 px-2">
-                    <button type="button" id="submit_btn"  class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
+                    <button type="button" id="submit_btn"  class="w-full border-[#092532] font-semibold border text-[#092532] py-3 block  text-center rounded-xl hover:bg-[#092532] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
                         바로구매
                     </button>
                 </div>
@@ -455,7 +455,7 @@ include_once('../include/top.php');
                     <div class="py-2 my-2 bg-white px-2 text-black py-4">
                         <?php if($v[2] == $_SESSION['user_id']){?>
                             <div class="text-right mb-2">
-                                <span class="cursor-pointer hover:text-[#C65D7B] text-[12px]" onclick="review_delete('<?=$v[0]?>','<?=$item_code?>');">
+                                <span class="cursor-pointer hover:text-[#092532] text-[12px]" onclick="review_delete('<?=$v[0]?>','<?=$item_code?>');">
                                  리뷰삭제
                                 </span> 
                             </div>
@@ -472,7 +472,7 @@ include_once('../include/top.php');
 
                             </div>       
                             <!-- <span class="text-[15px]">
-                                <svg class="w-6 h-6 stroke-[#C65D7B] inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-6 h-6 stroke-[#092532] inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
                                 </path>
                                 </svg>

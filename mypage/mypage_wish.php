@@ -74,17 +74,17 @@ $scode_title = $ccrow['title'];
                 #<?=$bcode_title?> / <?=$scode_title?>
             </div>
             <div class="pt-2 text-center">
-                <span class="font-bold text-[#C65D7B]"><?=$irow[0][5]?></span>
+                <span class="font-bold text-[#092532]"><?=$irow[0][5]?></span>
             </div>  
     
             <div class="flex mt-2">
                 <div class="w-full lg:w-2/4 px-2">
-                    <a href="/item/item_view.php?item_code=<?=$v[1]?>" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white">
+                    <a href="/item/item_view.php?item_code=<?=$v[1]?>" class="w-full border-[#092532] font-semibold border text-[#092532] py-3 block  text-center rounded-xl hover:bg-[#092532] hover:text-[#ffffff] transition-colors hover:text-white">
                         구매하기
                     </a>
                 </div>
                 <div class="w-full lg:w-2/4 px-2">
-                    <button type="button" onclick="my_wish('<?php echo $v[1] ?>');" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white">
+                    <button type="button" onclick="my_wish('<?php echo $v[1] ?>');" class="w-full border-[#092532] font-semibold border text-[#092532] py-3 block  text-center rounded-xl hover:bg-[#092532] hover:text-[#ffffff] transition-colors hover:text-white">
                         삭제하기
                     </button>
                 </div>

@@ -23,9 +23,9 @@ $hidden_class = "hidden";
     <article class="flex flex-col w-full lg:w-1/4 bg-[#ffffff] lg:mx-2 p-2 py-8 lg:rounded-xl">
             <h2 class="text-2xl font-semibold mb-2 w-full">MY</h2>
             <div class="w-full flex-row lg:flex-col flex">
-                <a href="/mypage/my_order.php" class="border-[#C65D7B] w-full font-semibold border px-3 py-2 text-center text-[#999999] hover:bg-[#C65D7B] hover:text-[#ffffff] mt-2" >구매내역</a>
-                <a href="/mypage/my_wish.php" class="border-[#C65D7B] w-full font-semibold border px-3 py-2 text-center text-[#999999] hover:bg-[#C65D7B] hover:text-[#ffffff] mt-2">찜목록</a>
-                <a href="#" class="border-[#C65D7B] w-full font-semibold border px-3 py-2 text-center bg-[#C65D7B] text-[#ffffff] mt-2">장바구니</a>
+                <a href="/mypage/my_order.php" class="border-[#092532] w-full font-semibold border px-3 py-2 text-center text-[#999999] hover:bg-[#092532] hover:text-[#ffffff] mt-2" >구매내역</a>
+                <a href="/mypage/my_wish.php" class="border-[#092532] w-full font-semibold border px-3 py-2 text-center text-[#999999] hover:bg-[#092532] hover:text-[#ffffff] mt-2">찜목록</a>
+                <a href="#" class="border-[#092532] w-full font-semibold border px-3 py-2 text-center bg-[#092532] text-[#ffffff] mt-2">장바구니</a>
             </div>
      
     </article>
@@ -37,9 +37,9 @@ $hidden_class = "hidden";
                 <div id="delete_btn_box" class="text-[#000000] font-bold  text-right bg-[#f7f7f7] py-2 px-2 <?=$hidden_class?>" >
                     <span class="">
                         <input type="checkbox" name="check_all" id="check_all" style="position:absolute;left:-9999px" class="absolute left-[-9999px]">
-                        <label for="check_all" class="cursor-pointer text-[13px] hover:text-[#C65D7B]" >전체선택</label>  
+                        <label for="check_all" class="cursor-pointer text-[13px] hover:text-[#092532]" >전체선택</label>  
                     </span> 
-                    <span class="text-[13px] cursor-pointer hover:text-[#C65D7B]" onclick="deleteALL();">
+                    <span class="text-[13px] cursor-pointer hover:text-[#092532]" onclick="deleteALL();">
                         선택삭제
                     </span>    
                 </div>
@@ -51,7 +51,7 @@ $hidden_class = "hidden";
             
                 </div>
                 <div class="text-[#000000] font-bold py-1 my-4">
-                    <a href="/item/item_list.php?title=OUTER&bcode=001" class="border-[#000000] hover:border-[#C65D7B] w-full font-semibold border px-3 py-2 text-center text-[#000000] hover:bg-[#C65D7B] hover:text-[#ffffff]">
+                    <a href="/item/item_list.php?title=OUTER&bcode=001" class="border-[#000000] hover:border-[#092532] w-full font-semibold border px-3 py-2 text-center text-[#000000] hover:bg-[#092532] hover:text-[#ffffff]">
                         구매하러가기
                     </a>
                 </div>
@@ -103,7 +103,7 @@ $hidden_class = "hidden";
                                 <span class="text-[15px]  text-ellipsis overflow-hidden ...">
                                     <?=$v[1]?>
                                 </span> 
-                                <span class="text-[13px] cursor-pointer hover:text-[#C65D7B]" onclick="deleteOne('<?=$v[0]?>','ONE','<?=$v[6]?>');">
+                                <span class="text-[13px] cursor-pointer hover:text-[#092532]" onclick="deleteOne('<?=$v[0]?>','ONE','<?=$v[6]?>');">
                                     삭제
                                 </span>    
                             </div>
@@ -130,7 +130,7 @@ $hidden_class = "hidden";
                             
                             <div class="text-[#999999] font-normal text-[12px] flex flex-col lg:flex-row mt-2">
                             <span class="text-[13px] font-semibold text-[#000000]">금액 : </span> 
-                            <span class="text-[#C65D7B] pl-0 md:pl-2  font-bold"><?= number_format($v[5])?>원</span> 
+                            <span class="text-[#092532] pl-0 md:pl-2  font-bold"><?= number_format($v[5])?>원</span> 
                             </div>
                         </div>
                     </div>
@@ -151,14 +151,14 @@ $hidden_class = "hidden";
                     총 상품 금액
                     </div>
                     <!-- 총 토탈 금액 -->
-                    <div id="price_box" class="w-full md:w-2/4 px-2 py-8 pb-2 text-[20px] text-[#C65D7B] font-bold text-right">
+                    <div id="price_box" class="w-full md:w-2/4 px-2 py-8 pb-2 text-[20px] text-[#092532] font-bold text-right">
                         <span id="total_price">0</span> <span>원</span>
                     </div>
                 </div>
 
                 <div class="flex">
                     <div class="w-full px-2">
-                        <button type="button" id="submit_btn" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
+                        <button type="button" id="submit_btn" class="w-full border-[#092532] font-semibold border text-[#092532] py-3 block  text-center rounded-xl hover:bg-[#092532] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
                             바로구매
                         </button>
                     </div>

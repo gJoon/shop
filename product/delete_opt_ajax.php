@@ -35,21 +35,21 @@ $item_option2 = $stmt->get_result()->fetch_all();
                     
 ?>
 
-<div class="flex flex flex-col lg:flex-row mb-4 border-2 rounded-xl p-4 border-[#C65D7B]">
+<div class="flex flex flex-col lg:flex-row mb-4 border-2 rounded-xl p-4 border-[#092532]">
         <input type="hidden" name="item_option_code[<?=$k?>]" value="<?=$v[3]?>">
-        <div class="w-full lg:w-3/4 px-4 block text-sm font-semibold text-[#C65D7B]">
-        <label for="item_option_title[<?=$k?>]" class="block text-sm font-semibold text-[#C65D7B]">옵션명</label> 
-            <input type="text" name="item_option_title[<?=$k?>]" id="item_option_title[<?=$k?>]" value="<?=$v[4]?>" readonly class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none">
+        <div class="w-full lg:w-3/4 px-4 block text-sm font-semibold text-[#092532]">
+        <label for="item_option_title[<?=$k?>]" class="block text-sm font-semibold text-[#092532]">옵션명</label> 
+            <input type="text" name="item_option_title[<?=$k?>]" id="item_option_title[<?=$k?>]" value="<?=$v[4]?>" readonly class="px-3 py-3 text-[#092532] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none">
         </div>
         <div class="w-full lg:w-1/4 px-4">
-            <label for="item_option_qty[<?=$k?>]" class="block text-sm font-semibold text-[#C65D7B]">수량</label>
+            <label for="item_option_qty[<?=$k?>]" class="block text-sm font-semibold text-[#092532]">수량</label>
         
-            <input type="text" name="item_option_qty[<?=$k?>]" id="item_option_qty[<?=$k?>]" value="<?=$v[6]?>" class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" value="0" placeholder="10" require=""> 
+            <input type="text" name="item_option_qty[<?=$k?>]" id="item_option_qty[<?=$k?>]" value="<?=$v[6]?>" class="px-3 py-3 text-[#092532] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none" value="0" placeholder="10" require=""> 
         </div>
         <div class="w-full lg:w-1/4 px-4"> 
-            <label for="item_option_yn[<?=$k?>]" class="block text-sm font-semibold text-[#C65D7B]">판매여부</label>
+            <label for="item_option_yn[<?=$k?>]" class="block text-sm font-semibold text-[#092532]">판매여부</label>
         
-            <select name="item_option_yn[<?=$k?>]" id="item_option_yn[<?=$k?>]" class="form-select w-full  px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#C65D7B] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" aria-label="Default select example">
+            <select name="item_option_yn[<?=$k?>]" id="item_option_yn[<?=$k?>]" class="form-select w-full  px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#092532] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none" aria-label="Default select example">
                 <option value="Y" <?php if($v[7] == "Y"){?>
                 selected
                 <?php
@@ -63,7 +63,7 @@ $item_option2 = $stmt->get_result()->fetch_all();
         </div>
         <div class="w-full lg:w-1/4 px-4"> 
             
-            <button type="button" onclick="option_delete('<?=$v[3]?>','<?=$item_code?>','<?=$v[4]?>','<?=$k?>');" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-4">삭제</button>
+            <button type="button" onclick="option_delete('<?=$v[3]?>','<?=$item_code?>','<?=$v[4]?>','<?=$k?>');" class="w-full border-[#092532] font-semibold border text-[#092532] py-3 block  text-center hover:bg-[#092532] hover:text-[#ffffff] transition-colors hover:text-white mt-4">삭제</button>
         </div>
     </div>
 <?php

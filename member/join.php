@@ -18,80 +18,80 @@ include_once('../include/top.php');
             <input type="hidden" name="user_check" id="user_check" value="N">
             <input type="hidden" name="mode" id="mode" value="join">
             <div>
-              <label for="user_name" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">이름</label>
+              <label for="user_name" class="block text-sm font-semibold text-[#092532] after:content-['*'] after:ml-0.5 after:text-[#092532]'">이름</label>
               <div class="mt-1">
                 <input type="text" name="user_name" id="user_name"
-                    class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
+                    class="px-3 py-3 text-[#092532] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none"
                     value="" placeholder="이름 입력" onkeyup='name_check()'> 
-                     <div id='name_result' class="text-[#C65D7B] text-xs mt-2"></div>
+                     <div id='name_result' class="text-[#F56D91] text-xs mt-2"></div>
                 </div>
             </div>
             <div>
-              <label for="user_id" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">아이디</label>
+              <label for="user_id" class="block text-sm font-semibold text-[#092532] after:content-['*'] after:ml-0.5 after:text-[#092532]'">아이디</label>
               <div class="mt-1">
                 <input type="text" name="user_id" id="user_id"
-                    class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
+                    class="px-3 py-3 text-[#092532] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none"
                     value="" placeholder="아이디 입력"  onkeyup='id_check()'> 
-                     <div id='id_result' class="text-[#C65D7B] text-xs mt-2"></div>
+                     <div id='id_result' class="text-[#F56D91] text-xs mt-2"></div>
                 </div>
             </div>
             <div class="mt-6">
-                <label for="email" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">이메일</label>
+                <label for="email" class="block text-sm font-semibold text-[#092532] after:content-['*'] after:ml-0.5 after:text-[#092532]'">이메일</label>
                 <div class="mt-1">
                   <input type="email" name="email" id="email"
-                      class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
+                      class="px-3 py-3 text-[#092532] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none"
                       value="" placeholder="이메일 입력"> 
                   </div>
               </div>
             <div class="mt-6">
-                <label for="password" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]">비밀번호</label>
+                <label for="password" class="block text-sm font-semibold text-[#092532] after:content-['*'] after:ml-0.5 after:text-[#092532]">비밀번호</label>
                 <div class="mt-1">
                     <input type="password" name="password" id="password"
-                        class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
+                        class="px-3 py-3 text-[#092532] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none"
                         value="" placeholder="비밀번호 입력" onkeyup='pw_check()'>
-                        <div id='pw_result' class="text-[#C65D7B] text-xs mt-2"></div>
+                        <div id='pw_result' class="text-[#F56D91] text-xs mt-2"></div>
             
                 </div>
                 <div class="mt-2">
                     <input type="password" name="re_password" id="re_password"
-                        class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
+                        class="px-3 py-3 text-[#092532] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none"
                         value="" placeholder="비밀번호 재입력" onkeyup='pw_check2()'>
-                        <div id='pw_result2' class="text-[#C65D7B] text-xs mt-2"></div>
+                        <div id='pw_result2' class="text-[#F56D91] text-xs mt-2"></div>
                 </div>
             </div>
 
             <div class="mt-6">
-                <label for="user_hp" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]'">휴대폰</label>
+                <label for="user_hp" class="block text-sm font-semibold text-[#092532] after:content-['*'] after:ml-0.5 after:text-[#092532]'">휴대폰</label>
                 <div class="mt-1">
                 <input type="text" maxlength="13" name="user_hp" id="user_hp"
-                    class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
+                    class="px-3 py-3 text-[#092532] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none"
                     value="" placeholder="010-1234-1234"> 
                 </div>
                 
             </div>
             
             <div class="mt-6">
-                <label for="address2" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]">주소</label>
+                <label for="address2" class="block text-sm font-semibold text-[#092532] after:content-['*'] after:ml-0.5 after:text-[#092532]">주소</label>
                     <div class="mb-1 flex flex-col lg:flex-row justify-between">
-                        <input type="text" id="address2" name="address2" onclick="sample6_execDaumPostcode()" class="px-3 py-2 ml-0 my-1 text-[#C65D7B] w-full lg:w-2/6 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" placeholder="우편번호" readonly="readonly">
-                        <input type="text" id="address" name="address" onclick="sample6_execDaumPostcode()" class="px-3 py-2 my-1 m-0 lg:ml-2 text-[#C65D7B] w-full lg:w-4/5 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"  placeholder="주소를 검색해주세요" readonly="readonly">
+                        <input type="text" id="address2" name="address2" onclick="sample6_execDaumPostcode()" class="px-3 py-2 ml-0 my-1 text-[#092532] w-full lg:w-2/6 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none" placeholder="우편번호" readonly="readonly">
+                        <input type="text" id="address" name="address" onclick="sample6_execDaumPostcode()" class="px-3 py-2 my-1 m-0 lg:ml-2 text-[#092532] w-full lg:w-4/5 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none"  placeholder="주소를 검색해주세요" readonly="readonly">
                     </div>
                     <div class="mb-1 flex flex-col lg:flex-row justify-between">
-                        <input type="text" id="address3" name="address3" class="px-3 py-2 text-[#C65D7B] mb-2 lg:mb-0 w-full lg:w-3/5 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"  placeholder="상세주소를 입력해주세요" >
-                        <button type="button" id="add_btn" class="text-sm w-full lg:w-2/5 m-0 lg:ml-2 px-1 py-2 cursor-pointer hover:bg-[#C65D7B] hover:text-[#ffffff] text-[#C65D7B] border border-[#C65D7B] px-4 rounded" id="add_btn" onclick="sample6_execDaumPostcode()">우편번호찾기</button>
+                        <input type="text" id="address3" name="address3" class="px-3 py-2 text-[#092532] mb-2 lg:mb-0 w-full lg:w-3/5 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none"  placeholder="상세주소를 입력해주세요" >
+                        <button type="button" id="add_btn" class="text-sm w-full lg:w-2/5 m-0 lg:ml-2 px-1 py-2 cursor-pointer hover:bg-[#092532] hover:text-[#ffffff] text-[#092532] border border-[#092532] px-4 rounded" id="add_btn" onclick="sample6_execDaumPostcode()">우편번호찾기</button>
                     </div>
                 </div>
 
             <div class="mt-6">
-                <label for="year" class="block text-sm font-semibold text-[#C65D7B] after:content-['*'] after:ml-0.5 after:text-[#C65D7B]">생년월일</label>
+                <label for="year" class="block text-sm font-semibold text-[#092532] after:content-['*'] after:ml-0.5 after:text-[#092532]">생년월일</label>
                 <div class="mt-1 flex flex-col lg:flex-row justify-between">
-                    <select name="year" id="year" class="form-select w-full lg:w-2/5 px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#C65D7B] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" aria-label="Default select example">
+                    <select name="year" id="year" class="form-select w-full lg:w-2/5 px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#092532] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none" aria-label="Default select example">
                         <option value='' selected>년도선택</option>
                     </select>
-                    <select name="month" id="month" class="form-select w-full lg:w-2/5 px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#C65D7B] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" aria-label="Default select example">
+                    <select name="month" id="month" class="form-select w-full lg:w-2/5 px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#092532] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none" aria-label="Default select example">
                         <option value=''  selected>월</option>
                     </select>
-                    <select name="day" id="day" class="form-select w-full lg:w-2/5 px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#C65D7B] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none" aria-label="Default select example">
+                    <select name="day" id="day" class="form-select w-full lg:w-2/5 px-3 py-3 mt-2 lg:mt-0 mx-0 lg:mx-1 lg:ml-0 text-[#092532] ml-0 mx-auto bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none" aria-label="Default select example">
                         <option value='' selected>일</option>
             
                     </select>
@@ -107,27 +107,27 @@ include_once('../include/top.php');
             </div>
            <div class="border py-6 rounded-lg shadow px-6 check_yn">
                <div class="w-full flex flex-col lg:flex-row justify-between place-items-center">
-                <p class="font-semibold mb-6"><input type="checkbox" name="age_yn" id="age_yn" class="form-checkbox">  만 14세 이상입니다. <span class="text-[#C65D7B] text-sm">필수</span></p>
+                <p class="font-semibold mb-6"><input type="checkbox" name="age_yn" id="age_yn" class="form-checkbox">  만 14세 이상입니다. <span class="text-[#092532] text-sm">필수</span></p>
                 
                </div>
 
                <div class="w-full flex flex-col lg:flex-row justify-between place-items-center">
                 <p class="font-semibold mb-6">
                     <input type="checkbox" name="privacy_yn" id="privacy_yn"  class="form-checkbox">  
-                    개인정보 처리방침동의 <span class="text-[#C65D7B] text-sm">필수</span></p>
-                <a href="#" class="text-right  text-sm text-[#666666] hover:text-[#C65D7B]"> 내용보기 </a>
+                    개인정보 처리방침동의 <span class="text-[#092532] text-sm">필수</span></p>
+                <a href="#" class="text-right  text-sm text-[#666666] hover:text-[#092532]"> 내용보기 </a>
                </div>
 
                <div class="w-full flex flex-col lg:flex-row justify-between place-items-center">
-                <p class="font-semibold mb-6"><input type="checkbox" name="terms_yn" id="terms_yn"  class="form-checkbox">  이용약관동의 <span class="text-[#C65D7B] text-sm">필수</span></p>
-                <a href="#" class="text-right text-sm  text-[#666666] hover:text-[#C65D7B]"> 내용보기 </a>
+                <p class="font-semibold mb-6"><input type="checkbox" name="terms_yn" id="terms_yn"  class="form-checkbox">  이용약관동의 <span class="text-[#092532] text-sm">필수</span></p>
+                <a href="#" class="text-right text-sm  text-[#666666] hover:text-[#092532]"> 내용보기 </a>
                </div>
   
                <p class="font-semibold mb-6"><input type="checkbox" name="event_yn" id="event_yn" class="form-checkbox">  이벤트/마케팅 수신 동의 <span class="text-[#000000] text-sm">선택</span></p>
            </div>
 
             <div class="mt-6 text-right">
-              <button type="button" id="submit_btn" onclick="check();" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-full hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
+              <button type="button" id="submit_btn" onclick="check();" class="w-full border-[#092532] font-semibold border text-[#092532] py-3 block  text-center rounded-full hover:bg-[#092532] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
                 가입하기
               </button>
               

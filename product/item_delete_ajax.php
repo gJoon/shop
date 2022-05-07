@@ -200,8 +200,8 @@ $row2 = $stmt->get_result()->fetch_all();
                                             </span> 
                                             
                                             <span class="text-[12px] order-1 lg:order-2 text-right">
-                                            <a href="#" class="cursor-pointer hover:text-[#C65D7B]">수정</a>
-                                            <a href="#" class="cursor-pointer hover:text-[#C65D7B]" onclick="deleteOne('<?=$v[0]?>','ONE','<?=$v[5]?>');"> 삭제</a>
+                                            <a href="#" class="cursor-pointer hover:text-[#092532]">수정</a>
+                                            <a href="#" class="cursor-pointer hover:text-[#092532]" onclick="deleteOne('<?=$v[0]?>','ONE','<?=$v[5]?>');"> 삭제</a>
 
                                             </span>    
                                         </div>

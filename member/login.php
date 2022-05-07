@@ -16,23 +16,23 @@ include_once('../include/top.php');
         <form name="form" action="login_proc.php" method="post" onkeypress="show_name(event)">
             <input type="hidden" name="mode" id="mode" value="login"/>
             <div>
-              <label for="user_id" class="block text-sm font-semibold text-[#C65D7B]">아이디</label>
+              <label for="user_id" class="block text-sm font-semibold text-[#092532]">아이디</label>
               <div class="mt-1">
                 <input type="input" name="user_id" id="user_id"
-                    class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
+                    class="px-3 py-3 text-[#092532] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none"
                     value="" placeholder="아이디 입력"> 
                 </div>
             </div>
             <div class="mt-6">
-              <label for="user_pw" class="block text-sm font-semibold text-[#C65D7B]">비밀번호</label>
+              <label for="user_pw" class="block text-sm font-semibold text-[#092532]">비밀번호</label>
               <div class="mt-1">
                 <input type="password" name="user_pw" id="user_pw"
-                class="px-3 py-3 text-[#C65D7B] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#C65D7B] focus:ring-[#C65D7B] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#C65D7B] invalid:text-[#C65D7B] focus:invalid:border-[#C65D7B] focus:invalid:ring-[#C65D7B] disabled:shadow-none"
+                class="px-3 py-3 text-[#092532] bg-white border shadow-sm border-slate-300 placeholder:font-light font-semibold focus:outline-none focus:border-[#092532] focus:ring-[#092532] block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-[#092532] invalid:text-[#092532] focus:invalid:border-[#092532] focus:invalid:ring-[#092532] disabled:shadow-none"
                 value="" placeholder="비밀번호 입력"> 
              </div>
             </div>
             <div class="mt-6 text-right">
-              <button type="button" id="submit_btn" onclick="check();" class="w-full border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block  text-center rounded-full hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
+              <button type="button" id="submit_btn" onclick="check();" class="w-full border-[#092532] font-semibold border text-[#092532] py-3 block  text-center rounded-full hover:bg-[#092532] hover:text-[#ffffff] transition-colors hover:text-white mt-8">
                 로그인
               </button>
             </div>

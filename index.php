@@ -1,5 +1,14 @@
 <?php
 include_once('include/top.php');
+
+
+
+$stmt = $DB->prepare("select * from item random order by rand() limit 5;");
+$stmt->execute();
+$ibrow = $stmt->get_result()->fetch_all();
+
+
+
 ?>
 
 <!-- Swiper -->
@@ -8,7 +17,7 @@ include_once('include/top.php');
     <div class="swiper-slide h-[250px] w-full overflow-hidden bg-[url(/banner1.png)] bg-center px-4">
       
       <div class="container  mx-auto h-full flex items-end z-20">
-        <div class="flex-1 text-right">
+        <div class="flex-1 text-right"> 
           <h1 class="text-3xl text-white text-right py-2">SPAO</h1>
           <h2 class="text-2xl mb-8 text-white">#아우터를 확인하세요. :)</h2>
          </div>
@@ -49,19 +58,19 @@ include_once('include/top.php');
 </script>
       <div class="px-4 border-b border-zinc-100">
         <main>
-          <div class="container mx-auto">
-            <article class="mx-auto container flex flex-col sm:flex-row mt-32 mb-32 px-3 sm:px-0">
-              <div class="w-full sm:w-1/3 mb-10 sm:mb-0">
-                <h1 class="text-2xl font-semibold">브랜드 추천</h1>
-                <div class="flex flex-wrap my-5 w-100">
-                  <span class="text-[#C65D7B] font-bold mx-2">#ADIDAS</span>
-                  <span class="text-[#C65D7B] font-bold mx-2">#NIKE</span>
-                  <span class="text-[#C65D7B] font-bold mx-2">#SPAO</span>
+          <div class="container mx-auto mt-32 mb-32 px-3 sm:px-0 flex lg:flex-row flex-col">
+            <article class="w-full mb-8 lg:mb-0 lg:w-2/4  px-4">
+              <div class="w-full mb-10 sm:mb-0">
+                <h1 class="text-2xl text-[#000000 ] mx-2 BM">BEST!</h1>
+                <div class="flex flex-wrap my-5 w-100 text-black">
+                  <span class="text-[#092532] font-bold mx-2">#OUTER</span>
+                  <span class="text-[#092532] font-bold mx-2">#TOP</span>
+                  <span class="text-[#092532] font-bold mx-2">#BOTTOM</span>
+                  <span class="text-[#092532] font-bold mx-2">#SHOSE</span>
                 </div>
-                    <a href="#"
-                      class="border-[#C65D7B] font-semibold border text-[#C65D7B] py-3 block w-52 text-center rounded-full hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8">바로가기</a>
+               
               </div>
-              <div class="w-full sm:w-2/3">
+              <div class="w-full">
                 <!-- Swiper -->
                 <div class="swiper mySwiper2 ">
                   <div class="swiper-wrapper">
@@ -77,15 +86,68 @@ include_once('include/top.php');
                     </div>
               
                   </div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
                   <div class="swiper-pagination"></div>
                 </div>
 
-                <!-- Swiper JS -->
-                <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+             
                 <!-- Initialize Swiper -->
                 <script>
                   var swiper = new Swiper(".mySwiper2", {
+                    pagination: {
+                      el: ".swiper-pagination",
+                      clickable: true,
+                    },
+                    navigation: {
+                      nextEl: ".swiper-button-next",
+                      prevEl: ".swiper-button-prev",
+                    },
+
+                 
+                  });
+                </script>
+              </div>
+            </article>
+
+
+            <article class="w-full mb-8 lg:mb-0 lg:w-2/4 px-4">
+              <div class="w-full mb-10 sm:mb-0">
+                <h1 class="text-2xl text-[#000000 ] mx-2 BM">HIT!</h1>
+                <div class="flex flex-wrap my-5 w-100 text-black">
+                  <span class="text-[#092532] font-bold mx-2">#OUTER</span>
+                  <span class="text-[#092532] font-bold mx-2">#TOP</span>
+                  <span class="text-[#092532] font-bold mx-2">#BOTTOM</span>
+                  <span class="text-[#092532] font-bold mx-2">#SHOSE</span>
+                </div>
+               
+              </div>
+              <div class="w-full">
+                <!-- Swiper -->
+                <div class="swiper mySwiper5">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide h-[250px] rounded-xl w-full overflow-hidden bg-[url(/banner1.png)] bg-center">
+                      <div class="px-2 py-3">
+                        <span class="text-1xl px-2 py-2 rounded-xl text-2xl text-white font-bold">#아우터</span>
+                       </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide h-[250px] rounded-xl w-full overflow-hidden bg-[url(/banner1.png)] bg-center">
+                      <div class="px-2 py-3">
+                        <span class="text-1xl px-2 py-2 rounded-xl text-2xl text-white font-bold">#아우터</span>
+                       </div>
+                    </div>
+              
+                  </div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                  <div class="swiper-pagination"></div>
+                  
+                </div>
+
+
+                <!-- Initialize Swiper -->
+                <script>
+                  var swiper = new Swiper(".mySwiper5", {
                     pagination: {
                       el: ".swiper-pagination",
                      
@@ -99,10 +161,12 @@ include_once('include/top.php');
               </div>
             </article>
 
+          
+
           </div>
 
-          <div class="mx-auto py-4 bg-[#F9F9F9]">
-            <article class="mx-auto container flex flex-col sm:flex-row mt-32 mb-32 px-3 sm:px-0">
+          <div class="container mx-auto mt-32 mb-32 px-3 sm:px-0 flex lg:flex-row flex-col">
+            <article class="w-full mb-8  px-4">
               <div class="w-full">
                 <h1 class="text-2xl font-semibold  mb-6">금주의 하이라이트</h1>
                 <div class="flex flex-col md:flex-row">
@@ -155,7 +219,7 @@ include_once('include/top.php');
           </div>
   
 
-          <article class="py-28">
+          <article class="w-full mb-8  px-4">
             <div class="container mx-auto">
               <h2 class="text-2xl font-semibold mb-1">@rtist_SH0:P</h2>
               <p class="text-zinc-500 mb-10">요즘 잘나가는 상품!</p>

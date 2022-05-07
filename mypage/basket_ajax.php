@@ -114,7 +114,7 @@ $abrow = $stmt->get_result()->fetch_all();
         
             </div>
             <div class="text-[#000000] font-bold py-1 my-4">
-                <a href="/item/item_list.php?title=OUTER&bcode=001" class="border-[#000000] hover:border-[#C65D7B] w-full font-semibold border px-3 py-2 text-center text-[#000000] hover:bg-[#C65D7B] hover:text-[#ffffff]">
+                <a href="/item/item_list.php?title=OUTER&bcode=001" class="border-[#000000] hover:border-[#092532] w-full font-semibold border px-3 py-2 text-center text-[#000000] hover:bg-[#092532] hover:text-[#ffffff]">
                     구매하러가기
                 </a>
             </div>
@@ -168,7 +168,7 @@ $cnt = $orow[0][6];
                                 <span class="text-[15px]  text-ellipsis overflow-hidden ...">
                                     <?=$v[1]?>
                                 </span> 
-                                <span class="text-[13px] cursor-pointer hover:text-[#C65D7B]" onclick="deleteOne('<?=$v[0]?>','ONE','<?=$v[6]?>');">
+                                <span class="text-[13px] cursor-pointer hover:text-[#092532]" onclick="deleteOne('<?=$v[0]?>','ONE','<?=$v[6]?>');">
                                     삭제
                                 </span>    
                             </div>
@@ -194,7 +194,7 @@ $cnt = $orow[0][6];
                             
                             <div class="text-[#999999] font-normal text-[12px] flex flex-col lg:flex-row mt-2">
                             <span class="text-[13px] font-semibold text-[#000000]">금액 : </span> 
-                            <span class="text-[#C65D7B] pl-0 md:pl-2  font-bold"><?= number_format($v[5])?>원</span> 
+                            <span class="text-[#092532] pl-0 md:pl-2  font-bold"><?= number_format($v[5])?>원</span> 
                             </div>
                         </div>
                     </div>

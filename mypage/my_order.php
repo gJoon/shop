@@ -21,9 +21,9 @@ $row = $stmt->get_result()->fetch_all();
     <article class="flex flex-col w-full lg:w-1/4 bg-[#ffffff] lg:mx-2 p-2 py-8 lg:rounded-xl">
             <h2 class="text-2xl font-semibold mb-2 w-full">MY</h2>
             <div class="w-full flex-row lg:flex-col flex">
-                <a href="#" class="border-[#C65D7B] w-full font-semibold border px-3 py-2 text-center bg-[#C65D7B] text-[#ffffff] mt-2">구매내역</a>
-                <a href="/mypage/my_wish.php" class="border-[#C65D7B] w-full font-semibold border px-3 py-2 text-center text-[#999999] hover:bg-[#C65D7B] hover:text-[#ffffff] mt-2">찜목록</a>
-                <a href="/mypage/my_basket.php" class="border-[#C65D7B] w-full font-semibold border px-3 py-2 text-center text-[#999999] hover:bg-[#C65D7B] hover:text-[#ffffff] mt-2">장바구니</a>
+                <a href="#" class="border-[#092532] w-full font-semibold border px-3 py-2 text-center bg-[#092532] text-[#ffffff] mt-2">구매내역</a>
+                <a href="/mypage/my_wish.php" class="border-[#092532] w-full font-semibold border px-3 py-2 text-center text-[#999999] hover:bg-[#092532] hover:text-[#ffffff] mt-2">찜목록</a>
+                <a href="/mypage/my_basket.php" class="border-[#092532] w-full font-semibold border px-3 py-2 text-center text-[#999999] hover:bg-[#092532] hover:text-[#ffffff] mt-2">장바구니</a>
             </div>
      
     </article>
@@ -37,7 +37,7 @@ $row = $stmt->get_result()->fetch_all();
             
                 </div>
                 <div class="text-[#000000] font-bold py-1 my-4">
-                    <a href="/item/item_list.php?title=OUTER&bcode=001" class="border-[#000000] hover:border-[#C65D7B] w-full font-semibold border px-3 py-2 text-center text-[#000000] hover:bg-[#C65D7B] hover:text-[#ffffff]">
+                    <a href="/item/item_list.php?title=OUTER&bcode=001" class="border-[#000000] hover:border-[#092532] w-full font-semibold border px-3 py-2 text-center text-[#000000] hover:bg-[#092532] hover:text-[#ffffff]">
                         구매하러가기
                     </a>
                 </div>
@@ -74,14 +74,14 @@ $row = $stmt->get_result()->fetch_all();
                             <div>
                                 <?php if($my_count == "0" && $item_delete_yn == 'N'){
                                 ?>
-                                    <a href="/item/item_view.php?item_code=<?=$tem_code[0]?>" class="text-[12px] cursor-pointer hover:text-[#C65D7B]">
+                                    <a href="/item/item_view.php?item_code=<?=$tem_code[0]?>" class="text-[12px] cursor-pointer hover:text-[#092532]">
                                         상품리뷰
                                     </a> 
                                 <?php
                                 }
                                 ?>
                                 
-                                <span class="text-[12px] cursor-pointer hover:text-[#C65D7B]" id="order_btn" onclick="order_info('<?=$v[7]?>');">
+                                <span class="text-[12px] cursor-pointer hover:text-[#092532]" id="order_btn" onclick="order_info('<?=$v[7]?>');">
                                     상세조회
                                 </span>    
                             </div>
@@ -109,7 +109,7 @@ $row = $stmt->get_result()->fetch_all();
                             </div> 
                             
                             <div class="text-[#000000] font-bold py-1 my-1 mt-4 text-right">
-                            최종결제 금액 <span class="px-2 py-8 pb-2 text-[#C65D7B] font-bold"><?php echo number_format($v[6]) ?>원</span> 
+                            최종결제 금액 <span class="px-2 py-8 pb-2 text-[#092532] font-bold"><?php echo number_format($v[6]) ?>원</span> 
                             </div>
                         </div>
                     </div>

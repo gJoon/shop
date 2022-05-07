@@ -26,10 +26,10 @@ $irow = $stmt->get_result()->fetch_all();
   $stmt->execute();
   $bcrow = $stmt->get_result()->fetch_all();
 
-  $active_class = "border-[#C65D7B] font-semibold border text-[#C65D7B] px-3 text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8";
+  $active_class = "border-[#092532] font-semibold border text-[#092532] px-3 text-center rounded-xl hover:bg-[#092532] hover:text-[#ffffff] transition-colors hover:text-white mt-8";
 
   if($scode==""){
-    $active_class="border-[#C65D7B] font-semibold border px-3 text-center rounded-xl bg-[#C65D7B] text-[#ffffff] mt-8";
+    $active_class="border-[#092532] font-semibold border px-3 text-center rounded-xl bg-[#092532] text-[#ffffff] mt-8";
   };
 
 ?>
@@ -86,9 +86,9 @@ $irow = $stmt->get_result()->fetch_all();
     <a href="item_list.php?title=<?php echo $title ?>&bcode=<?php echo $bcode?>" class="<?php echo $active_class?>">전체</a>
     <?php foreach($bcrow as $k=>$v){
       if($scode==$v[3]){
-        $active_class="border-[#C65D7B] font-semibold border px-3 text-center rounded-xl bg-[#C65D7B] text-[#ffffff] mt-8";
+        $active_class="border-[#092532] font-semibold border px-3 text-center rounded-xl bg-[#092532] text-[#ffffff] mt-8";
       }else{
-        $active_class=$active_class = "border-[#C65D7B] font-semibold border text-[#C65D7B] px-3 text-center rounded-xl hover:bg-[#C65D7B] hover:text-[#ffffff] transition-colors hover:text-white mt-8";;
+        $active_class=$active_class = "border-[#092532] font-semibold border text-[#092532] px-3 text-center rounded-xl hover:bg-[#092532] hover:text-[#ffffff] transition-colors hover:text-white mt-8";;
       }
       
     ?>
@@ -132,14 +132,14 @@ $irow = $stmt->get_result()->fetch_all();
             <div class="h-64 overflow-hidden rounded-lg relative group"><img src="/product/img/<?php echo $v[6]?>"
                 alt="succulent img" class="w-full h-full object-cover hover:scale-110">
             </div>
-            <div class="pt-3"><span class="font-bold text-[#C65D7B]"><?php echo strtoupper($v[1]) ?></span>
+            <div class="pt-3"><span class="font-bold text-[#092532]"><?php echo strtoupper($v[1]) ?></span>
             <h3 class="text-lg font-semibold"><?php echo $v[5] ?></h3>
             <div class="flex justify-between items-end mt-2">
-                <h4 class="text-zinc-700 font-bold  text-lg text-[#C65D7B]">
+                <h4 class="text-zinc-700 font-bold  text-lg text-[#092532]">
                 <?php if($v[9] != "")
                 {
                 ?> 
-                <span class="text-[#C65D7B]"> <?php echo $v[9] ?>%</span> 
+                <span class="text-[#092532]"> <?php echo $v[9] ?>%</span> 
                 <?php
                 }
                 ?>
@@ -163,13 +163,13 @@ $irow = $stmt->get_result()->fetch_all();
             <div class="flex space-x-2 px-3 py-1 absolute right-1 top-1 rounded-full" id="<?php echo $v[2] ?>">
                   <?php if($wishrow != ""){?> 
                       <button type="button" onclick="my_wish('<?php echo $v[2] ?>','delete');">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 stroke-[#C65D7B] text-[#C65D7B]" viewBox="0 0 20 20" fill="currentColor">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 stroke-[#F56D91] text-[#F56D91]" viewBox="0 0 20 20" fill="currentColor">
                           <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
                           </svg>
                       </button>
                   <?php }else {?>
                       <button type="button" onclick="my_wish('<?php echo $v[2] ?>','insert');">
-                          <svg class="w-8 h-8 stroke-[#C65D7B]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <svg class="w-8 h-8 stroke-[#F56D91]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
                           </path>
                           </svg>
