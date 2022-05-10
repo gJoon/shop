@@ -3,9 +3,16 @@ include_once('include/top.php');
 
 
 
-$stmt = $DB->prepare("select * from item random order by rand() limit 5;");
+$stmt = $DB->prepare("select * from item  where item_delete='N' order by rand() limit 8;");
 $stmt->execute();
 $ibrow = $stmt->get_result()->fetch_all();
+
+
+$stmt = $DB->prepare("select * from item  where item_delete='N' order by rand() limit 12;");
+$stmt->execute();
+$ibrow2 = $stmt->get_result()->fetch_all();
+
+
 
 
 
@@ -56,17 +63,19 @@ $ibrow = $stmt->get_result()->fetch_all();
     },
   });
 </script>
-      <div class="px-4 border-b border-zinc-100">
+      <div class="border-b border-zinc-100">
         <main>
-          <div class="container mx-auto mt-32 mb-32 px-3 sm:px-0 flex lg:flex-row flex-col">
-            <article class="w-full mb-8 lg:mb-0 lg:w-2/4  px-4">
+
+          <div class="container mx-auto mt-32 mb-32 sm:px-0 flex lg:flex-row flex-col">
+            <article class="w-full mb-8 lg:mb-0 lg:w-2/4 px-4">
               <div class="w-full mb-10 sm:mb-0">
-                <h1 class="text-2xl text-[#000000 ] mx-2 BM">BEST!</h1>
+                <h1 class="text-2xl mb-6 text-black">히트 상품모음</h1>
                 <div class="flex flex-wrap my-5 w-100 text-black">
-                  <span class="text-[#092532] font-bold mx-2">#OUTER</span>
-                  <span class="text-[#092532] font-bold mx-2">#TOP</span>
-                  <span class="text-[#092532] font-bold mx-2">#BOTTOM</span>
-                  <span class="text-[#092532] font-bold mx-2">#SHOSE</span>
+
+                  <span class="text-1xl text-[#092532] mx-2"># OUTER</span>
+                  <span class="text-1xl text-[#092532] mx-2"># TOP</span>
+                  <span class="text-1xl text-[#092532] mx-2"># BOTTOM</span>
+                  <span class="text-1xl text-[#092532] mx-2"># SHOSE</span>
                 </div>
                
               </div>
@@ -74,16 +83,22 @@ $ibrow = $stmt->get_result()->fetch_all();
                 <!-- Swiper -->
                 <div class="swiper mySwiper2 ">
                   <div class="swiper-wrapper">
-                    <div class="swiper-slide swiper-slide h-[250px] rounded-xl w-full overflow-hidden bg-[url(/banner1.png)] bg-center">
+
+
+                  <?php
+  
+                  foreach($ibrow as $k=>$v){ 
+                      
+                    ?>
+                    <div class="swiper-slide swiper-slide h-[250px] rounded-xl w-full overflow-hidden bg-[url(/product/img/<?=$v[6]?>)] bg-center">
                       <div class="px-2 py-3">
-                        <span class="text-1xl px-2 py-2 rounded-xl text-2xl text-white font-bold">#아우터</span>
-                       </div>
-                    </div>
-                    <div class="swiper-slide swiper-slide h-[250px] rounded-xl w-full overflow-hidden bg-[url(/banner1.png)] bg-center">
-                      <div class="px-2 py-3">
-                        <span class="text-1xl px-2 py-2 rounded-xl text-2xl text-white font-bold">#아우터</span>
-                       </div>
-                    </div>
+                        <span class="px-2 py-2 rounded-xl text-1xl text-black"><?=$v[5]?></span>
+                        </div>
+                    </div>       
+
+                    <?php
+                    }?>
+
               
                   </div>
                   <div class="swiper-button-next"></div>
@@ -113,12 +128,12 @@ $ibrow = $stmt->get_result()->fetch_all();
 
             <article class="w-full mb-8 lg:mb-0 lg:w-2/4 px-4">
               <div class="w-full mb-10 sm:mb-0">
-                <h1 class="text-2xl text-[#000000 ] mx-2 BM">HIT!</h1>
+                <h1 class="text-2xl text-[#000000 ] mx-2">베스트 상품모음</h1>
                 <div class="flex flex-wrap my-5 w-100 text-black">
-                  <span class="text-[#092532] font-bold mx-2">#OUTER</span>
-                  <span class="text-[#092532] font-bold mx-2">#TOP</span>
-                  <span class="text-[#092532] font-bold mx-2">#BOTTOM</span>
-                  <span class="text-[#092532] font-bold mx-2">#SHOSE</span>
+                  <span class="text-1xl text-[#092532] mx-2"># OUTER</span>
+                  <span class="text-1xl text-[#092532] mx-2"># TOP</span>
+                  <span class="text-1xl text-[#092532] mx-2"># BOTTOM</span>
+                  <span class="text-1xl text-[#092532] mx-2"># SHOSE</span>
                 </div>
                
               </div>
@@ -126,16 +141,19 @@ $ibrow = $stmt->get_result()->fetch_all();
                 <!-- Swiper -->
                 <div class="swiper mySwiper5">
                   <div class="swiper-wrapper">
-                    <div class="swiper-slide swiper-slide h-[250px] rounded-xl w-full overflow-hidden bg-[url(/banner1.png)] bg-center">
-                      <div class="px-2 py-3">
-                        <span class="text-1xl px-2 py-2 rounded-xl text-2xl text-white font-bold">#아우터</span>
-                       </div>
-                    </div>
-                    <div class="swiper-slide swiper-slide h-[250px] rounded-xl w-full overflow-hidden bg-[url(/banner1.png)] bg-center">
-                      <div class="px-2 py-3">
-                        <span class="text-1xl px-2 py-2 rounded-xl text-2xl text-white font-bold">#아우터</span>
-                       </div>
-                    </div>
+                  <?php
+                    
+                    foreach($ibrow2 as $k=>$v){ 
+                        
+                      ?>
+                      <div class="swiper-slide swiper-slide h-[250px] rounded-xl w-full overflow-hidden bg-[url(/product/img/<?=$v[6]?>)] bg-center">
+                        <div class="px-2 py-3">
+                          <span class="px-2 py-2 rounded-xl text-1xl text-black"><?=$v[5]?></span>
+                          </div>
+                      </div>       
+
+                      <?php
+                      }?>
               
                   </div>
                   <div class="swiper-button-next"></div>
@@ -164,13 +182,25 @@ $ibrow = $stmt->get_result()->fetch_all();
           
 
           </div>
+  
+      <article class="bg-fixed h-[300px] mt-32 mb-32" style="background-image: url(/banner1.png)">
+          <div class="px-3 container mx-auto h-full flex items-center justify-between">
+            <div>
+              <h2 class="text-2xl font-semibold text-white">이벤트 아이템</h2>
+              <p class="text-white mt-1">
+                올해도 저희와 함께해요!</p>
+            </div>
+          </div>
+        </article>
 
-          <div class="container mx-auto mt-32 mb-32 px-3 sm:px-0 flex lg:flex-row flex-col">
-            <article class="w-full mb-8  px-4">
+
+<!--         
+        <div class="container mx-auto mt-32 mb-32 sm:px-0 flex lg:flex-row flex-col">
+            <article class="w-full mb-8">
               <div class="w-full">
-                <h1 class="text-2xl font-semibold  mb-6">금주의 하이라이트</h1>
+                <h1 class="text-2xl mb-6">금주의 하이라이트</h1>
                 <div class="flex flex-col md:flex-row">
-                  <a href="#" class="basis-2/4 border mb-5 hover:border-[#F68989] md:border-4 mx-2 rounded-lg relative overflow-hidden h-[150px] flex items-center ">
+                  <a href="#" class="basis-1/4 border mb-5 hover:border-[#F68989] md:border-4 mx-2 rounded-lg relative overflow-hidden h-[150px] flex items-center ">
                     <div class="flex w-full rounded-xl text-center flex-col justify-center items-center relative py-24 overflow-hidden mt-10 md:mt-0">
                       <img class="absolute top-0 left-0 w-full h-full object-cover" src="/banner1.png" alt="img">
                       <div class="relative z-20">
@@ -180,7 +210,7 @@ $ibrow = $stmt->get_result()->fetch_all();
                     </div>
                   </a>
 
-                  <a href="#" class="basis-2/4 border mb-5 hover:border-[#F68989] md:border-4 mx-2 rounded-lg relative overflow-hidden h-[150px] flex items-center ">
+                  <a href="#" class="basis-1/4 border mb-5 hover:border-[#F68989] md:border-4 mx-2 rounded-lg relative overflow-hidden h-[150px] flex items-center ">
                     <div class="flex w-full rounded-xl text-center flex-col justify-center items-center relative py-24 overflow-hidden mt-10 md:mt-0">
                       <img class="absolute top-0 left-0 w-full h-full object-cover" src="/banner1.png" alt="img">
                       <div class="relative z-20">
@@ -189,10 +219,8 @@ $ibrow = $stmt->get_result()->fetch_all();
                       </div>
                     </div>
                   </a>
-                  
-                </div>
-                <div class="flex flex-col md:flex-row">
-                  <a href="#" class="basis-2/4 border mb-5 hover:border-[#F68989] md:border-4 mx-2 rounded-lg relative overflow-hidden h-[150px] flex items-center ">
+
+                  <a href="#" class="basis-1/4 border mb-5 hover:border-[#F68989] md:border-4 mx-2 rounded-lg relative overflow-hidden h-[150px] flex items-center ">
                     <div class="flex w-full rounded-xl text-center flex-col justify-center items-center relative py-24 overflow-hidden mt-10 md:mt-0">
                       <img class="absolute top-0 left-0 w-full h-full object-cover" src="/banner1.png" alt="img">
                       <div class="relative z-20">
@@ -202,150 +230,73 @@ $ibrow = $stmt->get_result()->fetch_all();
                     </div>
                   </a>
 
-                  <a href="#" class="basis-2/4 border mb-5 hover:border-[#F68989] md:border-4 mx-2 rounded-lg relative overflow-hidden h-[150px] flex items-center ">
+                  <a href="#" class="basis-1/4 border mb-5 hover:border-[#F68989] md:border-4 mx-2 rounded-lg relative overflow-hidden h-[150px] flex items-center ">
                     <div class="flex w-full rounded-xl text-center flex-col justify-center items-center relative py-24 overflow-hidden mt-10 md:mt-0">
                       <img class="absolute top-0 left-0 w-full h-full object-cover" src="/banner1.png" alt="img">
                       <div class="relative z-20">
-                          <p class="text-white py-5 text-2xl text-center w-full">추천아이템</p>
+                          <p class="text-white py-5 text-2xl text-center w-full">스타일 가이드</p>
                        
                       </div>
                     </div>
                   </a>
+
                   
                 </div>
-              </div>
-              
+                </article>
+          </div> -->
 
-          </div>
-  
-
-          <article class="w-full mb-8  px-4">
+          <article class="w-full mb-8 px-4">
             <div class="container mx-auto">
-              <h2 class="text-2xl font-semibold mb-1">@rtist_SH0:P</h2>
-              <p class="text-zinc-500 mb-10">요즘 잘나가는 상품!</p>
-              
-              
+              <h2 class="text-2xl text-black mb-1">@rtist_SH0:P</h2>
+              <p class="text-zinc-500 mb-10">이달의 추천 상품</p>
 
 
             <!-- Swiper -->
             <div class="swiper mySwiper3 h-[425px]">
               <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="h-72 overflow-hidden rounded-lg relative group"><img src="/banner1.png"
-                      alt="succulent img" class="w-full h-full object-cover">
-                    <div
-                      class="flex space-x-2 px-3 py-1 absolute right-1 bottom-1 rounded-full ">
-                      <svg class="w-6 h-6 stroke-[#C65D7B]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                        </path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="pt-3"><span class="font-bold text-[#C65D7B]">나이키</span>
-                    <h3 class="text-lg font-semibold">나이키 후드집업1</h3>
-                    <div class="flex justify-between items-end mt-2">
-                      <h4 class="text-zinc-700 font-bold  text-lg text-[#C65D7B]">
-                        <span class="text-[#C65D7B]">33%</span> 
-                        30,000 
-                        <span class="font-medium text-base text-zinc-400 line-through">29,000</span></h4>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="h-72 overflow-hidden rounded-lg relative group"><img src="/banner1.png" alt="succulent img"
-                      class="w-full h-full object-cover">
-                    <div class="flex space-x-2 px-3 py-1 absolute right-1 bottom-1 rounded-full ">
-                      <svg class="w-6 h-6 stroke-[#C65D7B]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                        </path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="pt-3"><span class="font-bold text-[#C65D7B]">나이키</span>
-                    <h3 class="text-lg font-semibold">나이키 후드집업2</h3>
-                    <div class="flex justify-between items-end mt-2">
-                      <h4 class="text-zinc-700 font-bold  text-lg text-[#C65D7B]">
-                        <span class="text-[#C65D7B]">33%</span>
-                        30,000
-                        <span class="font-medium text-base text-zinc-400 line-through">29,000</span>
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="h-72 overflow-hidden rounded-lg relative group"><img src="/banner1.png" alt="succulent img"
-                      class="w-full h-full object-cover">
-                    <div class="flex space-x-2 px-3 py-1 absolute right-1 bottom-1 rounded-full ">
-                      <svg class="w-6 h-6 stroke-[#C65D7B]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                        </path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="pt-3"><span class="font-bold text-[#C65D7B]">나이키</span>
-                    <h3 class="text-lg font-semibold">나이키 후드집업3</h3>
-                    <div class="flex justify-between items-end mt-2">
-                      <h4 class="text-zinc-700 font-bold  text-lg text-[#C65D7B]">
-                        <span class="text-[#C65D7B]">33%</span>
-                        30,000
-                        <span class="font-medium text-base text-zinc-400 line-through">29,000</span>
-                      </h4>
-                    </div>
-                  </div>
-                </div>
 
-                <div class="swiper-slide">
-                  <div class="h-72 overflow-hidden rounded-lg relative group"><img src="/banner1.png" alt="succulent img"
-                      class="w-full h-full object-cover">
-                    <div class="flex space-x-2 px-3 py-1 absolute right-1 bottom-1 rounded-full ">
-                      <svg class="w-6 h-6 stroke-[#C65D7B]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                        </path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="pt-3"><span class="font-bold text-[#C65D7B]">나이키</span>
-                    <h3 class="text-lg font-semibold">나이키 후드집업4</h3>
-                    <div class="flex justify-between items-end mt-2">
-                      <h4 class="text-zinc-700 font-bold  text-lg text-[#C65D7B]">
-                        <span class="text-[#C65D7B]">33%</span>
-                        30,000
-                        <span class="font-medium text-base text-zinc-400 line-through">29,000</span>
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="h-72 overflow-hidden rounded-lg relative group"><img src="/banner1.png" alt="succulent img"
-                      class="w-full h-full object-cover">
-                    <div class="flex space-x-2 px-3 py-1 absolute right-1 bottom-1 rounded-full ">
-                      <svg class="w-6 h-6 stroke-[#C65D7B]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                        </path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="pt-3"><span class="font-bold text-[#C65D7B]">나이키</span>
-                    <h3 class="text-lg font-semibold">나이키 후드집업5</h3>
-                    <div class="flex justify-between items-end mt-2">
-                      <h4 class="text-zinc-700 font-bold  text-lg text-[#C65D7B]">
-                        <span class="text-[#C65D7B]">33%</span>
-                        30,000
-                        <span class="font-medium text-base text-zinc-400 line-through">29,000</span>
-                      </h4>
-                    </div>
-                  </div>
-                </div>
+                <?php
+  
+                  foreach($ibrow2 as $k=>$v){ 
+                      $pesent = $v[8]*($v[9]/100); 
+                      $price = $v[8] - $pesent;
+                    ?>
+
+
+                      <a href="/item/item_view.php?item_code=<?=$v[2]?>" class="swiper-slide">
+                          <div class="h-72 overflow-hidden rounded-lg relative group"><img src="product/img/<?=$v[6]?>"
+                              alt="succulent img" class="w-full h-full object-cover">
+                          
+                          </div>
+                          <div class="pt-3"><span class="font-bold text-[#C65D7B]"><?=$v[1]?></span>
+                            <h3 class="text-lg font-semibold"><?=$v[5]?></h3>
+                            <div class="flex justify-between items-end mt-2">
+                              <h4 class="text-zinc-700 font-bold  text-lg text-[#C65D7B]">
+                              <?php if($v[9] != ""){
+                                      ?> 
+                                      <span class="text-[#092532]"> <?php echo $v[9] ?>%</span> 
+                                      <?php
+                                      }
+                                      ?>
+                                          <?php echo number_format($price)?>원
+                                          
+
+
+                                          <?php if($v[9] != "")
+                                      {
+                                      ?> 
+                                    <span class="font-medium text-base text-zinc-400 line-through"> <?php echo number_format($v[8])?> 원</span>
+                                      <?php
+                                      }
+                                      ?>
+                            </div>
+                          </div>
+                        </a>
+                    <?php
+                    }?>
+                 
+
+                
               </div>
 
               <div class="swiper-button-next"></div>
@@ -394,6 +345,10 @@ $ibrow = $stmt->get_result()->fetch_all();
             </script>
                   
           </article>
+
+
+
+          
           
         </main>
         </div>

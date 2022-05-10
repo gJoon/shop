@@ -31,9 +31,10 @@
 
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-
+     
       <script src="https://cdn.tailwindcss.com"></script>
       <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
       <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
@@ -54,13 +55,17 @@
 
 <style>
 * {
-  box-sizing:border-box;
+  font-family: "Noto Sans KR", sans-serif;
+  color: #333;
 }
 
-body{
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size:1em;
-  letter-spacing:0.05em;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 .BM {
@@ -70,23 +75,23 @@ body{
 }
 
 .swiper-pagination-bullet{
-  background-color:#8D8DAA;
+  background-color:#e7e7e7;
   opacity: 0.7;
   width:10px;
   height:10px;
 }
 .swiper-pagination-bullet-active{
-  background-color:#8D8DAA;
+  background-color:#bbbbbb;
   width: 13px;
   height:13px;
   opacity: 1;
 }
 
 .swiper-button-prev{
-  color:#8D8DAA;
+  color:#bbbbbb;
 }
 .swiper-button-next{
-  color:#8D8DAA;
+  color:#bbbbbb;
 }
 
 </style>
@@ -121,7 +126,7 @@ sub - 092532 -->
        
               ?>
                 <li
-                class="cursor-pointer hover:border-[#092532] border-b-4 border-[transparent] font-semibold text-[14px] flex w-1/4 text-center relative" onmouseover="menu('<?php echo $menu?>')">
+                class="cursor-pointer hover:border-[#092532] border-b-4 border-[transparent] font-semibold  flex w-1/4 text-center relative" onmouseover="menu('<?php echo $menu?>')">
                   <a class="w-full py-8 mx-0 text-[#092532] pb-2 px-4" href="../item/item_list.php?title=<?php echo $v[4]; ?>&bcode=<?php echo $v[2] ?>">
                     # <?php echo $v[4]; ?>
                   </a>  

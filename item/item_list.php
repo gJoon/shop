@@ -150,7 +150,7 @@ $irow = $stmt->get_result()->fetch_all();
                     <?php if($v[9] != "")
                 {
                 ?> 
-               <span class="font-medium text-base text-zinc-400 line-through"> <?php echo number_format($v[8])?></span>
+               <span class="font-medium text-base text-zinc-400 line-through"> <?php echo number_format($v[8])?> 원</span>
                 <?php
                 }
                 ?>
