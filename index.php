@@ -183,11 +183,11 @@ $ibrow2 = $stmt->get_result()->fetch_all();
 
           </div>
   
-      <article class="bg-fixed h-[300px] mt-32 mb-32" style="background-image: url(/banner1.png)">
+      <article class="bg-fixed h-[300px] mt-32 mb-32" style="background-image: url(/include/img/main2.jpg);background-position:center;">
           <div class="px-3 container mx-auto h-full flex items-center justify-between">
             <div>
-              <h2 class="text-2xl font-semibold text-white">이벤트 아이템</h2>
-              <p class="text-white mt-1">
+              <h2 class="text-2xl font-semibold text-black">이벤트 아이템</h2>
+              <p class="text-black mt-1">
                 올해도 저희와 함께해요!</p>
             </div>
           </div>
