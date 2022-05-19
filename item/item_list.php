@@ -34,31 +34,6 @@ $irow = $stmt->get_result()->fetch_all();
 
 ?>
 
-<!-- Swiper -->
-<div class="swiper mySwiper h-[250px]">
-  <div class="swiper-wrapper ">
-    <div class="swiper-slide h-[250px] w-full overflow-hidden bg-[url(/banner1.png)] bg-center px-4">
-      <div class="container  mx-auto h-full flex items-end z-20">
-        <div class="flex-1 text-right">
-          <h1 class="text-3xl text-white text-right py-2">SPAO</h1>
-          <h2 class="text-2xl mb-8 text-white"># 아우터를 확인하세요. :)</h2>
-         </div>
-      </div>
-   
-  </div>
-    <div class="swiper-slide h-[250px] w-full overflow-hidden bg-[url(/banner1.png)] bg-center px-4">
-      
-        <div class="container  mx-auto h-full flex items-end z-20">
-          <div class="flex-1 text-right">
-            <h1 class="text-3xl text-white text-right py-2">SPAO</h1>
-            <h2 class="text-2xl mb-8 text-white">#아우터를 확인하세요. :)</h2>
-           </div>
-        </div>
-     
-    </div>
-  </div>
-  <div class="swiper-pagination"></div>
-</div>
 
 
 <!-- Initialize Swiper -->
@@ -82,7 +57,7 @@ $irow = $stmt->get_result()->fetch_all();
   
 <article class="mx-auto container mt-24 mb-24 px-2 w-full lg:w-3/4">
     
-    <h2 class="text-2xl font-semibold mb-4"># <?php echo $title ?></h2>
+    <h2 class="text-2xl font-semibold mb-4"> <?php echo $title ?></h2>
     <a href="item_list.php?title=<?php echo $title ?>&bcode=<?php echo $bcode?>" class="<?php echo $active_class?>">전체</a>
     <?php foreach($bcrow as $k=>$v){
       if($scode==$v[3]){

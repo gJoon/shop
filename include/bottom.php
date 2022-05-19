@@ -1,7 +1,7 @@
 <footer class="pb-32 pt-12 bg-[#F7F5F2] border-t border-zinc-100 ">
     <div class="container flex-col mx-auto flex flex-wrap justify-between sm:flex-row">
       <div class="flex flex-col pl-5">
-        <h1 class="text-2xl text-[#F68989] font-bold"><a href="/"> @rtist_SH0:P</a></h1>
+        <h1 class="text-3xl text-[#3a4ca8] font-bold"><a href="/"> BREEZE </a></h1>
         <p class="md:mt-10 sm:mt-5">
           @rtist_SH0:P | 대표 송준
         </p>

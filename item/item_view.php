@@ -310,7 +310,7 @@ include_once('../include/top.php');
             <div class="flex mb-6">
                 <div class="w-3/4 text-sm font-semibold">
                     <a href="/" class=""> HOME </a> / 
-                    <span class=""> #<?php echo $bcode_title ?> </span> / 
+                    <span class=""> <?php echo $bcode_title ?> </span> / 
                     <span class=""> <?php echo $scode_title ?> </span>
                 </div>
                 <div class="w-1/4 px-2 text-right" id="wish_btn">

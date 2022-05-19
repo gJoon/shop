@@ -2,18 +2,21 @@
 include_once('../include/top.php');
 
 ?>
-<article class="mx-auto container flex flex-col lg:flex-row mt-24 mb-24 px-3 sm:px-0 w-full lg:w-3/4">
+
+<article class="mx-auto container flex flex-col lg:flex-row mb-24 px-1 sm:px-0 w-full lg:w-3/4">
     <div class="mx-auto w-full lg:w-2/4 py-5 px-6">
-        <div class="mx-auto items-center w-full lg:w-2/4">
-            <h1 class="text-3xl text-center font-semibold mb-2 text-[#F68989]">
-                @rtist_SH0:P
-            </h1>
+        <div class="mx-auto items-center w-full lg:w-3/4">
+            <div class="text-center">
+                <img src="/include/img/logo.png" class="inline" alt="브리즈">
+            </div>
+           
+            
             <h2 class="text-2xl text-center font-semibold mb-6">
                 가입을 시작합니다!
             </h2>
     
         </div>
-     <div class="bg-white py-5 px-6">
+     <div class="bg-white py-5 px-6 border shadow ">
         <form name="form" method="post" action="login_proc.php" onkeypress="show_name(event)">
             <input type="hidden" name="user_check" id="user_check" value="N">
             <input type="hidden" name="mode" id="mode" value="join">

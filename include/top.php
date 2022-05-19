@@ -100,10 +100,10 @@ main - F7F5F2
 sub - 092532 -->
 </head>
     <body>
-      <header class="w-100 flex justify-between items-center h-20 drop-shadow-lg sticky top-0 z-50 bg-[#ffffff] px-2">
+      <header class="w-100 flex justify-between items-center h-[140px] drop-shadow-lg sticky top-0 z-50 bg-[#ffffff] px-2">
         
         <div class="flex w-3/4 items-center h-full pt-2">
-          <h1 class="w-1/4 text-[#F68989] font-bold"><a href="/"> @rtist_SH0:P</a></h1>
+          <h1 class="w-3/5 sm:w-2/4 md:w-1/4 text-[#F68989] font-bold"><a href="/"><img src="/include/img/logo.png" alt="브리즈"></a></h1>
           <nav class="hidden lg:flex w-3/4 h-full">
             <ul class="flex font-medium w-full" onmouseout="menu_out()">
             
@@ -127,11 +127,11 @@ sub - 092532 -->
               ?>
                 <li
                 class="cursor-pointer hover:border-[#092532] border-b-4 border-[transparent] font-semibold  flex w-1/4 text-center relative" onmouseover="menu('<?php echo $menu?>')">
-                  <a class="w-full py-8 mx-0 text-[#092532] pb-2 px-4" href="../item/item_list.php?title=<?php echo $v[4]; ?>&bcode=<?php echo $v[2] ?>">
-                    # <?php echo $v[4]; ?>
+                  <a class="w-full py-16 mx-0 text-[#092532] pb-2 px-4" href="../item/item_list.php?title=<?php echo $v[4]; ?>&bcode=<?php echo $v[2] ?>">
+                     <?php echo $v[4]; ?>
                   </a>  
 
-                  <div id="<?php echo $menu?>" class="menu_list w-full flex flex-col h-[310px] hidden absolute left-0 top-[72px] ml-0 bg-[#FFFFFF]">
+                  <div id="<?php echo $menu?>" class="menu_list w-full flex flex-col h-[310px] hidden absolute left-0 top-[132px] ml-0 bg-[#FFFFFF]">
                   
                     <?php foreach($csrow as $k2=>$v2){?>
                       <a href="../item/item_list.php?title=<?php echo $v[4];?>&bcode=<?php echo $v[2];?>&scode=<?php echo $v2[3];?>" class="w-full text-center inline-block py-4 hover:text-[#ffffff] text-[#092532] hover:bg-[#092532] text-sm align-middle">
@@ -182,7 +182,7 @@ sub - 092532 -->
 
               if($_SESSION[user_type] == "seller"){
                 
-                echo '<span class="cursor-pointer hover:border-[#092532] mx-1 text-[#092532] border-[#dddd] px-2 text-sm">';
+                echo '<span class="cursor-pointer hover:border-[#092532] mx-1 text-[#092532] border-[#dddd] px-2 text-lg">';
                 echo $_SESSION[user_name];
                 echo ' 님 
                 </span>
@@ -218,7 +218,7 @@ sub - 092532 -->
         </div>
         
         <div class="flex lg:hidden" onclick="mobile_btn()">
-          <svg class="mobile-menu w-8 h-8 text-[#092532]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg class="mobile-menu w-16 h-16 text-[#092532]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </div>
@@ -226,7 +226,7 @@ sub - 092532 -->
 
         <!--  모바일 -->
           
-      <div id="mobile" class="flex lg:hidden hidden flex-col" style="position: fixed;top:79px;background-color: #fff;z-index: 60;width:100%;height:100%;">
+      <div id="mobile" class="flex lg:hidden hidden flex-col" style="position: fixed;top:139px;background-color: #fff;z-index: 60;width:100%;height:100%;">
         <nav class="flex-wrap w-full" style="position:fiexd;bottom:0;hieght:80%;">
         <ul>
         <?php
@@ -249,7 +249,7 @@ sub - 092532 -->
               <li 
               class="font-semibold flex flex-col w-full text-center relative">
                 <div class="<?php echo $menu?> w-full pt-6 mx-0 text-[#092532] pb-2 px-4">
-                  # <?php echo $v[4]; ?>
+                   <?php echo $v[4]; ?>
                 </div>  
 
                 <div id="<?php echo $menu?>" class="border border-[#092532] hidden menu_list w-full flex flex-col h-100 bg-[#ffffff] left-0 top-[80px] ml-0">
@@ -353,13 +353,13 @@ sub - 092532 -->
               }else{
                 echo '
                 
-                <a href="/mypage/my_order.php" class="w-2/4 flex flex-col text-center">
+                <a href="/member/login.php" class="w-2/4 flex flex-col text-center">
                 <span class="items-center d-block">
                 <svg class="w-7 h-7 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                 </span>
                 <span class="text-xs w-full">로그인</span>
                 </a>
-                <a href="/mypage/my_basket.php" class="w-2/4 flex flex-col text-center">
+                <a href="/member/join.php" class="w-2/4 flex flex-col text-center">
                     <span class="items-center d-block">
                       <svg class="w-7 h-7 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     </span>

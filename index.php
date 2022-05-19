@@ -19,24 +19,24 @@ $ibrow2 = $stmt->get_result()->fetch_all();
 ?>
 
 <!-- Swiper -->
-<div class="swiper mySwiper h-[250px]">
+<div class="swiper mySwiper h-[350px]">
   <div class="swiper-wrapper ">
-    <div class="swiper-slide h-[250px] w-full overflow-hidden bg-[url(/banner1.png)] bg-center px-4">
+    <div class="swiper-slide h-[350px] w-full overflow-hidden bg-[url(/include/img/banner1.jpg)] bg-center px-4">
       
       <div class="container  mx-auto h-full flex items-end z-20">
         <div class="flex-1 text-right"> 
-          <h1 class="text-3xl text-white text-right py-2">SPAO</h1>
-          <h2 class="text-2xl mb-8 text-white">#아우터를 확인하세요. :)</h2>
+          <h1 class="text-3xl text-white text-right py-2">브리즈</h1>
+          <h2 class="text-2xl mb-8 text-white">COOL SUMMER :)</h2>
          </div>
       </div>
    
   </div>
-    <div class="swiper-slide h-[250px] w-full overflow-hidden bg-[url(/banner1.png)] bg-center px-4">
+    <div class="swiper-slide h-[350px] w-full overflow-hidden bg-[url(/include/img/banner2.jpg)] bg-center px-4">
       
         <div class="container  mx-auto h-full flex items-end z-20">
           <div class="flex-1 text-right">
-            <h1 class="text-3xl text-white text-right py-2">SPAO</h1>
-            <h2 class="text-2xl mb-8 text-white">#아우터를 확인하세요. :)</h2>
+            <h1 class="text-3xl text-white text-right py-2">브리즈</h1>
+            <h2 class="text-2xl mb-8 text-white">가을패션 준비하세요 :)</h2>
            </div>
         </div>
      
@@ -70,13 +70,13 @@ $ibrow2 = $stmt->get_result()->fetch_all();
             <article class="w-full mb-8 lg:mb-0 lg:w-2/4 px-4">
               <div class="w-full mb-10 sm:mb-0">
                 <h1 class="text-2xl mb-6 text-black">히트 상품모음</h1>
-                <div class="flex flex-wrap my-5 w-100 text-black">
+                <!-- <div class="flex flex-wrap my-5 w-100 text-black">
 
                   <span class="text-1xl text-[#092532] mx-2"># OUTER</span>
                   <span class="text-1xl text-[#092532] mx-2"># TOP</span>
                   <span class="text-1xl text-[#092532] mx-2"># BOTTOM</span>
                   <span class="text-1xl text-[#092532] mx-2"># SHOSE</span>
-                </div>
+                </div> -->
                
               </div>
               <div class="w-full">
@@ -128,13 +128,13 @@ $ibrow2 = $stmt->get_result()->fetch_all();
 
             <article class="w-full mb-8 lg:mb-0 lg:w-2/4 px-4">
               <div class="w-full mb-10 sm:mb-0">
-                <h1 class="text-2xl text-[#000000 ] mx-2">베스트 상품모음</h1>
-                <div class="flex flex-wrap my-5 w-100 text-black">
+                <h1 class="text-2xl mb-6 text-black">베스트 상품모음</h1>
+                <!-- <div class="flex flex-wrap my-5 w-100 text-black">
                   <span class="text-1xl text-[#092532] mx-2"># OUTER</span>
                   <span class="text-1xl text-[#092532] mx-2"># TOP</span>
                   <span class="text-1xl text-[#092532] mx-2"># BOTTOM</span>
                   <span class="text-1xl text-[#092532] mx-2"># SHOSE</span>
-                </div>
+                </div> -->
                
               </div>
               <div class="w-full">

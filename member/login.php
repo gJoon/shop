@@ -1,16 +1,16 @@
 <?php
 include_once('../include/top.php');
 ?>
-<article class="mx-auto container flex flex-col lg:flex-row mt-24 mb-24 px-3 sm:px-0 w-full lg:w-3/4">
+<article class="mx-auto container flex flex-col lg:flex-row mb-24 px-3 sm:px-0 w-full lg:w-3/4">
 
     <div class="mx-auto w-full lg:w-2/4 py-5 px-6">
-        <h1 class="text-3xl text-center font-semibold mb-2 text-[#F68989]">
-            @rtist_SH0:P
-        </h1>
+        <div class="text-center">
+            <img src="/include/img/logo.png" class="inline w-full lg:w-3/4" alt="브리즈">
+        </div>
         <h2 class="text-2xl text-center font-semibold mb-6">
             로그인
         </h2>
-
+    
 
      <div class="border bg-white shadow py-5 px-6">
         <form name="form" action="login_proc.php" method="post" onkeypress="show_name(event)">
