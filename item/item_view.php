@@ -427,7 +427,7 @@ include_once('../include/top.php');
 
 
     <div class="mt-24">
-        <div class="flex sticky top-[79px] z-40 bg-white">
+        <div class="flex sticky top-[135px] z-40 bg-white">
             <h3 class="w-2/4 border-b-4 text-[22px] text-center border-[#000000]"><a href="#item_box" class="py-4 block w-full"> 상품정보</a></h3>
             <h3 class="w-2/4 border-b-4 text-[22px] text-center"><a href="#item_box2" class="py-4 block w-full"> 리뷰 </a></h3>
 
@@ -845,11 +845,14 @@ function my_basket() {
     }
 
     //별점 최초 집어넣기
-    if(document.querySelector(`#star`).value == 0){
+    if(document.querySelector(`#star`)){
+        if(document.querySelector(`#star`).value == 0){
         let my_value = document.querySelector(`#star`).value = 10;
         document.querySelector(`.star span`).style.width = `${my_value * 10}%`;
         
-    };
+        };
+    }
+
 
     //별점 
 

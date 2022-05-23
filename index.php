@@ -90,9 +90,9 @@ $ibrow2 = $stmt->get_result()->fetch_all();
                   foreach($ibrow as $k=>$v){ 
                       
                     ?>
-                    <div class="swiper-slide swiper-slide h-[250px] rounded-xl w-full overflow-hidden bg-[url(/product/img/<?=$v[6]?>)] bg-center">
+                    <div class="swiper-slide swiper-slide h-[300px] rounded-xl w-full overflow-hidden bg-[url(/product/img/<?=$v[6]?>)] bg-center">
                       <div class="px-2 py-3">
-                        <span class="px-2 py-2 rounded-xl text-1xl text-black"><?=$v[5]?></span>
+                        <span class="px-2 py-2 rounded-xl text-1xl text-white"><?=$v[5]?></span>
                         </div>
                     </div>       
 
@@ -146,9 +146,9 @@ $ibrow2 = $stmt->get_result()->fetch_all();
                     foreach($ibrow2 as $k=>$v){ 
                         
                       ?>
-                      <div class="swiper-slide swiper-slide h-[250px] rounded-xl w-full overflow-hidden bg-[url(/product/img/<?=$v[6]?>)] bg-center">
+                      <div class="swiper-slide swiper-slide h-[300px] rounded-xl w-full overflow-hidden bg-[url(/product/img/<?=$v[6]?>)] bg-center">
                         <div class="px-2 py-3">
-                          <span class="px-2 py-2 rounded-xl text-1xl text-black"><?=$v[5]?></span>
+                          <span class="px-2 py-2 rounded-xl text-1xl text-white"><?=$v[5]?></span>
                           </div>
                       </div>       
 

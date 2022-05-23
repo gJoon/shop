@@ -102,7 +102,7 @@ $irow = $stmt->get_result()->fetch_all();
 
            ?>
 
-            <div class="relative my-24">   
+            <div class="relative my-12">   
             <a href="item_view.php?item_code=<?php echo $v[2] ?>" class="cursor-pointer">
             <div class="h-64 overflow-hidden rounded-lg relative group"><img src="/product/img/<?php echo $v[6]?>"
                 alt="succulent img" class="w-full h-full object-cover hover:scale-110">
