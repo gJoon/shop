@@ -3,14 +3,21 @@ include_once('include/top.php');
 
 
 
-$stmt = $DB->prepare("select * from item  where item_delete='N' order by rand() limit 8;");
+$stmt = $DB->prepare("select * from item  where item_delete='N' and category ='001' order by rand() limit 5;");
 $stmt->execute();
 $ibrow = $stmt->get_result()->fetch_all();
 
 
-$stmt = $DB->prepare("select * from item  where item_delete='N' order by rand() limit 12;");
+
+
+$stmt = $DB->prepare("select * from item  where item_delete='N'  and category ='003' order by rand() limit 4;");
 $stmt->execute();
 $ibrow2 = $stmt->get_result()->fetch_all();
+
+
+$stmt = $DB->prepare("select * from item  where item_delete='N' order by rand() limit 12;");
+$stmt->execute();
+$ibrow3 = $stmt->get_result()->fetch_all();
 
 
 
@@ -257,7 +264,7 @@ $ibrow2 = $stmt->get_result()->fetch_all();
 
                 <?php
   
-                  foreach($ibrow2 as $k=>$v){ 
+                  foreach($ibrow3 as $k=>$v){ 
                       $pesent = $v[8]*($v[9]/100); 
                       $price = $v[8] - $pesent;
                     ?>
